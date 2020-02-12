@@ -1,3 +1,13 @@
+/**
+@file mainwindow.cpp
+@author Alyson Kong
+@brief This file contains the declarations of our mainwindow
+Pic 10C, UCLA
+02/7/2020
+"I pledge that I have neither given nor received unauthorized assistance on this assignment."
+*/
+
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -8,6 +18,8 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QDockWidget>
+#include <QPixmap>
+#include <ui_mainwindow.h>
 
 
 class MainWindow : public QMainWindow
@@ -19,12 +31,13 @@ public:
     ~MainWindow();
 
 private:
-   // Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
     QPushButton *singleplayer;
     QPushButton *multiplayer;
     QPushButton *leaderboard;
     QPushButton *helpbutton;
     QVBoxLayout *buttonslayout;
     QPushButton *music;
+    QPushButton *pic_label;
 };
 #endif // MAINWINDOW_H
