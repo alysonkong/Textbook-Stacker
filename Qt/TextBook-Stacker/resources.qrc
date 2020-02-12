@@ -3,4 +3,8 @@
         <file>Book+Banner_collection-01.png</file>
         <file>pixil-frame-0.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>Retro Gaming.ttf</file>
+        <file>Bubble font.ttf</file>
+    </qresource>
 </RCC>

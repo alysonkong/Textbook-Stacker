@@ -18,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
      ui(new Ui::MainWindow)
 {
 
+   // database.addApplicationFont(":/fonts/Bubble font.ttf");
+    int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    QFont monospace(family, 30);
+
 
 
 
@@ -27,18 +32,18 @@ MainWindow::MainWindow(QWidget *parent)
 //    //palette.setBrush(QPalette::Background, Qt::red);
 //    this->setPalette(palette);
 
-     pic_label = new QPushButton(); //this isn't really a background
-     QPixmap pixmap(":/bkgnd/pixil-frame-0.png");
-     QIcon ButtonIcon(pixmap);
-     pic_label->setIcon(ButtonIcon);
-     pic_label->setIconSize(pixmap.rect().size());
+//     pic_label = new QPushButton(); //this isn't really a background
+//     QPixmap pixmap(":/bkgnd/pixil-frame-0.png");
+//     QIcon ButtonIcon(pixmap);
+//     pic_label->setIcon(ButtonIcon);
+//     pic_label->setIconSize(pixmap.rect().size());
 
 
 
-    //setFixedSize(400,400);
+    setFixedSize(600,400);
     QLabel *gametitle = new QLabel("Textbook Stacker");
-    QFont f( "Arial", 30, QFont::Bold); //sets the font of the title
-    gametitle->setFont(f);
+    //QFont f( "Bubble font", 30); //sets the font of the title
+    gametitle->setFont(monospace);
     gametitle->setAlignment(Qt::AlignCenter);
     gametitle->setStyleSheet("QLabel { "
 
@@ -73,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     dock->setWidget(music);
 
     buttonslayout = new QVBoxLayout;
-    buttonslayout->addWidget(pic_label);
+    //buttonslayout->addWidget(pic_label);
     buttonslayout->addWidget(gametitle, Qt::AlignCenter);
     buttonslayout->addWidget(singleplayer);
     buttonslayout->addWidget(multiplayer);

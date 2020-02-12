@@ -3,6 +3,6 @@
 
 
 
-void avatar::paintEvent(QPaintEvent *e) {
+//void avatar::paintEvent(QPaintEvent *e) {
 
-}
+//}

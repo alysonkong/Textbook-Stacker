@@ -6,27 +6,27 @@
 #include<string>
 
 
-class avatar : public QWidget{
-    Q_OBJECT
+//class avatar : public QWidget{
+//    Q_OBJECT
 
-public:
-    avatar() : score(0), name("") {}
-    avatar(std::string user_name) :score(0), name(user_name) {}
-    virtual ~avatar() {};
+//public:
+//    avatar() : score(0), name("") {}
+//    avatar(std::string user_name) :score(0), name(user_name) {}
+//    virtual ~avatar() {};
 
-public slots:
-    void paintEvent(QPaintEvent *) override;
+//public slots:
+//    void paintEvent(QPaintEvent *) override;
 
-signals:
-
-
-private:
-    size_t score;
-    std::string name;
+//signals:
 
 
+//private:
+//    size_t score;
+//    std::string name;
 
-};
+
+
+//};
 
 
 

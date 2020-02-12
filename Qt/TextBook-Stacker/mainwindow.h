@@ -20,11 +20,13 @@ Pic 10C, UCLA
 #include <QDockWidget>
 #include <QPixmap>
 #include <ui_mainwindow.h>
+#include <QFontDatabase>
 
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -39,5 +41,6 @@ private:
     QVBoxLayout *buttonslayout;
     QPushButton *music;
     QPushButton *pic_label;
+    QFontDatabase database;
 };
 #endif // MAINWINDOW_H
