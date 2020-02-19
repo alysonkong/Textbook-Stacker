@@ -9,6 +9,7 @@ Pic 10C, UCLA
 
 #include "mainwindow.h"
 
+
 #include <QApplication>
 
 int main(int argc, char *argv[])

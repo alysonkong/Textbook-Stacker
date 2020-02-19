@@ -21,6 +21,10 @@ Pic 10C, UCLA
 #include <QPixmap>
 #include <ui_mainwindow.h>
 #include <QFontDatabase>
+#include<Lboardwindow.h>
+#include<QStackedWidget>
+//#include<QSignalMapper>
+
 
 
 class MainWindow : public QMainWindow
@@ -32,8 +36,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    //void lboardclicked();
+
+public slots:
+    void  lboarddisplay();
+    void maindisplay();
+
 private:
     Ui::MainWindow *ui;
+    QWidget *widgets;
+    QWidget *widget2;
     QPushButton *singleplayer;
     QPushButton *multiplayer;
     QPushButton *leaderboard;
@@ -42,5 +55,7 @@ private:
     QPushButton *music;
     QPushButton *pic_label;
     QFontDatabase database;
+    Leaderboardwindow::leaderboard*  lboard;
+    QStackedWidget* swindows;
 };
 #endif // MAINWINDOW_H

@@ -4,25 +4,34 @@
 #include<vector>
 #include<string>
 #include<QLabel>
+#include<QPushButton>
+#include<QVBoxLayout>
+#include<QStackedWidget>
 
-//namespace Leaderboardwindow {
+namespace Leaderboardwindow {
 
-//class leaderboard : public QWidget{
-//     Q_OBJECT
-//public:
-//    leaderboard();
+class leaderboard : public QStackedWidget{
+     Q_OBJECT
+public:
+    leaderboard();
 
-//public slots:
-//    void showLBoard() const;
+signals:
+    void pressedmain(int index);
+
+public slots:
+    void returntomain();
 
 
-//private:
-//    std::vector<std::string> namelists;
-//    QLabel names;
-//    QLabel lboard;
+private:
+    std::vector<std::string> namelists;
+    QLabel* names;
+    QLabel* lboard;
+    QPushButton* returnmain;
+    QVBoxLayout* layout;
+    int index;
 
-//};
+};
 
-//}
+}
 
 #endif // LBOARDWINDOW_H

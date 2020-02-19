@@ -19,15 +19,18 @@ SOURCES += \
     Lboardwindow.cpp \
     avatar.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    singlewindow1.cpp
 
 HEADERS += \
     Lboardwindow.h \
     avatar.h \
-    mainwindow.h
+    mainwindow.h \
+    singlewindow1.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    singlewindow1.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -23,11 +23,15 @@
 //private:
 //    size_t score;
 //    std::string name;
-
+    //QPixMap stationary;
+//    QPixMap moveright;
+//    QPixMap moveleft;
 
 
 //};
 
+//qgraphicsitem , qgraphicsscene
+//Qpixmap private member variables
 
 
 #endif // AVATAR_H

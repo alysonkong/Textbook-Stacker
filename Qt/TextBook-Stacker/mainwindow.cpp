@@ -17,13 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
      ui(new Ui::MainWindow)
 {
-
-   // database.addApplicationFont(":/fonts/Bubble font.ttf");
+    //creates new font
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-    QFont monospace(family, 30);
-
-
+    QFont f(family, 40);
 
 
 //    QPixmap bkgnd("");
@@ -42,11 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     setFixedSize(600,400);
     QLabel *gametitle = new QLabel("Textbook Stacker");
-    //QFont f( "Bubble font", 30); //sets the font of the title
-    gametitle->setFont(monospace);
+    gametitle->setFont(f);
     gametitle->setAlignment(Qt::AlignCenter);
     gametitle->setStyleSheet("QLabel { "
-
                                 "color : black; "
                                 "border: 2px solid yellow; "
                                 "border-radius: 4px;}");
@@ -55,28 +50,41 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     singleplayer = new QPushButton("Single Player");
-    singleplayer->setStyleSheet("QPushButton { color : white; background-color: black; border-style: outset;"
+    singleplayer->setFont(f);
+    singleplayer->setStyleSheet("QPushButton { font-size: 26px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
     multiplayer = new QPushButton("Multiplayer");
-    multiplayer->setStyleSheet("QPushButton { color : white; background-color: black; border-style: outset;"
+    multiplayer->setFont(f);
+    multiplayer->setStyleSheet("QPushButton { font-size: 26px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
     leaderboard = new QPushButton("Leaderboard");
-    leaderboard->setStyleSheet("QPushButton { color : white; background-color: black; border-style: outset;"
+    leaderboard->setFont(f);
+    leaderboard->setStyleSheet("QPushButton { font-size: 26px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
+
     helpbutton = new QPushButton("Help");
-    helpbutton->setStyleSheet("QPushButton { color : white; background-color: black; border-style: outset;"
+    helpbutton->setFont(f);
+    helpbutton->setStyleSheet("QPushButton { font-size: 26px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
     music = new QPushButton("Music");
-    music->setStyleSheet("QPushButton { color : white; background-color: black; border-style: outset;"
+    music->setFont(f);
+    music->setStyleSheet("QPushButton { font-size: 14px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
-    QDockWidget *dock = new QDockWidget(this);
-    dock->setWidget(music);
+//    QDockWidget *dock = new QDockWidget(this);
+//    dock->setWidget(music);
 
+
+    swindows = new QStackedWidget();
+    lboard = new Leaderboardwindow::leaderboard();
+    //swindows->addWidget(this);
+
+
+    widgets = new QWidget();
     buttonslayout = new QVBoxLayout;
     //buttonslayout->addWidget(pic_label);
     buttonslayout->addWidget(gametitle, Qt::AlignCenter);
@@ -84,12 +92,33 @@ MainWindow::MainWindow(QWidget *parent)
     buttonslayout->addWidget(multiplayer);
     buttonslayout->addWidget(leaderboard);
     buttonslayout->addWidget(helpbutton);
+    widgets->setLayout(buttonslayout);
 
-    QWidget *buttons = new QWidget;
-    buttons->setLayout(buttonslayout);
-    setCentralWidget(buttons);
-    addDockWidget(Qt::BottomDockWidgetArea, dock);
 
+    swindows->addWidget(widgets);
+    swindows->addWidget(lboard);
+
+
+    widget2 = new QWidget();
+    QVBoxLayout* layout = new QVBoxLayout;
+    layout->addWidget(swindows);
+    widget2->setLayout(layout);
+    setCentralWidget(widget2);
+
+
+    connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
+    connect(lboard, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+
+}
+
+void  MainWindow::lboarddisplay(){
+   // swindows->setCurrentIndex(swindows->indexOf(lboard));
+    swindows->setCurrentWidget(lboard);
+}
+
+
+void MainWindow::maindisplay(){
+    swindows->setCurrentWidget(widget2);
 }
 
 MainWindow::~MainWindow()
