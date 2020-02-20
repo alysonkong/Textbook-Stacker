@@ -10,13 +10,13 @@
 
 namespace Leaderboardwindow {
 
-class leaderboard : public QStackedWidget{
+class leaderboard : public QWidget{
      Q_OBJECT
 public:
     leaderboard();
 
 signals:
-    void pressedmain(int index);
+   void pressedmain(int);
 
 public slots:
     void returntomain();

@@ -23,7 +23,9 @@ Pic 10C, UCLA
 #include <QFontDatabase>
 #include<Lboardwindow.h>
 #include<QStackedWidget>
-//#include<QSignalMapper>
+#include "singlewindow1.h"
+#include "ui_singlewindow1.h"
+#include <QMediaPlayer>
 
 
 
@@ -45,6 +47,8 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    Ui::singlewindow1 *singlewindow;
+    QDialog* single;
     QWidget *widgets;
     QWidget *widget2;
     QPushButton *singleplayer;
