@@ -5,16 +5,17 @@
 namespace Leaderboardwindow{
     leaderboard::leaderboard() : namelists() {
         names = new QLabel("names");
-        lboard = new QLabel("lboard");
+        lboard = new QLabel("Leaderboard");
         returnmain = new QPushButton("Return to main");
         layout = new QVBoxLayout;
 
-        layout->addWidget(names);
+
         layout->addWidget(lboard);
+        layout->addWidget(names);
         layout->addWidget(returnmain);
         setLayout(layout);
         connect(returnmain, SIGNAL(clicked()), this, SLOT(returntomain()));
-        index = 1;
+        //index = 1;
     }
 
     void leaderboard::returntomain(){
@@ -22,8 +23,8 @@ namespace Leaderboardwindow{
 
     }
 
-    void leaderboard::pressedmain(int index){
-        setCurrentIndex(index);
-    }
+//    void leaderboard::pressedmain(int i){
+//       index = i;
+//    }
 
 }

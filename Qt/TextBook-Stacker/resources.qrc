@@ -7,4 +7,7 @@
         <file>Retro Gaming.ttf</file>
         <file>Bubble font.ttf</file>
     </qresource>
+    <qresource prefix="/music">
+        <file>Blazer Rail.wav</file>
+    </qresource>
 </RCC>
