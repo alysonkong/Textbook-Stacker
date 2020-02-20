@@ -2,7 +2,6 @@
 #define SINGLEWINDOW1_H
 
 #include <QDialog>
-#include <QWidget>
 
 namespace Ui {
 class singlewindow1;
@@ -15,6 +14,12 @@ class singlewindow1 : public QDialog
 public:
     explicit singlewindow1(QWidget *parent = nullptr);
     ~singlewindow1();
+
+signals:
+    void pressedmain(int);
+
+public slots:
+    void on_back_to_main_clicked();
 
 private:
     Ui::singlewindow1 *ui;
