@@ -44,6 +44,7 @@ signals:
 public slots:
     void  lboarddisplay();
     void maindisplay();
+    void splayerdisplay();
 
 private:
     Ui::MainWindow *ui;

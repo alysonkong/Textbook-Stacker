@@ -15,9 +15,9 @@ Pic 10C, UCLA
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-     ui(new Ui::MainWindow)
+     ui(new Ui::MainWindow), singlewindow(new Ui::singlewindow1)
 {
-   // ui->setupUi(this);
+    ui->setupUi(this);
     single = new QDialog();
     singlewindow->setupUi(single);
     //creates new font
@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    setFixedSize(600,400);
+    setFixedSize(1000,800);
     QLabel *gametitle = new QLabel("Textbook Stacker");
     gametitle->setFont(f);
     gametitle->setAlignment(Qt::AlignCenter);
@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     music->setStyleSheet("QPushButton { font-size: 14px; color : white; background-color: black; border-style: outset;"
                           "border-width: 2px; border-color: solid yellow;}");
 
-    connect(music,SIGNAL(clicked), song, SLOT(stop()));
+    //connect(music,SIGNAL(clicked), song, SLOT(stop()));
 
 //    QDockWidget *dock = new QDockWidget(this);
 //    dock->setWidget(music);
@@ -122,8 +122,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
-    connect(singleplayer, SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
+    connect(singleplayer, SIGNAL(clicked()) , this, SLOT(splayerdisplay()));
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
+
 
 }
 
@@ -132,6 +133,11 @@ void  MainWindow::lboarddisplay(){
     //swindows->setCurrentWidget(lboard);
 }
 
+
+void  MainWindow::splayerdisplay(){
+    swindows->setCurrentIndex(2);
+    //swindows->setCurrentWidget(lboard);
+}
 
 void MainWindow::maindisplay(){
     swindows->setCurrentWidget(widgets);
