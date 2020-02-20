@@ -7,6 +7,7 @@
 //#include <string> //do i need this??
 #include <QLabel>
 #include <QHBoxLayout>
+#include <vector>
 
 /* FUNCTION:
  * the recipe class should communicate with player class, textbook class, game window (add recipe to layout of game)
@@ -47,6 +48,8 @@ private:
 
     QLabel title;
     QHBoxLayout layout;
+
+    //std::vector<Textbook> stack;
 
 };
 

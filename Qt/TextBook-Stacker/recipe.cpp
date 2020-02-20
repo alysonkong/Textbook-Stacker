@@ -10,6 +10,7 @@ Recipe::Recipe() : title("Textbook List") {
 
         if (book_code == 0) {
             ++bigcplusplus_count;
+            //stack.push_back(textbook);
         }
 
         if (book_code == 1) {

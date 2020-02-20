@@ -22,12 +22,14 @@ SOURCES += \
     avatar.cpp \
     main.cpp \
     mainwindow.cpp \
+    recipe.cpp \
     singlewindow1.cpp
 
 HEADERS += \
     Lboardwindow.h \
     avatar.h \
     mainwindow.h \
+    recipe.h \
     singlewindow1.h
 
 FORMS += \
