@@ -26,6 +26,7 @@ Pic 10C, UCLA
 #include "singlewindow1.h"
 #include "ui_singlewindow1.h"
 #include <QMediaPlayer>
+#include<QMediaPlaylist>
 
 
 
@@ -38,12 +39,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+
 signals:
     //void lboardclicked();
 
 public slots:
     void  lboarddisplay();
     void maindisplay();
+    void splayerdisplay();
+    void musiconoff();
 
 private:
     Ui::MainWindow *ui;
@@ -55,11 +60,14 @@ private:
     QPushButton *multiplayer;
     QPushButton *leaderboard;
     QPushButton *helpbutton;
-    QVBoxLayout *buttonslayout;
+    QGridLayout *buttonslayout;
     QPushButton *music;
+    QPushButton* music_icon;
     QPushButton *pic_label;
     QFontDatabase database;
     Leaderboardwindow::leaderboard*  lboard;
     QStackedWidget* swindows;
+    QMediaPlayer* song;
+
 };
 #endif // MAINWINDOW_H

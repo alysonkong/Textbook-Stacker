@@ -1,13 +1,18 @@
 <RCC>
     <qresource prefix="/bkgnd">
-        <file>Book+Banner_collection-01.png</file>
         <file>pixil-frame-0.png</file>
+        <file>textbookbkgnd.png</file>
+        <file>textbookbkgndclear.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>Retro Gaming.ttf</file>
         <file>Bubble font.ttf</file>
+        <file>music.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>Blazer Rail.wav</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>music.png</file>
     </qresource>
 </RCC>

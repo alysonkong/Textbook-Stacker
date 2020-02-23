@@ -21,8 +21,8 @@
     <rect>
      <x>679</x>
      <y>10</y>
-     <width>151</width>
-     <height>96</height>
+     <width>160</width>
+     <height>127</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -37,7 +37,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton1">
       <property name="text">
        <string>Pause</string>
       </property>
@@ -47,6 +47,13 @@
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
        <string>Exit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Go to Main Window</string>
       </property>
      </widget>
     </item>
@@ -166,5 +173,25 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>singlewindow1</receiver>
+   <slot>on_pushButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>735</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>736</x>
+     <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_pushButton_clicked()</slot>
+ </slots>
 </ui>
