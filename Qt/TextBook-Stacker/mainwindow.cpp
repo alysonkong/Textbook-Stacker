@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent)
     swindows = new QStackedWidget();
     lboard = new Leaderboardwindow::leaderboard();
     gwindow = new gamewindow();
+    hwindow = new HelpWindow::helpwindow();
    // singlewindow = new Ui::singlewindow1();
 
     //swindows->addWidget(this);
@@ -129,6 +130,7 @@ MainWindow::MainWindow(QWidget *parent)
     swindows->addWidget(lboard);
     swindows->addWidget(single);
     swindows->addWidget(gwindow);
+    swindows->addWidget(hwindow);
 
     setCentralWidget(swindows);
 
@@ -138,6 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
     connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
     connect(multiplayer, SIGNAL(clicked()), this, SLOT(mplayerdisplay()));
+    connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay()));
    // connect(single, SIGNAL(on_pushButton_clicked()), this, SLOT(maindisplay()));
 
 
@@ -172,6 +175,10 @@ void  MainWindow::mplayerdisplay(){
 
 void MainWindow::maindisplay(){
     swindows->setCurrentIndex(0);
+}
+
+void MainWindow::hwindowdisplay(){
+    swindows->setCurrentIndex(4);
 }
 
 MainWindow::~MainWindow()

@@ -18,7 +18,7 @@ signals:
 
 public slots:
     void returntomain();
-    void getplayername();
+    void getplayername(QString);
 
 private:
     QGraphicsScene scene;
