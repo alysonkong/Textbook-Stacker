@@ -14,6 +14,7 @@ helpwindow::helpwindow() {
 
     layout->addWidget(title);
     layout->addWidget(returntomain);
+    layout->addWidget(instructions);
     setLayout(layout);
     connect(returntomain, SIGNAL(clicked()), this, SLOT(returntomain()));
 

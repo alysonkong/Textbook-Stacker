@@ -4,19 +4,14 @@
 #include <iostream>
 #include <QPaintEvent>
 #include <QWidget>
-<<<<<<< HEAD
-//#include <string> //do i need this??
 #include <QLabel>
 #include <QHBoxLayout>
 #include <vector>
-=======
 #include <QLabel>
 #include <QGridLayout>
 #include <vector>
 #include <QPainter>
 
-
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
 
 /* FUNCTION:
  * the recipe class should communicate with player class, textbook class, game window (add recipe to layout of game)
@@ -36,9 +31,8 @@ class Recipe : public QWidget
 
 public:
     Recipe();
-<<<<<<< HEAD
     //virtual ~Recipe() //can recipe ever be used as a base class??? i dont think so
-    QWidget display_recipe();
+    void display_recipe();
 
 
 public slots:
@@ -46,17 +40,11 @@ public slots:
     //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
 
 signals:
-=======
-    void display_recipe();
 
 
-public slots:
-    //void paintEvent(QPaintEvent *) override;
-    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
 
 signals:
     //void round_complete(); //needs to send signal that round is complete
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
 
 
 private:
@@ -67,12 +55,8 @@ private:
     int eng_count = 0;
     int philo_count = 0;
 
-<<<<<<< HEAD
     QLabel title;
     QHBoxLayout layout;
-=======
-    QLabel *title;
-    QGridLayout *layout;
 
     QLabel *bigc_book;
     QLabel *bio_book;
@@ -81,8 +65,6 @@ private:
     QLabel *eng_book;
     QLabel *philo_book;
 
-
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
 
     //std::vector<Textbook> stack;
 

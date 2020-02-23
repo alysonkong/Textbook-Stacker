@@ -1,11 +1,9 @@
 #include "recipe.h"
 #include <QRandomGenerator>
 
-<<<<<<< HEAD
+
 Recipe::Recipe() : title("Textbook List") {
-=======
-Recipe::Recipe() {
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
     //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
     int total_books = QRandomGenerator::global()->bounded(10, 16);
 
@@ -19,69 +17,46 @@ Recipe::Recipe() {
 
         if (book_code == 1) {
             ++bio_count;
-<<<<<<< HEAD
-=======
+
             //stack.push_back(textbook);
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
         }
 
         if (book_code == 2) {
             ++chem_count;
-<<<<<<< HEAD
-=======
+
             //stack.push_back(textbook);
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
         }
 
         if (book_code == 3) {
             ++soc_count;
-<<<<<<< HEAD
-=======
+
+
             //stack.push_back(textbook);
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
         }
 
         if (book_code == 4) {
             ++eng_count;
-<<<<<<< HEAD
-=======
+
             //stack.push_back(textbook);
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
         }
 
         if (book_code == 5) {
             ++philo_count;
-<<<<<<< HEAD
-=======
+
             //stack.push_back(textbook);
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+
         }
 
     }
 
-<<<<<<< HEAD
-}
-
-QWidget Recipe::display_recipe() {
-    //create widget that will be added to layout of game screen
-    QLabel *title  = new QLabel("Textbooks to catch");
-    QFont f("Arial", 14, QFont::Bold);
-    title->setFont(f);
-    title->setAlignment(Qt::AlignCenter);
-
-    QVBoxLayout *book_names = new QVBoxLayout;
-
-
-    //more work to do here
-
-
-
 
 }
-=======
-    //call display_recipe();??
 
-}
+
 
 void Recipe::display_recipe() { //should I return widget or be void??
 
@@ -113,4 +88,4 @@ void Recipe::display_recipe() { //should I return widget or be void??
 
 }
 
->>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
+

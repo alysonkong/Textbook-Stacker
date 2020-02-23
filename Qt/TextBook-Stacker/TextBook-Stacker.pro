@@ -24,6 +24,7 @@ SOURCES += \
     avatar.cpp \
     gameview.cpp \
     gamewindow.cpp \
+    helpwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     nameinputwindow.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     avatar.h \
     gameview.h \
     gamewindow.h \
+    helpwindow.h \
     mainwindow.h \
     nameinputwindow.h \
     recipe.h \
