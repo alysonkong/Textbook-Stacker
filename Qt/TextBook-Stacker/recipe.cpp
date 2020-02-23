@@ -1,21 +1,18 @@
-//#include "recipe.h"
-//#include <QRandomGenerator>
+#include "recipe.h"
+#include <QRandomGenerator>
 
 
-//Recipe::Recipe() : title("Textbook List") {
-//=======
-//Recipe::Recipe() {
-//>>>>>>> 365125c81ab4719a60c31ae8f687077b30c03c2a
-//    //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
-//    int total_books = QRandomGenerator::global()->bounded(10, 16);
+Recipe::Recipe() {
 
-//    for (int i = 0; i < total_books; ++i) { //stack consists of 10-15 textbooks
-//        int book_code = QRandomGenerator::global()->bounded(6);
+    //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
+    int total_books = QRandomGenerator::global()->bounded(10, 16);
 
-//        if (book_code == 0) {
-//            ++bigcplusplus_count;
-//            //stack.push_back(textbook);
-//        }
+
+    //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
+    int total_books = QRandomGenerator::global()->bounded(10, 16);
+
+    for (int i = 0; i < total_books; ++i) { //stack consists of 10-15 textbooks
+        int book_code = QRandomGenerator::global()->bounded(6);
 
 //        if (book_code == 1) {
 //            ++bio_count;
@@ -27,12 +24,50 @@
 
 //            //stack.push_back(textbook);
 //        }
+=======
+        if (book_code == 1) {
+            ++bio_count;
+
+            //stack.push_back(textbook);
+
+        }
+
+        if (book_code == 2) {
+            ++chem_count;
+
+            //stack.push_back(textbook);
+
+        }
+
+        if (book_code == 3) {
+            ++soc_count;
+
+
+            //stack.push_back(textbook);
+
+        }
+
+        if (book_code == 4) {
+            ++eng_count;
+
+            //stack.push_back(textbook);
+
+        }
+
+        if (book_code == 5) {
+            ++philo_count;
+
+            //stack.push_back(textbook);
+
+        }
+>>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
 
 //        if (book_code == 3) {
 //            ++soc_count;
 //            //stack.push_back(textbook);
 //        }
 
+<<<<<<< HEAD
 //        if (book_code == 4) {
 //            ++eng_count;
 //            //stack.push_back(textbook);
@@ -60,8 +95,18 @@
 
 //    //more work to do here
 
+=======
+
+}
 
 
+>>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
+
+
+<<<<<<< HEAD
+=======
+    title = new QLabel("Textbooks to catch");
+>>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
 
 //}
 
@@ -99,3 +144,7 @@
 
 //}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
