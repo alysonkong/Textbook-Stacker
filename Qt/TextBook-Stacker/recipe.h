@@ -39,8 +39,6 @@ public slots:
     void paintEvent(QPaintEvent *) override;
     //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
 
-signals:
-
 
 
 signals:
@@ -55,8 +53,8 @@ private:
     int eng_count = 0;
     int philo_count = 0;
 
-    QLabel title;
-    QHBoxLayout layout;
+    QLabel *title;
+    QHBoxLayout *layout;
 
     QLabel *bigc_book;
     QLabel *bio_book;

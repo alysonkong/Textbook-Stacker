@@ -2,7 +2,7 @@
 #include <QRandomGenerator>
 
 
-Recipe::Recipe() : title("Textbook List") {
+Recipe::Recipe() {
 
     //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
     int total_books = QRandomGenerator::global()->bounded(10, 16);
@@ -60,7 +60,7 @@ Recipe::Recipe() : title("Textbook List") {
 
 void Recipe::display_recipe() { //should I return widget or be void??
 
-    title  = new QLabel("Textbooks to catch");
+    title = new QLabel("Textbooks to catch");
 
     bigc_book = new QLabel("Big C++");
     bio_book = new QLabel("Biology");
