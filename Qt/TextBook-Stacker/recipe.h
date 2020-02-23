@@ -14,7 +14,7 @@
 //#include <QPainter>
 
 
-///* FUNCTION:
+//* FUNCTION:
 // * the recipe class should communicate with player class, textbook class, game window (add recipe to layout of game)
 // * it should randomly generate a recipe, which specifies the amount of each kind of textbook the user should catch
 // * once a book is added onto the stack, it should update the recipe

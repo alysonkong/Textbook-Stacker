@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include<QPushButton>
+#include "nameinputwindow.h"
 
 class gamewindow : public QWidget
 {
@@ -25,6 +26,8 @@ private:
     QPixmap* spritesheet;
     QTimer timer;
     QPushButton* exit;
+    nameinputwindow
+
 
 
 

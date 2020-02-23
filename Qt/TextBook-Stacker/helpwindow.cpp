@@ -17,7 +17,7 @@ helpwindow::helpwindow() {
     setLayout(layout);
     connect(returntomain, SIGNAL(clicked()), this, SLOT(returntomain()));
 
-    show();
+    //show();
 
     //index = ??;
 }
