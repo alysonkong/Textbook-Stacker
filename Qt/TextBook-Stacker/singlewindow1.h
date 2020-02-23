@@ -20,6 +20,8 @@ signals:
 
 public slots:
     void on_back_to_main_clicked();
+    void on_pushButton_clicked();
+
 
 private:
     Ui::singlewindow1 *ui;

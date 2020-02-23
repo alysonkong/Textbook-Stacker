@@ -18,17 +18,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CharacterMove.cpp \
+    FallingObject.cpp \
     Lboardwindow.cpp \
     avatar.cpp \
     main.cpp \
     mainwindow.cpp \
-    singlewindow1.cpp
+    recipe.cpp \
+    singlewindow1.cpp \
+    sprite.cpp
 
 HEADERS += \
+    BookStack.h \
+    CharacterMove.h \
+    FallingObject.h \
     Lboardwindow.h \
     avatar.h \
     mainwindow.h \
-    singlewindow1.h
+    recipe.h \
+    singlewindow1.h \
+    sprite.h
 
 FORMS += \
     mainwindow.ui \

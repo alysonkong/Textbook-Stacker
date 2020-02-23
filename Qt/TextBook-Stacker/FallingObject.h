@@ -18,5 +18,7 @@ public:
 };
 
  */
+//QRandom generator: generate random probability (1-7), then generates one or the other (based on set prob
+
 
 #endif // FALLINGOBJECT_H

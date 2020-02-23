@@ -1,5 +1,6 @@
 #include "singlewindow1.h"
 #include "ui_singlewindow1.h"
+#include "iostream"
 
 singlewindow1::singlewindow1(QWidget *parent) :
     QDialog(parent),
@@ -7,7 +8,7 @@ singlewindow1::singlewindow1(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_back_to_main_clicked()));
+   connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
 
 }
 
@@ -20,3 +21,11 @@ void singlewindow1::on_back_to_main_clicked()
 {
     emit pressedmain(1);
 }
+
+void singlewindow1::on_pushButton_clicked()
+{
+    std::cout <<"No";
+
+}
+
+
