@@ -4,6 +4,7 @@
 #include<QPaintEvent>
 #include<QWidget>
 #include<string>
+#include "sprite.h"
 
 
 //class avatar : public QWidget{
@@ -29,6 +30,45 @@
 
 
 //};
+
+
+
+enum Direction {
+    Left, Right
+};
+
+class avatar : public Sprite
+{
+private:
+    double vx=0, vy=0;
+    double spd=0;
+    Direction facing;
+    size_t score = 0;
+    QString name;
+public:
+    inline
+    avatar(QString user_name, QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
+        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name)
+    {
+        turn(Left);
+    }
+    inline
+    double speed() { return spd; }
+    inline
+    void setSpeed(double v) { spd = v; }
+
+    void go(Direction d); // go in this direction
+    void turn(Direction d); // turn to a given direction
+    inline void stop() {
+        vx = vy = 0;
+        pause(); // pause animation
+        //resetAnimation(); // set frame to 0
+    }
+    inline void stop(Direction d) { if(facing == d) stop(); }
+
+    void advance(int phase) override;
+};
+
 
 //qgraphicsitem , qgraphicsscene
 //Qpixmap private member variables

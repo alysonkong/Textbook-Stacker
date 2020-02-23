@@ -22,8 +22,11 @@ SOURCES += \
     FallingObject.cpp \
     Lboardwindow.cpp \
     avatar.cpp \
+    gameview.cpp \
+    gamewindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    nameinputwindow.cpp \
     recipe.cpp \
     singlewindow1.cpp \
     sprite.cpp
@@ -34,7 +37,10 @@ HEADERS += \
     FallingObject.h \
     Lboardwindow.h \
     avatar.h \
+    gameview.h \
+    gamewindow.h \
     mainwindow.h \
+    nameinputwindow.h \
     recipe.h \
     singlewindow1.h \
     sprite.h

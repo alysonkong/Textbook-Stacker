@@ -15,4 +15,7 @@
     <qresource prefix="/icons">
         <file>music.png</file>
     </qresource>
+    <qresource prefix="/spritesheets">
+        <file>moreoverworld.png</file>
+    </qresource>
 </RCC>

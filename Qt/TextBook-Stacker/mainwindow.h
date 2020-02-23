@@ -27,6 +27,7 @@ Pic 10C, UCLA
 #include "ui_singlewindow1.h"
 #include <QMediaPlayer>
 #include<QMediaPlaylist>
+#include "gamewindow.h"
 
 
 
@@ -49,6 +50,7 @@ public slots:
     void maindisplay();
     void splayerdisplay();
     void musiconoff();
+    void mplayerdisplay();
 
 private:
     Ui::MainWindow *ui;
@@ -68,6 +70,7 @@ private:
     Leaderboardwindow::leaderboard*  lboard;
     QStackedWidget* swindows;
     QMediaPlayer* song;
+    gamewindow *gwindow;
 
 };
 #endif // MAINWINDOW_H
