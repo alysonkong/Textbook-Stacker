@@ -81,15 +81,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(music_icon,SIGNAL(clicked()), this, SLOT(musiconoff()));
 
-//    QDockWidget *dock = new QDockWidget(this);
-//    dock->setWidget(music);
-
-
     swindows = new QStackedWidget();
     lboard = new Leaderboardwindow::leaderboard();
-   // gwindow = new gamewindow();
     hwindow = new HelpWindow::helpwindow();
     namewindow = new nameinputwindow();
+    twonameswindow = new twonamesinput();
    // singlewindow = new Ui::singlewindow1();
 
     //swindows->addWidget(this);
@@ -101,7 +97,6 @@ MainWindow::MainWindow(QWidget *parent)
     //frame.setLineWidth(0.6)
     widgets = new QWidget();
     buttonslayout = new QGridLayout();
-    //buttonslayout->addWidget(pic_label);
 
 
     buttonslayout->addWidget(gametitle, 0, 0, 1, -1);
@@ -120,44 +115,45 @@ MainWindow::MainWindow(QWidget *parent)
 
     buttonslayout->setContentsMargins( 200, 100, 200, 100);
     widgets->setLayout(buttonslayout);
-    QWidget * test = new QWidget();
-    QGridLayout * trial = new QGridLayout();
-    trial->addWidget(widgets);
-    trial->addWidget(music_icon, 1, 0, Qt::AlignRight);
-    test->setLayout(trial);
+    QWidget * main = new QWidget();
+    QGridLayout * mainlayout = new QGridLayout();
+    mainlayout->addWidget(widgets);
+    mainlayout->addWidget(music_icon, 1, 0, Qt::AlignRight);
+    main->setLayout(mainlayout);
 
-    swindows->addWidget(test);
+    swindows->addWidget(main);
     swindows->addWidget(lboard);
-    swindows->addWidget(single);
-
     swindows->addWidget(hwindow);
+   // swindows->addWidget(single);
     swindows->addWidget(namewindow);
-
-    setCentralWidget(swindows);
-
+    swindows->addWidget(twonameswindow);
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
-    connect(singleplayer, SIGNAL(clicked()) , this, SLOT(splayerdisplay()));
+    connect(singleplayer, SIGNAL(clicked()) , this, SLOT(namewindowdisplay()));
+    connect(multiplayer, SIGNAL(clicked()), this, SLOT(twonamesdisplay()));
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
-
     connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay()));
-    connect(multiplayer, SIGNAL(clicked()), this, SLOT(namewindowdisplay()));
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay()));
    // connect(single, SIGNAL(on_pushButton_clicked()), this, SLOT(maindisplay()));
-
-
     connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString)));
+    connect(twonameswindow, SIGNAL(playernames(QString, QString)), this, SLOT(getnames(QString, QString)));
 
+    setCentralWidget(swindows);
 
     show();
 }
 
 void MainWindow::getname(QString n){
-    gwindow = new gamewindow(n);
+
+}
+
+void MainWindow::getnames(QString n1, QString n2){
+    gwindow = new gamewindow(n1, n2);
     swindows->addWidget(gwindow);
     connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-    connect(namewindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
+    connect(twonameswindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
 }
+
 
 
 
@@ -177,13 +173,12 @@ void  MainWindow::lboarddisplay(){
 
 
 void  MainWindow::splayerdisplay(){
-    swindows->setCurrentIndex(2);
-    //swindows->setCurrentWidget(lboard);
+    //swindows->setCurrentIndex(2);
+    //swindows->setCurrentWidget(singleplayerwindow);
 }
 
 void  MainWindow::mplayerdisplay(){
-
-    swindows->setCurrentIndex(5);
+    swindows->setCurrentWidget(gwindow);
     //swindows->setCurrentWidget(lboard);
 }
 
@@ -192,10 +187,14 @@ void MainWindow::maindisplay(){
 }
 
 void MainWindow::hwindowdisplay(){
-    swindows->setCurrentIndex(3);
+    swindows->setCurrentIndex(2);
 }
 
 void MainWindow::namewindowdisplay(){
+    swindows->setCurrentIndex(3);
+}
+
+void MainWindow::twonamesdisplay(){
     swindows->setCurrentIndex(4);
 }
 

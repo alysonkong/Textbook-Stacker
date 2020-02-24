@@ -18,10 +18,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CharacterMove.cpp \
     FallingObject.cpp \
     Lboardwindow.cpp \
     avatar.cpp \
+    books.cpp \
     gameview.cpp \
     gamewindow.cpp \
     helpwindow.cpp \
@@ -30,14 +30,15 @@ SOURCES += \
     nameinputwindow.cpp \
     recipe.cpp \
     singlewindow1.cpp \
-    sprite.cpp
+    sprite.cpp \
+    twonamesinput.cpp
 
 HEADERS += \
     BookStack.h \
-    CharacterMove.h \
     FallingObject.h \
     Lboardwindow.h \
     avatar.h \
+    books.h \
     gameview.h \
     gamewindow.h \
     helpwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     nameinputwindow.h \
     recipe.h \
     singlewindow1.h \
-    sprite.h
+    sprite.h \
+    twonamesinput.h
 
 FORMS += \
     mainwindow.ui \

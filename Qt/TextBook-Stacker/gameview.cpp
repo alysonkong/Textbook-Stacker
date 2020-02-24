@@ -1,14 +1,17 @@
 #include "gameview.h"
 #include <QKeyEvent>
+#include<QGraphicsView>
 
 
-GameView::GameView(avatar* mc)
+GameView::GameView(avatar* mc, books* yb)
     : QGraphicsView()
-    , mc(mc)
+    , mc(mc), b(yb)
 {
+   // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
     scene.setSceneRect(0,0,450,700);
     mc->setPos(193, 604);
     scene.addItem(mc);
+    scene.addItem(b);
     setScene(&scene);
 
     QObject::connect(&timer, &QTimer::timeout,
@@ -18,12 +21,25 @@ GameView::GameView(avatar* mc)
 
 void GameView::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
-    case Qt::Key_Left:
-        mc->go(Left);
-        break;
-    case Qt::Key_Right:
-        mc->go(Right);
-        break;
+    if(mc->pos() == QPointF(0,604)){
+        mc->pause();
+//    if(!scene.sceneRect().contains(mc->pos())){
+//        mc->stop();
+//        //mc->stop(Left);
+//        //mc->setPos(0,604);
+//        mc->itemChange(QGraphicsItem::GraphicsItemChange::ItemPositionHasChanged, QPointF(0,604));
+//    }
+//    else if(mc->pos() == QPointF(386,604)){
+//        mc->stop(Right);
+    }
+    else{
+        case Qt::Key_Left:
+            mc->go(Left);
+           break;
+        case Qt::Key_Right:
+            mc->go(Right);
+            break;
+   }
     }
 }
 void GameView::keyReleaseEvent(QKeyEvent *event) {
@@ -38,7 +54,6 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
 
 }
 
-// I forgot the GameView:: in class
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
     painter->setBrush(Qt::blue);
     painter->drawRect(0,0, 450,700);

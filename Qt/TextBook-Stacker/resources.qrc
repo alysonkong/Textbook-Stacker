@@ -17,5 +17,6 @@
     </qresource>
     <qresource prefix="/spritesheets">
         <file>moreoverworld.png</file>
+        <file>yellowbook.png</file>
     </qresource>
 </RCC>

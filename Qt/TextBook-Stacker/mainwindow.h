@@ -11,6 +11,9 @@ Pic 10C, UCLA
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
+//change mainwindow title
+
 #include <QMainWindow>
 #include <QWidget>
 #include <QApplication>
@@ -30,6 +33,7 @@ Pic 10C, UCLA
 #include "gamewindow.h"
 #include "helpwindow.h"
 #include "nameinputwindow.h"
+#include "twonamesinput.h"
 
 
 
@@ -46,7 +50,7 @@ public:
 
 signals:
     //void lboardclicked();
-    void emitname(QString);
+   // void emitname(QString);
 
 public slots:
     void lboarddisplay();
@@ -56,7 +60,9 @@ public slots:
     void mplayerdisplay();
     void hwindowdisplay();
     void namewindowdisplay();
+    void twonamesdisplay();
     void getname(QString n);
+    void getnames(QString n1, QString n2);
 
 private:
     Ui::MainWindow *ui;
@@ -79,6 +85,7 @@ private:
     gamewindow *gwindow;
     HelpWindow::helpwindow* hwindow;
     nameinputwindow* namewindow;
+    twonamesinput* twonameswindow;
 
 };
 #endif // MAINWINDOW_H

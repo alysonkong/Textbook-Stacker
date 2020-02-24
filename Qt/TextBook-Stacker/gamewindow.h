@@ -8,12 +8,13 @@
 #include "nameinputwindow.h"
 #include <QLabel>
 #include "avatar.h"
+#include "books.h"
 
 class gamewindow : public QWidget
 {
     Q_OBJECT
 public:
-    gamewindow(QString const & name1);
+    gamewindow(QString const & name1, QString const & name2);
 
     ~gamewindow();
 
@@ -30,6 +31,7 @@ private:
     QPushButton* exit;
     QLabel* p2name;
     avatar* mc;
+    books* m;
 
 
 

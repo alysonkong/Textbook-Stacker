@@ -43,12 +43,14 @@ private:
     double vx=0, vy=0;
     double spd=0;
     Direction facing;
-    size_t score = 0;
     QString name;
+    size_t score;
+
 public:
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
     inline
     avatar(QString user_name, QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
-        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name)
+        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0)
     {
         turn(Left);
     }

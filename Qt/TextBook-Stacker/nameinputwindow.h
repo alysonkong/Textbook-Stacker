@@ -21,8 +21,6 @@ signals:
 
 private:
      QLineEdit *nameEdit;
-     QString name;
-
 
 };
 

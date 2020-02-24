@@ -6,7 +6,7 @@
 #include <QPixmap>
 #include <QFontDatabase>
 
-gamewindow::gamewindow(QString const & name1)
+gamewindow::gamewindow(QString const & name1, QString const & name2)
 {
     spritesheet = new QPixmap(":/spritesheets/moreoverworld.png");
 
@@ -15,7 +15,7 @@ gamewindow::gamewindow(QString const & name1)
     mc3->setPos(0,0);
     mc3->setSpeed(5);
 
-    avatar* mc2 = new avatar(QString("Gabe"), spritesheet, 32, 48, 4, 4, 112, 0, 2, 4);
+    avatar* mc2 = new avatar(name2, spritesheet, 32, 48, 4, 4, 112, 0, 2, 4);
     mc2->setPos(0,0);
     mc2->setSpeed(5);
 
@@ -37,13 +37,16 @@ gamewindow::gamewindow(QString const & name1)
     p1_name->setText(name1);
     p1_name->setFont(f);
     p2name = new QLabel("Player 2 name");
+    p2name->setText(name2);
     p2name->setFont(f);
 
     QLabel* temp = new QLabel("recipe");
     QLabel* temp2 = new QLabel("recipe2");
 
-    GameView* view = new GameView(mc3);
-    GameView* view2 = new GameView(mc2);
+    m = new books();
+
+    GameView* view = new GameView(mc3, m);
+    GameView* view2 = new GameView(mc2, m);
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(p1_name,0,0,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(temp,1,0,3,1, Qt::AlignTop);

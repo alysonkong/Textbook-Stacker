@@ -23,3 +23,4 @@ void Sprite::advance(int phase) {
     }
 }
 
+

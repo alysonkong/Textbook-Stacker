@@ -4,6 +4,9 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "avatar.h"
+#include <QVariant>
+#include "books.h"
+
 
 class GameView : public QGraphicsView
 {
@@ -11,8 +14,9 @@ private:
     avatar* mc;
     QGraphicsScene scene;
     QTimer timer;
+    books* b;
 public:
-    GameView(avatar* mc);
+    GameView(avatar* mc, books*);
 
     void drawBackground(QPainter *painter, const QRectF &rect) override;
 
