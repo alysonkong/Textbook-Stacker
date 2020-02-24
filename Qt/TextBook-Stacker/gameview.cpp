@@ -6,7 +6,8 @@ GameView::GameView(avatar* mc)
     : QGraphicsView()
     , mc(mc)
 {
-    scene.setSceneRect(-100,-100,500,500);
+    scene.setSceneRect(0,0,450,700);
+    mc->setPos(193, 604);
     scene.addItem(mc);
     setScene(&scene);
 
@@ -40,5 +41,5 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
 // I forgot the GameView:: in class
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
     painter->setBrush(Qt::blue);
-    painter->drawRect(0,0,300,300);
+    painter->drawRect(0,0, 450,700);
 }

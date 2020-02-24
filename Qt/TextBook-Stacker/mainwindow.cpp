@@ -26,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
     QFont f(family, 40);
 
-
+    setFixedSize(1300,800);
     QPixmap bkgnd(":/bkgnd/textbookbkgnd.png");
-    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatioByExpanding); //set background image to size of window, ignore aspect ratio of orig. pic
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     song->play();
 
 
-    setFixedSize(950,650);
+
     QLabel *gametitle = new QLabel("Textbook Stacker");
     gametitle->setFont(f);
     gametitle->setAlignment(Qt::AlignCenter);
@@ -87,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     swindows = new QStackedWidget();
     lboard = new Leaderboardwindow::leaderboard();
-    gwindow = new gamewindow();
+   // gwindow = new gamewindow();
     hwindow = new HelpWindow::helpwindow();
     namewindow = new nameinputwindow();
    // singlewindow = new Ui::singlewindow1();
@@ -120,7 +120,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     buttonslayout->setContentsMargins( 200, 100, 200, 100);
     widgets->setLayout(buttonslayout);
-   // widgets->setStyleSheet("QWidget {border: 100 px}");
     QWidget * test = new QWidget();
     QGridLayout * trial = new QGridLayout();
     trial->addWidget(widgets);
@@ -130,7 +129,7 @@ MainWindow::MainWindow(QWidget *parent)
     swindows->addWidget(test);
     swindows->addWidget(lboard);
     swindows->addWidget(single);
-    swindows->addWidget(gwindow);
+
     swindows->addWidget(hwindow);
     swindows->addWidget(namewindow);
 
@@ -139,19 +138,27 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
     connect(singleplayer, SIGNAL(clicked()) , this, SLOT(splayerdisplay()));
-
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
-    connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+
     connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay()));
-   // connect(multiplayer, SIGNAL(clicked()), this, SLOT(mplayerdisplay()));
     connect(multiplayer, SIGNAL(clicked()), this, SLOT(namewindowdisplay()));
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay()));
    // connect(single, SIGNAL(on_pushButton_clicked()), this, SLOT(maindisplay()));
-    connect(namewindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
+
+
+    connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString)));
 
 
     show();
 }
+
+void MainWindow::getname(QString n){
+    gwindow = new gamewindow(n);
+    swindows->addWidget(gwindow);
+    connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+    connect(namewindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
+}
+
 
 
 void MainWindow::musiconoff(){
@@ -175,7 +182,8 @@ void  MainWindow::splayerdisplay(){
 }
 
 void  MainWindow::mplayerdisplay(){
-    swindows->setCurrentIndex(3);
+
+    swindows->setCurrentIndex(5);
     //swindows->setCurrentWidget(lboard);
 }
 
@@ -184,11 +192,11 @@ void MainWindow::maindisplay(){
 }
 
 void MainWindow::hwindowdisplay(){
-    swindows->setCurrentIndex(4);
+    swindows->setCurrentIndex(3);
 }
 
 void MainWindow::namewindowdisplay(){
-    swindows->setCurrentIndex(5);
+    swindows->setCurrentIndex(4);
 }
 
 

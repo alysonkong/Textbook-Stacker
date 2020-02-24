@@ -14,42 +14,46 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 
+
+     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
+     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+     QFont f(family, 40);
+
     nameEdit = new QLineEdit;
     nameEdit->setPlaceholderText("Name...");
     nameEdit->setFocus();
     nameEdit->setMaxLength(10);
-   nameEdit->setStyleSheet("QLineEdit{ "
+    nameEdit->setFont(f);
+    nameEdit->setStyleSheet("QLineEdit{ "
                            "background-color:black;"
                            "border: 2px solid gray;"
                            "border-radius: 10px;"
                            "padding: 0 8px;"
                            "selection-background-color: darkgray;"
-                           "font-size: 40x;}"
+                           "font-size: 20px;}"
                            "QLineEdit:focus { "
-                           "background-color:rgb(192, 192, 255);}");
+                           "background-color:white;}");
+    nameEdit->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
+    nameEdit->setFixedWidth(400);
+    nameEdit->setFixedHeight(100);
 
 
-    int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
-    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-    QFont f(family, 40);
     QLabel * insert = new QLabel("Insert name:");
     insert->setFont(f);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(insert);
-    layout->addWidget(nameEdit);
+    layout->addWidget(insert, 5, Qt::AlignCenter);
+   // layout->addWidget(frame);
+    layout->addWidget(nameEdit, 7, Qt::AlignTop|Qt::AlignHCenter);
     setLayout(layout);
 
-    connect(nameEdit, SIGNAL(editingFinished()),
-                this, SLOT(namechanged()));
+    connect(nameEdit, SIGNAL(editingFinished()),this, SLOT(namechanged()));
 
-    connect(nameEdit, SIGNAL(editingFinished()),
-            this, SLOT(gotogamewindow()));
+    connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(gotogamewindow()));
 }
 
 void nameinputwindow::namechanged(){
    emit playername(nameEdit->text());
-
 }
 
 void nameinputwindow::gotogamewindow(){

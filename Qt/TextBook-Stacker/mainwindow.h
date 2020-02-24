@@ -46,15 +46,17 @@ public:
 
 signals:
     //void lboardclicked();
+    void emitname(QString);
 
 public slots:
-    void  lboarddisplay();
+    void lboarddisplay();
     void maindisplay();
     void splayerdisplay();
     void musiconoff();
     void mplayerdisplay();
     void hwindowdisplay();
     void namewindowdisplay();
+    void getname(QString n);
 
 private:
     Ui::MainWindow *ui;

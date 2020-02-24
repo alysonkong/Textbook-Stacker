@@ -6,12 +6,15 @@
 #include <QTimer>
 #include<QPushButton>
 #include "nameinputwindow.h"
+#include <QLabel>
+#include "avatar.h"
 
 class gamewindow : public QWidget
 {
     Q_OBJECT
 public:
-    gamewindow();
+    gamewindow(QString const & name1);
+
     ~gamewindow();
 
 signals:
@@ -19,14 +22,15 @@ signals:
 
 public slots:
     void returntomain();
-    void getplayername(QString);
 
 private:
     QGraphicsScene scene;
     QPixmap* spritesheet;
     QTimer timer;
     QPushButton* exit;
-  //  nameinputwindow
+    QLabel* p2name;
+    avatar* mc;
+
 
 
 
