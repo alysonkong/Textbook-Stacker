@@ -94,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //swindows->addWidget(this);
 
-    QFrame* frame = new QFrame;
-    frame->setStyleSheet( "QFrame{ border: 10px ; border-radius: 10px;}" );
+   // QFrame* frame = new QFrame;
+    //frame->setStyleSheet( "QFrame{ border: 10px ; border-radius: 10px;}" );
     //frame->setFrameStyle(QFrame::Panel | QFrame::Sunken);
    // frame.setFrameShape(QFrame.StyledPanel)
     //frame.setLineWidth(0.6)
@@ -142,6 +142,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
     connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+    connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay()));
    // connect(multiplayer, SIGNAL(clicked()), this, SLOT(mplayerdisplay()));
     connect(multiplayer, SIGNAL(clicked()), this, SLOT(namewindowdisplay()));
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay()));

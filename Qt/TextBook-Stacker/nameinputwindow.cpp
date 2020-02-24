@@ -18,6 +18,15 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
     nameEdit->setPlaceholderText("Name...");
     nameEdit->setFocus();
     nameEdit->setMaxLength(10);
+   nameEdit->setStyleSheet("QLineEdit{ "
+                           "background-color:black;"
+                           "border: 2px solid gray;"
+                           "border-radius: 10px;"
+                           "padding: 0 8px;"
+                           "selection-background-color: darkgray;"
+                           "font-size: 40x;}"
+                           "QLineEdit:focus { "
+                           "background-color:rgb(192, 192, 255);}");
 
 
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");

@@ -40,7 +40,7 @@ namespace Leaderboardwindow{
         for(auto i: namelists){
             QLabel *name = new QLabel(namelists[count].namescore());
             name->setFont(f);
-            name->setStyleSheet("QLabel { font-size: 20 px;}");
+            name->setStyleSheet("QLabel { font: 40pt;}");
             count++;
             layout->addWidget(name, -1, Qt::AlignCenter);
 

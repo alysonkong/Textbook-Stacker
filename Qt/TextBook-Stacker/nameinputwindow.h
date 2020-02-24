@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLineEdit>
+#include <QString>
 
 class nameinputwindow : public QWidget
 {
