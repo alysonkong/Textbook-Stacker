@@ -11,9 +11,6 @@ Pic 10C, UCLA
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
-//change mainwindow title
-
 #include <QMainWindow>
 #include <QWidget>
 #include <QApplication>
@@ -35,7 +32,10 @@ Pic 10C, UCLA
 #include "nameinputwindow.h"
 #include "twonamesinput.h"
 
-
+/* FUNCTION:
+ * the mainwindow class communicates between all the windows in the game via a stackedwidget set-up
+ * mainwindow is derived from a QWidget
+*/
 
 class MainWindow : public QMainWindow
 {
@@ -44,28 +44,20 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-
-
-signals:
-    //void lboardclicked();
-   // void emitname(QString);
 
 public slots:
-    void lboarddisplay();
-    void maindisplay();
-    void splayerdisplay();
-    void musiconoff();
-    void mplayerdisplay();
-    void hwindowdisplay();
-    void namewindowdisplay();
-    void twonamesdisplay();
-    void getname(QString n);
-    void getnames(QString n1, QString n2);
+    void lboarddisplay(); //display leaderboard
+    void maindisplay(); //display homepage
+    void splayerdisplay(); //display singleplayer window
+    void musiconoff(); //turn music on or off
+    void mplayerdisplay(); //display multiplayer window
+    void hwindowdisplay(); //display help window
+    void namewindowdisplay(); //display name input window for singleplayer
+    void twonamesdisplay(); //display name inputs for multiplayer
+    void getname(QString n);  //creates the singleplayer window by getting the names from name input window
+    void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
 
 private:
-    Ui::MainWindow *ui;
     Ui::singlewindow1 *singlewindow;
     QDialog* single;
     QWidget *widgets;

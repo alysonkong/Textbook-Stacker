@@ -3,13 +3,16 @@
 #include <QGraphicsScene>
 
 
-
-void avatar::go(Direction d) // go in this direction
+/**
+ * @brief avatar::go in the direction listed in the paramter
+ * @param d the direction
+ */
+void avatar::go(Direction d)
 {
-    //stop(); // set both velocities to 0
-    vx=vy=0;
+    vx=0;
     turn(d); // turn to direction d
     switch(d) {
+    //include if statement to stop animation
     case Left:
         vx = -spd;
         break;
@@ -19,6 +22,11 @@ void avatar::go(Direction d) // go in this direction
     }
     play();
 }
+
+/**
+ * @brief avatar::turns the avatar to the parameter direction
+ * @param d specified direction
+ */
 void avatar::turn(Direction d) // turn to a given direction
 {
     facing = d;
@@ -32,13 +40,17 @@ void avatar::turn(Direction d) // turn to a given direction
     }
 }
 
-
+/**
+ * @brief avatar::advance the avatar will be set at a specific point in QGraphicsView
+ * @param phase
+ */
 void avatar::advance(int phase) {
-    if(phase) {
-        setPos(mapToScene(QPointF(vx,vy)));
+    if(phase) { //phase =1 moves the avatar
+        setPos(mapToScene(QPointF(vx, 0))); //sets the avatar at this specified point
     }
     Sprite::advance(phase);
 }
+
 
 QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
 //    if(change==ItemPositionHasChanged){
