@@ -32,6 +32,10 @@ gamewindow::gamewindow()
     show();
 }
 
+void gamewindow::getplayername(QString){
+
+}
+
 gamewindow::~gamewindow()
 {
     delete spritesheet;

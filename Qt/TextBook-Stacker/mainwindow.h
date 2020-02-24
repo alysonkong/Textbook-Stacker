@@ -28,6 +28,8 @@ Pic 10C, UCLA
 #include <QMediaPlayer>
 #include<QMediaPlaylist>
 #include "gamewindow.h"
+#include "helpwindow.h"
+#include "nameinputwindow.h"
 
 
 
@@ -51,6 +53,8 @@ public slots:
     void splayerdisplay();
     void musiconoff();
     void mplayerdisplay();
+    void hwindowdisplay();
+    void namewindowdisplay();
 
 private:
     Ui::MainWindow *ui;
@@ -71,6 +75,8 @@ private:
     QStackedWidget* swindows;
     QMediaPlayer* song;
     gamewindow *gwindow;
+    HelpWindow::helpwindow* hwindow;
+    nameinputwindow* namewindow;
 
 };
 #endif // MAINWINDOW_H

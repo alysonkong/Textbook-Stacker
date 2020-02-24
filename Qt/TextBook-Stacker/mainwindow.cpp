@@ -88,6 +88,8 @@ MainWindow::MainWindow(QWidget *parent)
     swindows = new QStackedWidget();
     lboard = new Leaderboardwindow::leaderboard();
     gwindow = new gamewindow();
+    hwindow = new HelpWindow::helpwindow();
+    namewindow = new nameinputwindow();
    // singlewindow = new Ui::singlewindow1();
 
     //swindows->addWidget(this);
@@ -129,16 +131,22 @@ MainWindow::MainWindow(QWidget *parent)
     swindows->addWidget(lboard);
     swindows->addWidget(single);
     swindows->addWidget(gwindow);
+    swindows->addWidget(hwindow);
+    swindows->addWidget(namewindow);
 
     setCentralWidget(swindows);
 
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay()));
     connect(singleplayer, SIGNAL(clicked()) , this, SLOT(splayerdisplay()));
+
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay()));
     connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-    connect(multiplayer, SIGNAL(clicked()), this, SLOT(mplayerdisplay()));
+   // connect(multiplayer, SIGNAL(clicked()), this, SLOT(mplayerdisplay()));
+    connect(multiplayer, SIGNAL(clicked()), this, SLOT(namewindowdisplay()));
+    connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay()));
    // connect(single, SIGNAL(on_pushButton_clicked()), this, SLOT(maindisplay()));
+    connect(namewindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
 
 
     show();
@@ -173,6 +181,15 @@ void  MainWindow::mplayerdisplay(){
 void MainWindow::maindisplay(){
     swindows->setCurrentIndex(0);
 }
+
+void MainWindow::hwindowdisplay(){
+    swindows->setCurrentIndex(4);
+}
+
+void MainWindow::namewindowdisplay(){
+    swindows->setCurrentIndex(5);
+}
+
 
 MainWindow::~MainWindow()
 {
