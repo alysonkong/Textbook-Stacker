@@ -2,17 +2,13 @@
 #include <QRandomGenerator>
 
 
-Recipe::Recipe() {
+//Recipe::Recipe() {
 
     //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
-    int total_books = QRandomGenerator::global()->bounded(10, 16);
+   // int total_books = QRandomGenerator::global()->bounded(10, 16);
 
-
-    //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
-    int total_books = QRandomGenerator::global()->bounded(10, 16);
-
-    for (int i = 0; i < total_books; ++i) { //stack consists of 10-15 textbooks
-        int book_code = QRandomGenerator::global()->bounded(6);
+//    for (int i = 0; i < total_books; ++i) { //stack consists of 10-15 textbooks
+//        int book_code = QRandomGenerator::global()->bounded(6);
 
 //        if (book_code == 1) {
 //            ++bio_count;
@@ -24,50 +20,49 @@ Recipe::Recipe() {
 
 //            //stack.push_back(textbook);
 //        }
-=======
-        if (book_code == 1) {
-            ++bio_count;
 
-            //stack.push_back(textbook);
+//        if (book_code == 1) {
+//            ++bio_count;
 
-        }
+//            //stack.push_back(textbook);
 
-        if (book_code == 2) {
-            ++chem_count;
+//        }
 
-            //stack.push_back(textbook);
+//        if (book_code == 2) {
+//            ++chem_count;
 
-        }
+//            //stack.push_back(textbook);
 
-        if (book_code == 3) {
-            ++soc_count;
+//        }
+
+//        if (book_code == 3) {
+//            ++soc_count;
 
 
-            //stack.push_back(textbook);
+//            //stack.push_back(textbook);
 
-        }
+//        }
 
-        if (book_code == 4) {
-            ++eng_count;
+//        if (book_code == 4) {
+//            ++eng_count;
 
-            //stack.push_back(textbook);
+//            //stack.push_back(textbook);
 
-        }
+//        }
 
-        if (book_code == 5) {
-            ++philo_count;
+//        if (book_code == 5) {
+//            ++philo_count;
 
-            //stack.push_back(textbook);
+//            //stack.push_back(textbook);
 
-        }
->>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
+//        }
+
 
 //        if (book_code == 3) {
 //            ++soc_count;
 //            //stack.push_back(textbook);
 //        }
 
-<<<<<<< HEAD
 //        if (book_code == 4) {
 //            ++eng_count;
 //            //stack.push_back(textbook);
@@ -95,18 +90,14 @@ Recipe::Recipe() {
 
 //    //more work to do here
 
-=======
 
 }
 
 
->>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
 
 
-<<<<<<< HEAD
-=======
-    title = new QLabel("Textbooks to catch");
->>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7
+//    title = new QLabel("Textbooks to catch");
+
 
 //}
 
@@ -144,7 +135,3 @@ Recipe::Recipe() {
 
 //}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> af4f4ad660c031ec8b72285a1add2cfc3737aff7

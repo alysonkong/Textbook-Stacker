@@ -26,7 +26,7 @@ private:
     QPixmap* spritesheet;
     QTimer timer;
     QPushButton* exit;
-    nameinputwindow
+  //  nameinputwindow
 
 
 
