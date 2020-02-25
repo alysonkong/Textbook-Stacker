@@ -29,7 +29,7 @@ SOURCES += \
     mainwindow.cpp \
     nameinputwindow.cpp \
     recipe.cpp \
-    singlewindow1.cpp \
+    singlewindow.cpp \
     sprite.cpp \
     twonamesinput.cpp
 
@@ -45,7 +45,7 @@ HEADERS += \
     mainwindow.h \
     nameinputwindow.h \
     recipe.h \
-    singlewindow1.h \
+    singlewindow.h \
     sprite.h \
     twonamesinput.h
 

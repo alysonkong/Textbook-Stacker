@@ -167,7 +167,7 @@ void MainWindow::musiconoff(){
  * @brief MainWindow::lboarddisplay set stackedwidget to leaderboard
  */
 void  MainWindow::lboarddisplay(){
-    swindows->setCurrentIndex(1);
+    //swindows->setCurrentIndex(1);
     swindows->setCurrentWidget(lboard);
 }
 
@@ -175,7 +175,7 @@ void  MainWindow::lboarddisplay(){
  * @brief MainWindow::splayerdisplay set stackedwidget to singleplayer
  */
 void  MainWindow::splayerdisplay(){
-    swindows->setCurrentIndex(2);
+    //swindows->setCurrentIndex(2);
     swindows->setCurrentWidget(single_window);
 }
 
@@ -205,14 +205,14 @@ void MainWindow::hwindowdisplay(){
  * @brief MainWindow::namewindowdisplay set stackedwidget to user input namewindow display
  */
 void MainWindow::namewindowdisplay(){
-    swindows->setCurrentIndex(3);
+    swindows->setCurrentWidget(namewindow);
 }
 
 /**
  * @brief MainWindow::twonamesdisplay set stackedwidget to two user inputs isplay
  */
 void MainWindow::twonamesdisplay(){
-    swindows->setCurrentIndex(4);
+    swindows->setCurrentWidget(twonameswindow);
 }
 
 
