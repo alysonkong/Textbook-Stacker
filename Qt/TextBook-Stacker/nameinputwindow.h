@@ -13,11 +13,11 @@ public:
 
 public slots:
     void namechanged();
-    void gotogamewindow();
+    void gotosingle_window();
 
 signals:
     void playername(QString);
-    void gamewindowindex();
+    void single_windowindex();
 
 private:
      QLineEdit *nameEdit;

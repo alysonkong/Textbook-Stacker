@@ -17,11 +17,9 @@ Pic 10C, UCLA
 Constructor for mainwindow containing the layout, stacked widget, background, fonts
 */
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-      singlewindow(new Ui::singlewindow1)
+    : QMainWindow(parent)
+
 {
-//    single = new QDialog();
-//    singlewindow->setupUi(single);
 
 
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
@@ -111,7 +109,6 @@ MainWindow::MainWindow(QWidget *parent)
     swindows->addWidget(main);
     swindows->addWidget(lboard);
     swindows->addWidget(hwindow);
-   // swindows->addWidget(single);
     swindows->addWidget(namewindow);
     swindows->addWidget(twonameswindow);
 
@@ -121,7 +118,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay())); //connecting lboard back to main
     connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay())); //connecting helpwindow back to main
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay())); //clicking helpbutton button set current stackedwidget to helpbutton
-   // connect(single, SIGNAL(on_pushButton_clicked()), this, SLOT(maindisplay()));
     connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString))); //set up singleplayer window by getting nameinput window's edits
     connect(twonameswindow, SIGNAL(playernames(QString, QString)), this, SLOT(getnames(QString, QString))); //set up multiplayer window by getting twonameiput's edits
 
@@ -135,10 +131,10 @@ MainWindow::MainWindow(QWidget *parent)
  * @param n player name
  */
 void MainWindow::getname(QString n){
-//    gwindow = new gamewindow(n1, n2); //sets up gamewindow using the user input names
-//    swindows->addWidget(gwindow);
-//    connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-//    connect(twonameswindow, SIGNAL(gamewindowindex()), this, SLOT(...display()));
+    single_window = new singlewindow(n); //sets up singlewindow using the user input names
+    swindows->addWidget(single_window);
+    connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+    connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
 }
 
 /**
@@ -172,15 +168,15 @@ void MainWindow::musiconoff(){
  */
 void  MainWindow::lboarddisplay(){
     swindows->setCurrentIndex(1);
-    //swindows->setCurrentWidget(lboard);
+    swindows->setCurrentWidget(lboard);
 }
 
 /**
  * @brief MainWindow::splayerdisplay set stackedwidget to singleplayer
  */
 void  MainWindow::splayerdisplay(){
-    //swindows->setCurrentIndex(2);
-    //swindows->setCurrentWidget(singleplayerwindow);
+    swindows->setCurrentIndex(2);
+    swindows->setCurrentWidget(single_window);
 }
 
 /**

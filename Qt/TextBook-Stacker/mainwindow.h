@@ -23,11 +23,10 @@ Pic 10C, UCLA
 #include <QFontDatabase>
 #include<Lboardwindow.h>
 #include<QStackedWidget>
-#include "singlewindow1.h"
-#include "ui_singlewindow1.h"
 #include <QMediaPlayer>
 #include<QMediaPlaylist>
 #include "gamewindow.h"
+#include "singlewindow.h"
 #include "helpwindow.h"
 #include "nameinputwindow.h"
 #include "twonamesinput.h"
@@ -58,8 +57,6 @@ public slots:
     void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
 
 private:
-    Ui::singlewindow1 *singlewindow;
-    QDialog* single;
     QWidget *widgets;
     QWidget *widget2;
     QPushButton *singleplayer;
@@ -75,6 +72,7 @@ private:
     QStackedWidget* swindows;
     QMediaPlayer* song;
     gamewindow *gwindow;
+    singlewindow *single_window;
     HelpWindow::helpwindow* hwindow;
     nameinputwindow* namewindow;
     twonamesinput* twonameswindow;
