@@ -1,4 +1,4 @@
-#include "gamewindow.h"
+#include "multiwindow.h"
 #include <QGraphicsView>
 #include "sprite.h"
 #include "gameview.h"
