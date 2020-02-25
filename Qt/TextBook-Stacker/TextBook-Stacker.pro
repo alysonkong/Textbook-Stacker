@@ -45,7 +45,6 @@ HEADERS += \
     mainwindow.h \
     nameinputwindow.h \
     recipe.h \
-    singlewindow1.h \
     sprite.h \
     twonamesinput.h
 

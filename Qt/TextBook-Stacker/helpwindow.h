@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QLabel>
-//#include <string>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QStackedWidget>
@@ -12,6 +11,10 @@
 
 namespace HelpWindow {
 
+/**
+ * @brief The helpwindow class displays a window providing instructions how to play the game
+ * helpwindow is derived from QWidget
+ */
 class helpwindow : public QWidget
 {
     Q_OBJECT
@@ -20,10 +23,10 @@ public:
     helpwindow();
 
 signals:
-    void pressed_main(int);
+    void pressed_main(int); //signal to return to the main screen
 
 public slots:
-    void return_to_main();
+    void return_to_main(); //returns to the main screen
 
 private:
     QLabel* title;
