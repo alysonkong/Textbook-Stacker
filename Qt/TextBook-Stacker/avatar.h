@@ -27,7 +27,7 @@ private:
     size_t score;
 
 public:
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+    //QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
     /**
      * @brief avatar constructor
      * @param user_name name of the user

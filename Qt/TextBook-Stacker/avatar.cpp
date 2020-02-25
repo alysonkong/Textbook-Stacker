@@ -46,8 +46,17 @@ void avatar::turn(Direction d) // turn to a given direction
  */
 void avatar::advance(int phase) {
     if(phase) { //phase =1 moves the avatar
-        setPos(mapToScene(QPointF(vx, 0))); //sets the avatar at this specified point
+        QPointF nextpos = mapToScene( QPointF(vx,0));
+        QRectF  mcMoveBoundary(0,0,450,750);
+        if(mcMoveBoundary.contains(nextpos)){
+             setPos(mapToScene(QPointF(vx, 0)));
+        }
+        //sets the avatar at this specified point
+
     }
+
+
+
     Sprite::advance(phase);
 }
 

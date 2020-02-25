@@ -2,7 +2,11 @@
 #include <QKeyEvent>
 #include<QGraphicsView>
 
-
+/**
+ * @brief GameView::GameView takes in an avatar and a book graphics item and adds it to the graphic scene
+ * @param mc is the avatar
+ * @param yb is the book item
+ */
 GameView::GameView(avatar* mc, books* yb)
     : QGraphicsView()
     , mc(mc), b(yb)
@@ -13,11 +17,15 @@ GameView::GameView(avatar* mc, books* yb)
     scene.addItem(b);
     setScene(&scene);
 
-    QObject::connect(&timer, &QTimer::timeout,
-                     &scene, &QGraphicsScene::advance);
+    QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
     timer.start(1000/30);
 }
 
+
+/**
+ * @brief GameView::keyPressEvent overrides what happens when key is pressed
+ * @param event is when the key is pressed
+ */
 void GameView::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
         case Qt::Key_Left:
@@ -29,6 +37,11 @@ void GameView::keyPressEvent(QKeyEvent *event) {
 
     }
 }
+
+/**
+ * @brief GameView::keyReleaseEvent overrides what happens when key is released
+ * @param event key is released
+ */
 void GameView::keyReleaseEvent(QKeyEvent *event) {
     switch(event->key()) {
     case Qt::Key_Left:
@@ -41,9 +54,15 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
 
 }
 
+
+/**
+ * @brief GameView::drawBackground draws the gameview background
+ * @param painter
+ * @param rect
+ */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
-    painter->setBrush(Qt::blue);
-    painter->drawRect(0,0, 450,700);
+    painter->setBrush(Qt::blue); //set background as blue
+    painter->drawRect(0,0, 450,700); //size of the gameview which is equal to scene rect
 }
 
 

@@ -137,6 +137,7 @@ void MainWindow::getname(QString n){
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
 }
 
+\
 /**
  * @brief MainWindow::getnames takes the QString user inputs from twonameswindow to create multiplayer window
  * @param n1 first player name
