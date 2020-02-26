@@ -23,13 +23,13 @@ SOURCES += \
     avatar.cpp \
     books.cpp \
     gameview.cpp \
-    gamewindow.cpp \
     helpwindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    multiwindow.cpp \
     nameinputwindow.cpp \
     recipe.cpp \
-    singlewindow1.cpp \
+    singlewindow.cpp \
     sprite.cpp \
     twonamesinput.cpp
 
@@ -40,11 +40,12 @@ HEADERS += \
     avatar.h \
     books.h \
     gameview.h \
-    gamewindow.h \
     helpwindow.h \
     mainwindow.h \
+    multiwindow.h \
     nameinputwindow.h \
     recipe.h \
+    singlewindow.h \
     sprite.h \
     twonamesinput.h
 

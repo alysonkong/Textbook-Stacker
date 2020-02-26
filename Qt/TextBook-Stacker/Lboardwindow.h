@@ -11,56 +11,27 @@
 namespace Leaderboardwindow {
 
 /**
- * @brief the leaderboard class stores and displays the rankings of the players by points
+ * @brief The leaderboard class shows the leaderboard and connects to main window
  */
 class leaderboard : public QWidget{
      Q_OBJECT
 public:
-    /**
-     * @brief leaderboard constructor creates the leaderboard and displays it
-     */
     leaderboard();
-
-    /**
-     * @brief The leaders class holds the names and scores of the leading players
-     */
     class leaders{
     public:
-        /**
-         * @brief the leaders constructor creates a leader with the player's name and score
-         * @param n: the name of the player
-         * @param s: the score of the player
-         */
         leaders(QString n, size_t s): name(n), score(s){}
-
-        /**
-         * @brief namescore returns the name and score of the leader
-         * @return the name and score of the leader
-         */
         QString namescore(){return name+"    " +QString::number(score);}
-
     private:
         QString name;
         size_t score;
     };
 
-
 signals:
-    /**
-    * @brief pressedmain is a signal that the player wants to return to the mainwindow
-    */
-   void pressedmain(int); //signal to return to mainwindow
+   void pressedmain(int);
 
 public slots:
-   /**
-     * @brief returntomain returns to the mainwindow, exiting out of the leaderboard
-     */
-    void returntomain(); //returns to the mainwindow
-
-    /**
-     * @brief getplayerscore
-     */
-    void getplayerscore(); //gets the player's name and score
+    void returntomain();
+    void getplayerscore();
 
 
 private:
