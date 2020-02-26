@@ -1,4 +1,4 @@
-#include "gamewindow.h"
+#include "multiwindow.h"
 #include <QGraphicsView>
 #include "sprite.h"
 #include "gameview.h"
@@ -6,6 +6,12 @@
 #include <QPixmap>
 #include <QFontDatabase>
 
+
+/**
+ * @brief gamewindow::gamewindow constructor takes in 2 user names and creates 2 avatars. 2 games playing at the same time
+ * @param name1 is name of first player
+ * @param name2 is name of second player
+ */
 gamewindow::gamewindow(QString const & name1, QString const & name2)
 {
     spritesheet = new QPixmap(":/spritesheets/moreoverworld.png");

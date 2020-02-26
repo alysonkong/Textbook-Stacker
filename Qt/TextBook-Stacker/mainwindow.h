@@ -25,7 +25,7 @@ Pic 10C, UCLA
 #include<QStackedWidget>
 #include <QMediaPlayer>
 #include<QMediaPlaylist>
-#include "gamewindow.h"
+#include "multiwindow.h"
 #include "singlewindow.h"
 #include "helpwindow.h"
 #include "nameinputwindow.h"
@@ -71,7 +71,7 @@ private:
     Leaderboardwindow::leaderboard*  lboard;
     QStackedWidget* swindows;
     QMediaPlayer* song;
-    gamewindow *gwindow;
+    gamewindow *gwindow; //multiwindow
     singlewindow *single_window;
     HelpWindow::helpwindow* hwindow;
     nameinputwindow* namewindow;

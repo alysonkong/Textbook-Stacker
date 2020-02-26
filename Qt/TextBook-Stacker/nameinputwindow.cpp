@@ -4,6 +4,11 @@
 #include <QFontDatabase>
 #include <QPixmap>
 
+
+/**
+ * @brief nameinputwindow::nameinputwindow constructor
+ * @param parent
+ */
 nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
 {
 
@@ -52,10 +57,17 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
     connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(gotosingle_window()));
 }
 
+/**
+ * @brief nameinputwindow::namechanged() slot sends signal to mainwindow of the user input
+ */
 void nameinputwindow::namechanged(){
    emit playername(nameEdit->text());
 }
 
+
+/**
+ * @brief nameinputwindow::gotosingle_window slot sends signal to mainwindow to connect to singleplayer window
+ */
 void nameinputwindow::gotosingle_window(){
     emit single_windowindex();
 }

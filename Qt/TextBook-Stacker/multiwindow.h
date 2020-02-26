@@ -5,17 +5,19 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include<QPushButton>
-#include "nameinputwindow.h"
+#include "twonamesinput.h"
 #include <QLabel>
 #include "avatar.h"
 #include "books.h"
 
+/**
+ * @brief The gamewindow class is essentially the multiwindow class which creates the layout and has the gameview inside
+ */
 class gamewindow : public QWidget
 {
     Q_OBJECT
 public:
     gamewindow(QString const & name1, QString const & name2);
-
     ~gamewindow();
 
 signals:

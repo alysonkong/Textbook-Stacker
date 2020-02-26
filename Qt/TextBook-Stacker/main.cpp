@@ -12,6 +12,8 @@ Pic 10C, UCLA
 
 #include <QApplication>
 
+
+//runs the project
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

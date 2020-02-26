@@ -52,29 +52,18 @@ void avatar::advance(int phase) {
 }
 
 
-QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
-//    if(change==ItemPositionHasChanged){
-//        QPointF newPos = value.toPointF();
-//        newPos.setX(0);
-//        newPos.setY(604);
-//        return newPos;
-
-//    }
-//    return QGraphicsItem::itemChange(change, value);
-    if (change == ItemPositionChange && scene()) {
-            // value is the new position.
-            QPointF newPos = value.toPointF();
-            QRectF rect = scene()->sceneRect();
-            if (!rect.contains(newPos)) {
-                // Keep the item inside the scene rect.
-                newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
-                newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
-                return newPos;
-            }
-        }
-        return QGraphicsItem::itemChange(change, value);
-
-
-
-}
+//QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
+//    if (change == ItemPositionChange && scene()) {
+//            // value is the new position.
+//            QPointF newPos= value.toPointF();
+//            QRectF rect = scene()->sceneRect();
+//            if (!rect.contains(newPos)) {
+//                // Keep the item inside the scene rect.
+//                newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
+//                newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
+//                return newPos;
+//            }
+//        }
+//        return QGraphicsItem::itemChange(change, value);
+//}
 

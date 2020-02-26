@@ -6,6 +6,9 @@
 
 
 namespace Leaderboardwindow{
+    /**
+     * @brief leaderboard::leaderboard() constructor, vector namelists as empty
+     */
     leaderboard::leaderboard() : namelists() {
 
         int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
@@ -35,7 +38,7 @@ namespace Leaderboardwindow{
         namelists.push_back(leaderboard::leaders(QString::fromStdString("Caesar"), 100));
         namelists.push_back(leaderboard::leaders(QString::fromStdString("Doris"), 50));
         namelists.push_back(leaderboard::leaders(QString::fromStdString("Eric"), 25));
-      //  namelists.push_back("")
+
         size_t count =0;
         for(auto i: namelists){
             QLabel *name = new QLabel(namelists[count].namescore());
@@ -45,7 +48,6 @@ namespace Leaderboardwindow{
             layout->addWidget(name, -1, Qt::AlignCenter);
 
         }
-       // names = new QLabel("names");
 
 
         returnmain = new QPushButton("Return to main");
@@ -54,7 +56,6 @@ namespace Leaderboardwindow{
                                   "border-width: 2px; border-color: solid yellow;}");
 
 
-       // layout->addWidget(names);
         layout->addWidget(returnmain, -1, Qt::AlignHCenter);
         layout->setAlignment(this, Qt::AlignHCenter);
 
@@ -63,11 +64,15 @@ namespace Leaderboardwindow{
 
     }
 
+    /**
+     * @brief leaderboard::returntomain slot connects leaderboard back to main window
+     */
     void leaderboard::returntomain(){
         emit pressedmain(1);
 
     }
 
+    //not relevant yet
     void leaderboard::getplayerscore(){
 
     }
