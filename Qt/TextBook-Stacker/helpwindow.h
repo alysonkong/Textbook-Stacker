@@ -12,6 +12,9 @@
 
 namespace HelpWindow {
 
+/**
+ * @brief The helpwindow class shows the help window and connects to mainwindow
+ */
 class helpwindow : public QWidget
 {
     Q_OBJECT

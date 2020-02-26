@@ -5,6 +5,10 @@
 #include <QLineEdit>
 #include <QString>
 
+
+/**
+ * @brief The nameinputwindow class takes in user input in the window and sends it to mainwindow which transfer input to singlewindow
+ */
 class nameinputwindow : public QWidget
 {
     Q_OBJECT

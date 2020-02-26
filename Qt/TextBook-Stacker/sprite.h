@@ -3,6 +3,10 @@
 
 #include<QGraphicsItem>
 
+
+/**
+ * @brief The Sprite class creates a graphicsitem from a srite sheet
+ */
 class Sprite : public QGraphicsItem
 {
 private:
@@ -23,7 +27,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
     void advance(int phase) override;
 
-    // constructors/getters/setters
+    /**
+     * @brief Sprite constructor
+     */
     inline
     Sprite(QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
         : ss(ss)
@@ -35,29 +41,66 @@ public:
     {
     }
 
+    //sets the scale of the sprite
     inline
     void setScale(double s) {
         _scale = s;
     }
+
+    /**
+     * @brief scale gets the scale of sprite
+     * @return return scale
+     */
+
     inline
     double scale() {
         return _scale;
     }
 
+    /**
+     * @brief sequence gets the current frame position
+     * @return current frame position
+     */
     inline
     int sequence() { return cy; }
+
+    /**
+     * @brief setSequence sets the sequence of the sprite
+     * @param seq_num is the sequence
+     */
     inline
     void setSequence(int seq_num) {
         cy = (seq_num % ny);
         if(cy < 0) cy+=ny;
     }
 
+    /**
+     * @brief animating returns the bool type of animating
+     * @return  true or false bool value
+     */
     inline
     bool animating() { return _animating; }
+
+    /**
+     * @brief setAnimating sets the animating to either true or false
+     * @param a is either t or f
+     */
     inline
     void setAnimating(bool a) { _animating = a; }
+
+    /**
+     * @brief pause sets animating to false
+     */
     inline void pause() { setAnimating(false); }
+
+    /**
+     * @brief play sets animating to true
+     */
     inline void play() { setAnimating(true); }
+
+    /**
+     * @brief resetAnimation reset the animation to frame 0
+     */
     inline void resetAnimation() { cx=0; }
 };
 

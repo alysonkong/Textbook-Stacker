@@ -10,6 +10,9 @@
 
 namespace Leaderboardwindow {
 
+/**
+ * @brief The leaderboard class shows the leaderboard and connects to main window
+ */
 class leaderboard : public QWidget{
      Q_OBJECT
 public:

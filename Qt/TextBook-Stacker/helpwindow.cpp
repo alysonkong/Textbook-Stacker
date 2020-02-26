@@ -5,6 +5,9 @@
 namespace HelpWindow{
 
 //add pics, maybe screenshots
+/**
+ * @brief helpwindow::helpwindow() constructor
+ */
 helpwindow::helpwindow() {
 
 
@@ -47,12 +50,12 @@ helpwindow::helpwindow() {
     setLayout(layout);
     connect(returntomain, SIGNAL(clicked()), this, SLOT(return_to_main()));
 
-    //show();
-
-    //index = ??;
 }
 
 
+/**
+ * @brief helpwindow::return_to_main() is slot that connects back to mainwindow
+ */
 void helpwindow::return_to_main() {
     emit pressed_main(1);
 }
