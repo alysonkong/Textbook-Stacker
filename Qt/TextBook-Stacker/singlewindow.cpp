@@ -1,7 +1,6 @@
 #include "singlewindow.h"
 #include <QGraphicsView>
 #include "sprite.h"
-#include "gameview.h"
 #include <QGridLayout>
 #include <QPixmap>
 #include <QFontDatabase>
@@ -15,9 +14,9 @@ singlewindow::singlewindow(QString const & name1)
     spritesheet = new QPixmap(":/spritesheets/moreoverworld.png"); //creates the spritesheet as a pixmap with a custom image
 
     //QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1
-    avatar* mc3 = new avatar(name1, spritesheet, 32, 48, 4, 4, 112, 50, 2, 4); //creates an avatar that the player will control
-    mc3->setPos(100,100); //sets position of this avatar
-    mc3->setSpeed(5); //sets speed of the avatar
+    mc = new avatar(name1, spritesheet, 32, 48, 4, 4, 112, 5, 2, 4); //creates an avatar that the player will control
+    mc->setPos(100,100); //sets position of this avatar
+    mc->setSpeed(5); //sets speed of the avatar
 
     QPixmap back(":/bkgnd/textbookbkgndclear.png"); //chooses custom picture for the background
     back = back.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
@@ -33,29 +32,54 @@ singlewindow::singlewindow(QString const & name1)
     exit = new QPushButton("Exit"); //creates new button with the label "exit
     connect(exit, SIGNAL(clicked()), this, SLOT(returntomain())); //makes it so clicking this button will return to the main window
 
-    QLabel* p1_name = new QLabel; //creates new label for the player's name
-    p1_name->setText(name1); //sets the text to the player's name
+    QLabel* p1_name = new QLabel(name1); //creates new label for the player's name
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
     QLabel* temp = new QLabel("recipe"); //creates new label for the recipe
 
-    m = new books(); //creates new books object
+   // m = new books(1); //creates new books object
 
-    GameView* view = new GameView(mc3, m); //creates new gameview object
+    pscore = new QLabel(QString::number(mc->getscore()));
+    pscore->setFont(f);
+
+//    timer = new QTimer();
+    //connect(timer, SIGNAL(timeout()), this, SLOT(dropobject()));
+//    connect(timer, SIGNAL(timeout()), view, SLOT(bookdrop(books*)));
+//    timer->start(1000);
+
+
+    view = new GameView(mc, m); //creates new gameview object
     QGridLayout *layout = new QGridLayout(); //creates new gridlayout
 
     /**
       adds the widgets we created earlier to the gridlayout
       **/
-    layout->addWidget(p1_name,0,0,1,1, Qt::AlignTop|Qt::AlignLeft);
-    layout->addWidget(temp,1,0,3,1, Qt::AlignTop);
+
+    layout->addWidget(temp,0,0,2,2, Qt::AlignTop);
     layout->addWidget(view,0,1,-1,1);
-    layout->addWidget(exit, 2,2,5,1, Qt::AlignCenter);
+    layout->addWidget(p1_name,0,2,1,2, Qt::AlignTop|Qt::AlignLeft);
+    layout->addWidget(pscore, 1,2,1,2, Qt::AlignLeft);
+    layout->addWidget(exit, 2,2,5,2, Qt::AlignCenter);
 
     this->setLayout(layout); //sets window's layout to the gridlayout
     //setCentralWidget(view);
+    //connect(m, SIGNAL(type_pts(int, int)), ); check with recipe
 
-    show(); //shows the singlewindow
+
+
+
+
+
+    show(); //shows the singlewindo
+}
+
+void singlewindow::dropobject(){
+    books* newbook = new books(1);
+    //connect(this, SIGNAL(dropbook(newbook)), view, SLOT(bookdrop(books*)));
+    //emit dropbook(newbook);
+    connect(newbook, SIGNAL(emitpts(int)), mc, SLOT(updatescore(int)));
+    connect(newbook, SIGNAL(emittype(int)), this, SLOT(updatescorelabel(int)));
+    //emit signal to gameview
 }
 
 
@@ -74,3 +98,9 @@ void singlewindow::returntomain(){
     emit pressedmain(); //emit pressedmain signal
 
 }
+
+void singlewindow::updatescorelabel(int num){
+    pscore->setText(QString::number(num));
+}
+
+

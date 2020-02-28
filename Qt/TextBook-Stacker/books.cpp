@@ -1,10 +1,15 @@
 #include "books.h"
 #include <QPainter>
 
-books::books()
+books::books(int book_type)
 {
-    book = new QPixmap(":/spritesheets/yellowbook.png"); //use resource file to create a book visual
-
+    //book = new QPixmap(":/spritesheets/yellowbook.png"); //use resource file to create a book visual
+    if(book_type ==1){
+        biobook = new QPixmap(":/spritesheets/yellowbook.png");
+    }
+    else if(book_type ==2){
+        chembook = new QPixmap(":/spritesheets/yellowbook.png");
+    }
 }
 
 /**
@@ -15,7 +20,8 @@ books::books()
  */
 void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     QRectF source(0,0,500,161); //image is 500x161
-    painter->drawPixmap(boundingRect(),*book, source); //boundingrect is the target in which to draw the book into
+    painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
+    //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
 
 }
 
@@ -32,10 +38,32 @@ QRectF books::boundingRect() const{
  * @param phase
  */
 void books::advance(int phase) {
+    QRectF mcMoveBoundary(0,0, 350, 685.6);
     if(phase) {
         QPointF down(0,7);
         down*=speed;
-        setPos(mapToScene(down)); // set my next position
+        QPointF nextPos = mapToScene(down);
+        if(mcMoveBoundary.contains(nextPos)) {
+            setPos(nextPos);
+        }
+
+//        QPointF down(0,7);
+//        down*=speed;
+//        setPos(mapToScene(down)); // set my next position
         //speed+=(QRandomGenerator::global()->bounded(0.4)-0.2);
     }
+    if(!scene()->collidingItems(this).isEmpty()){
+        scene()->removeItem(this);
+        getbooktype();
+    }
 }
+
+void books::getbooktype(){
+    emit emittype(booktype);
+   // emit emitpts(points);
+
+}
+
+//bool books::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const{
+//    emit type_pts(booktype, points);
+//}

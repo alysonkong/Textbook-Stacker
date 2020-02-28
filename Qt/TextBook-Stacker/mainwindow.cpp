@@ -20,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 
 {
-
-
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
     QString family = QFontDatabase::applicationFontFamilies(id).at(0); //get the correct font name
     QFont f(family, 40);

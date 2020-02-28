@@ -5,6 +5,7 @@
 #include<QWidget>
 #include<string>
 #include "sprite.h"
+#include <QGraphicsObject>
 
 /**
  * @brief The Direction enum sets up the left or right movements for avatar
@@ -17,14 +18,19 @@ enum Direction {
 /**
  * @brief The avatar class inherits from sprite class to create an avatar with the sprite sheet pics, as well as name and score
  */
-class avatar : public Sprite
+class avatar : public QObject, public Sprite
 {
+    Q_OBJECT
+
 private:
     double vx=0; //velocity in the x direction
     double spd=0; //speed of the avatar
     Direction facing; //direction that the avatar is facing
     QString name;
     size_t score;
+
+public slots:
+    void updatescore(int);
 
 public:
    // QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
@@ -79,6 +85,7 @@ public:
     inline void stop(Direction d) { if(facing == d) stop(); }
 
     void advance(int phase) override; //advances the avatar in animation
+    size_t getscore();
 };
 
 

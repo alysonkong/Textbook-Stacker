@@ -45,12 +45,28 @@ void avatar::turn(Direction d) // turn to a given direction
  * @param phase
  */
 void avatar::advance(int phase) {
+    QRectF mcMoveBoundary(0,0, 386, 750);
     if(phase) { //phase =1 moves the avatar
-        setPos(mapToScene(QPointF(vx, 0))); //sets the avatar at this specified point
+        QPointF nextPos = mapToScene(QPointF(vx,0));
+        if(mcMoveBoundary.contains(nextPos)) {
+            setPos(nextPos);
+        }
+       // setPos(mapToScene(QPointF(vx, 0))); //sets the avatar at this specified point
+    }
+    if(!scene()->collidingItems(this).isEmpty()){
+        score++;
     }
     Sprite::advance(phase);
 }
 
+size_t avatar::getscore(){
+    return score;
+}
+
+
+void avatar::updatescore(int addval){
+    score += addval;
+}
 
 //QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
 //    if (change == ItemPositionChange && scene()) {
