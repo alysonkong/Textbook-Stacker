@@ -4,7 +4,6 @@
 //#include <iostream>
 //#include <QPaintEvent>
 //#include <QWidget>
-//#include <string> //do i need this??
 //#include <QLabel>
 //#include <QHBoxLayout>
 //#include <vector>
@@ -14,13 +13,12 @@
 //#include <QPainter>
 
 
-/* FUNCTION:
- * the recipe class randomly generates a "recipe" of textbooks that the player needs to catch, a new recipe every round of the game
- * it displays the the amount of textbooks the player still needs to catch, updating every time the player catches a correct book
- * once the player catches all of the books in the recipe, display success/new round message
- */
-//class Recipe : public QWidget
-//{
+// /* FUNCTION:
+// * the recipe class randomly generates a "recipe" of textbooks that the player needs to catch, a new recipe every round of the game
+// * it displays the the amount of textbooks the player still needs to catch, updating every time the player catches a correct book
+// * once the player catches all of the books in the recipe, display success/new round message
+// */
+//class Recipe : public QWidget {
 //    Q_OBJECT
 
 //public:
@@ -37,13 +35,13 @@
 
 
 //public slots:
-//    void paintEvent(QPaintEvent *) override;
+//    //void paintEvent(QPaintEvent *) override;
 //    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
 
 
 
 //signals:
-//    //void round_complete(); //needs to send signal that round is complete
+//    //void round_complete(); //needs to send signal that round is complete, tells
 
 
 
@@ -66,7 +64,7 @@
 //    QLabel *philo_book;
 
 
-    //std::vector<int> stack; //vector keeps track of which books need to be caught
+//    std::vector<int> stack; //vector keeps track of which books need to be caught
 
 
 //};
