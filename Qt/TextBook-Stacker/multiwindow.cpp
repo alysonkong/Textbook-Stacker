@@ -49,7 +49,7 @@ gamewindow::gamewindow(QString const & name1, QString const & name2)
     QLabel* temp = new QLabel("recipe");
     QLabel* temp2 = new QLabel("recipe2");
 
-    m = new books();
+   // m = new books();
 
     GameView* view = new GameView(mc3, m);
     GameView* view2 = new GameView(mc2, m);

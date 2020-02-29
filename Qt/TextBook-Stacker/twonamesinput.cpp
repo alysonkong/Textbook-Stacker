@@ -75,7 +75,7 @@ twonamesinput::twonamesinput(QWidget *parent) : QWidget(parent)
         layout->addWidget(insert2, 1, Qt::AlignCenter);
         layout->addWidget(name2Edit, 3, Qt::AlignCenter);
 
-        setLayout(layout); //sets window's layout to our layout
+        setLayout(layout); //sets window's layout to our layou
 
         connect(name2Edit, SIGNAL(editingFinished()),this, SLOT(namechanged())); //makes it so once editing is finished the slot namechanged is called
         connect(name2Edit, SIGNAL(editingFinished()), this, SLOT(gotogamewindow())); //makes it so once editing is finished the slot gotowindow is called

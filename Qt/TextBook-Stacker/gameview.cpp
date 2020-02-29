@@ -11,15 +11,30 @@ GameView::GameView(avatar* mc, books* yb)
     : QGraphicsView()
     , mc(mc), b(yb)
 {
+    setFixedSize(450, 750);
+    //view->setSceneRect(0, 0, width, height);
     scene.setSceneRect(0,0,450,700); //sets the dimensions of the scene Rect
     mc->setPos(193, 604); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
-    scene.addItem(b); //adds books to scene
-    setScene(&scene); //sets the scene of the gameview to our scene
+    //scene.addItem(b); //adds books to scene
+   // setScene(&scene); //sets the scene of the gameview to our scene
 
-    QObject::connect(&timer, &QTimer::timeout,
-                     &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
-    timer.start(1000/30); //starts the timer
+    QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
+    timer.setInterval(1000/30);
+    connect(&timer, SIGNAL(timeout()), this, SLOT(bookdrop()));
+    timer.start(); //starts the timer
+
+//    QTimer timer2;
+//    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
+//    timer2.start(1000/30);
+    //if(mc->collidesWithItem(b, Qt::IntersectsItemShape)){
+
+//    if(mc->boundingRect()->contains(boundingRect()))
+//        scene.removeItem(b);
+//        delete b;
+//    }
+    setScene(&scene);
+
 }
 
 /**
@@ -64,6 +79,14 @@ void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
     painter->drawRect(0,0, 450,700); //sets dimensions for the rect
 }
 
+
+void GameView::bookdrop(){
+   // QCoreApplication::processEvents();
+    books* boo= new books(1);
+    scene.addItem(boo);
+    scene.update();
+
+}
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
 //if(mc->pos() == QPointF(0,604)){ code for stopping animation

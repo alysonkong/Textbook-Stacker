@@ -9,6 +9,7 @@
  */
 class Sprite : public QGraphicsItem
 {
+
 private:
     QPixmap* ss; // spritesheet
     int w, h; // width/height of a single frame
