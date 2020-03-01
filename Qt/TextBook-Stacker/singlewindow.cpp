@@ -35,7 +35,6 @@ singlewindow::singlewindow(QString const & name1)
     QLabel* p1_name = new QLabel(name1); //creates new label for the player's name
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
-    //QLabel* temp = new QLabel("recipe"); //creates new label for the recipe
 
     Recipe::Recipe r;
     QWidget* recipe_display = r.display_recipe();
