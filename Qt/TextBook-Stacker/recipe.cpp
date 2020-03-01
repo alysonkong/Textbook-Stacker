@@ -98,6 +98,20 @@ QWidget* Recipe::display_recipe() {
         bigc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bigc_count_display, 1, 1, 1, 1);
 
+        QPixmap book_pic(":/spritesheets/redbook.png");
+        book_pic = book_pic.scaled(100,100,Qt::IgnoreAspectRatio);
+
+        QWidget* book_icon = new QWidget();
+
+
+//        QPixmap musicpic(":/icons/music.png");
+//        musicpic = musicpic.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
+//        music_icon = new QPushButton();
+//        QIcon ButtonIcon(musicpic);
+//        music_icon->setIcon(ButtonIcon); //change pushbutton visual into the imported icon
+//        music_icon->setIconSize(musicpic.rect().size());
+//        music_icon->setStyleSheet("QPushButton { border:none;}");
+
     }
 
 

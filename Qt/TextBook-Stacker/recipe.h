@@ -34,18 +34,16 @@ public:
     //void display_recipe();
 
 
-
 //public slots:
     //void paintEvent(QPaintEvent *) override;
-    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
-
-
 //    void book_caught(int code);
 
 
 
 //signals:
     //void round_complete(); //needs to send signal that round is complete, tells
+    //void update_stack(int code);
+    //void wrong_book();
 
 
 
