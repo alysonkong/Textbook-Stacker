@@ -35,7 +35,10 @@ singlewindow::singlewindow(QString const & name1)
     QLabel* p1_name = new QLabel(name1); //creates new label for the player's name
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
-    QLabel* temp = new QLabel("recipe"); //creates new label for the recipe
+    //QLabel* temp = new QLabel("recipe"); //creates new label for the recipe
+
+    Recipe::Recipe r;
+    QWidget* recipe_display = r.display_recipe();
 
    // m = new books(1); //creates new books object
 
@@ -55,8 +58,8 @@ singlewindow::singlewindow(QString const & name1)
       adds the widgets we created earlier to the gridlayout
       **/
 
-    layout->addWidget(temp,0,0,2,2, Qt::AlignTop);
-    layout->addWidget(view,0,1,-1,1);
+    layout->addWidget(recipe_display,0,0,2,2, Qt::AlignTop);
+    layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,2,1,2, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(pscore, 1,2,1,2, Qt::AlignLeft);
     layout->addWidget(exit, 2,2,5,2, Qt::AlignCenter);

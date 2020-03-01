@@ -1,122 +1,78 @@
-//#ifndef RECIPE_H
-//#define RECIPE_H
-
-//#include <iostream>
-//#include <QPaintEvent>
-//#include <QWidget>
-//#include <string> //do i need this??
-//#include <QLabel>
-//#include <QHBoxLayout>
-//#include <vector>
-//#include <QLabel>
-//#include <QGridLayout>
-//#include <vector>
-//#include <QPainter>
-
-
-//* FUNCTION:
-// * the recipe class should communicate with player class, textbook class, game window (add recipe to layout of game)
-// * it should randomly generate a recipe, which specifies the amount of each kind of textbook the user should catch
-// * once a book is added onto the stack, it should update the recipe
-// * should the recipes get more challenging with each round of the game??
-// * recipe should also display how many of each book you still need to catch
-// * this updates everytime the user adds a book to the stack
-// * once the player catches all of the books in the recipe, display success/new round message
-// * new recipe made everytime theres a new round
-// */
+#ifndef RECIPE_H
+#define RECIPE_H
 
 #include <iostream>
-#include <QPaintEvent>
 #include <QWidget>
 #include <QLabel>
-#include <QHBoxLayout>
-#include <vector>
-#include <QLabel>
+#include <QPixmap>
 #include <QGridLayout>
-#include <vector>
-#include <QPainter>
+#include <QGraphicsItem>
+#include <list>
+#include <string>
 
+
+namespace Recipe {
 
 /* FUNCTION:
- * the recipe class should communicate with player class, textbook class, game window (add recipe to layout of game)
- * it should randomly generate a recipe, which specifies the amount of each kind of textbook the user should catch
- * once a book is added onto the stack, it should update the recipe
- * should the recipes get more challenging with each round of the game??
- * recipe should also display how many of each book you still need to catch
- * this updates everytime the user adds a book to the stack
+ * the recipe class randomly generates a "recipe" of textbooks that the player needs to catch, a new recipe every round of the game
+ * it displays the the amount of textbooks the player still needs to catch, updating every time the player catches a correct book
  * once the player catches all of the books in the recipe, display success/new round message
- * new recipe made everytime theres a new round
  */
+class Recipe : public QWidget {
+    Q_OBJECT
 
+public:
+ /**
+ *@brief the recipe constructor randomly generates a list of how many textbooks the user needs to catch
+ */
+    Recipe();
 
-//class Recipe : public QWidget
-//{
-//    Q_OBJECT
+ /**
+  *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
+ */
+    QWidget* display_recipe();
+    //void display_recipe();
 
-//public:
-//    Recipe();
-//    //virtual ~Recipe() //can recipe ever be used as a base class??? i dont think so
-//    QWidget display_recipe();
-
-
-//public:
-//    Recipe();
-//    //virtual ~Recipe() //can recipe ever be used as a base class??? i dont think so
-//    void display_recipe();
 
 
 //public slots:
-//    void paintEvent(QPaintEvent *) override;
-//    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
-
-//signals:
+    //void paintEvent(QPaintEvent *) override;
+    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
 
 
-//    void display_recipe();
-
-
-//public slots:
-//    //void paintEvent(QPaintEvent *) override;
-//    //void updateRecipe(Textbook_type t); //needs to receive signal that the player has caught the book
-
-//signals:
-//    //void round_complete(); //needs to send signal that round is complete
+//    void book_caught(int code);
 
 
 
 //signals:
-    //void round_complete(); //needs to send signal that round is complete
-
-//private:
-//    int bigcplusplus_count = 0;
-//    int bio_count = 0;
-//    int chem_count = 0;
-//    int soc_count = 0;
-//    int eng_count = 0;
-//    int philo_count = 0;
-
-   // QLabel *title;
-   // QHBoxLayout *layout;
+    //void round_complete(); //needs to send signal that round is complete, tells
 
 
-//    QLabel title;
-//    QHBoxLayout layout;
-//    QLabel *title;
-//    QGridLayout *layout;
 
-//    QLabel *bigc_book;
-//    QLabel *bio_book;
-//    QLabel *chem_book;
-//    QLabel *soc_book;
-//    QLabel *eng_book;
-//    QLabel *philo_book;
+private:
+    int bigcplusplus_count = 0;
+    int bio_count = 0;
+    int chem_count = 0;
+    int soc_count = 0;
+    int eng_count = 0;
+    int philo_count = 0;
+
+    QLabel *title;
+    QGridLayout *layout;
+
+    int total_books = 0;
 
 
-    //std::vector<Textbook> stack;
+    QWidget* recipee;
 
 
-//    //std::vector<Textbook> stack;
 
-//};
 
-//#endif // RECIPE_H
+    //std::list<int> stack; //list keeps track of which books need to be caught
+
+
+};
+
+}
+
+#endif

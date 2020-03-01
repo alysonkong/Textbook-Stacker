@@ -12,6 +12,8 @@
 #include "books.h"
 #include "gameview.h"
 
+#include "recipe.h"
+
 /**
  * @brief The singlewindow class inherits from QWidget to create the window which the singleplayer plays the game on
  */
