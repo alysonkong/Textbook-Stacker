@@ -11,18 +11,31 @@ GameView::GameView(avatar* mc, books* yb)
     : QGraphicsView()
     , mc(mc), b(yb)
 {
-    setFixedSize(450, 750);
+    setFixedSize(500, 750);
+    this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
+    this->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
     //view->setSceneRect(0, 0, width, height);
-    scene.setSceneRect(0,0,450,700); //sets the dimensions of the scene Rect
+
+    scene.setSceneRect(0,0,500,750); //sets the dimensions of the scene Rect
+    fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
     mc->setPos(193, 604); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
-    //scene.addItem(b); //adds books to scene
+   // b->setPos(100,0);
+
+    for(int i = 0; i< 3; ++i){
+        books* temp = new books(1);
+        temp->setPos(i*100, 0);
+        scene.addItem(temp);
+    }
+
+   // scene.addItem(b); //adds books to scene
    // setScene(&scene); //sets the scene of the gameview to our scene
 
     QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
-    timer.setInterval(1000/30);
-    connect(&timer, SIGNAL(timeout()), this, SLOT(bookdrop()));
-    timer.start(); //starts the timer
+    //timer.setInterval();
+    //connect(&timer, SIGNAL(timeout()), this, SLOT(bookdrop()));
+    timer.start(1000/30); //starts the timer
+    //while loop
 
 //    QTimer timer2;
 //    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
@@ -76,7 +89,7 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
  */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
     painter->setBrush(Qt::blue); //sets the brush to blue
-    painter->drawRect(0,0, 450,700); //sets dimensions for the rect
+    painter->drawRect(0,0, 500,750); //sets dimensions for the rect
 }
 
 

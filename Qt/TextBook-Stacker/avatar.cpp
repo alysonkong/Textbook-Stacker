@@ -45,7 +45,7 @@ void avatar::turn(Direction d) // turn to a given direction
  * @param phase
  */
 void avatar::advance(int phase) {
-    QRectF mcMoveBoundary(0,0, 386, 750);
+    QRectF mcMoveBoundary(0,0, 436, 750);
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));
         if(mcMoveBoundary.contains(nextPos)) {
