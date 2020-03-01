@@ -38,7 +38,7 @@ QRectF books::boundingRect() const{
  * @param phase
  */
 void books::advance(int phase) {
-    QRectF mcMoveBoundary(0,0, 350, 685.6);
+    QRectF mcMoveBoundary(0,0, 400, 717.8);
     if(phase) {
         QPointF down(0,7);
         down*=speed;
@@ -46,6 +46,9 @@ void books::advance(int phase) {
         if(mcMoveBoundary.contains(nextPos)) {
             setPos(nextPos);
         }
+//        else{
+//            scene()->removeItem(this);
+//        }
 
 //        QPointF down(0,7);
 //        down*=speed;

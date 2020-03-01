@@ -104,3 +104,4 @@ void singlewindow::updatescorelabel(int num){
 }
 
 
+

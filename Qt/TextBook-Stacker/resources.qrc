@@ -18,5 +18,10 @@
     <qresource prefix="/spritesheets">
         <file>moreoverworld.png</file>
         <file>yellowbook.png</file>
+        <file>orangebook.png</file>
+        <file>purplebook.png</file>
+        <file>greenbook.png</file>
+        <file>bluebook.png</file>
+        <file>redbook.png</file>
     </qresource>
 </RCC>
