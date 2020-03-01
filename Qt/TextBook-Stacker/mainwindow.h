@@ -31,6 +31,8 @@ Pic 10C, UCLA
 #include "nameinputwindow.h"
 #include "twonamesinput.h"
 
+#include "recipe.h"
+
 /* FUNCTION:
  * the mainwindow class communicates between all the windows in the game via a stackedwidget set-up
  * mainwindow is derived from a QWidget

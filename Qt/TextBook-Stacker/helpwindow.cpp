@@ -2,6 +2,7 @@
 #include<QFontDatabase>
 #include<QPixmap>
 
+
 namespace HelpWindow{
 
 //add pics, maybe screenshots
