@@ -12,11 +12,13 @@
  */
 class GameView : public QGraphicsView
 {
+    Q_OBJECT
 private:
     avatar* mc; //avatar that the players can control
     QGraphicsScene scene; //the scene where our game is taking place
     QTimer timer; //timer for constructing and moving the sprites
     books* b; //books that fall from the sky
+    QTimer timer2;
 
 public:
 
@@ -25,6 +27,10 @@ public:
     //void advance()
 public slots:
     void bookdrop();
+    void getbooktype(int);
+signals:
+    void booktypetowindow(int);
+
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

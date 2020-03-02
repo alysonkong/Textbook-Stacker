@@ -3,6 +3,7 @@
         <file>pixil-frame-0.png</file>
         <file>textbookbkgnd.png</file>
         <file>textbookbkgndclear.png</file>
+        <file>classroom.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>Retro Gaming.ttf</file>
