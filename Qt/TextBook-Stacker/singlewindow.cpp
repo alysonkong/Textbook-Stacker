@@ -16,7 +16,7 @@ singlewindow::singlewindow(QString const & name1)
     //QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1
     mc = new avatar(name1, spritesheet, 32, 48, 4, 4, 112, 5, 2, 4); //creates an avatar that the player will control
     mc->setPos(100,100); //sets position of this avatar
-    mc->setSpeed(5); //sets speed of the avatar
+    mc->setSpeed(20); //sets speed of the avatar
 
     QPixmap back(":/bkgnd/textbookbkgndclear.png"); //chooses custom picture for the background
     back = back.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
@@ -47,7 +47,7 @@ singlewindow::singlewindow(QString const & name1)
 //    timer = new QTimer();
     //connect(timer, SIGNAL(timeout()), this, SLOT(dropobject()));
 //    connect(timer, SIGNAL(timeout()), view, SLOT(bookdrop(books*)));
-//    timer->start(1000);
+//    timer->start(3000);
 
 
     view = new GameView(mc, m); //creates new gameview object
@@ -67,9 +67,8 @@ singlewindow::singlewindow(QString const & name1)
     //setCentralWidget(view);
     //connect(m, SIGNAL(type_pts(int, int)), ); check with recipe
 
-
-
-
+    connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
+    connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
 
 
     show(); //shows the singlewindo
@@ -79,8 +78,7 @@ void singlewindow::dropobject(){
     books* newbook = new books(1);
     //connect(this, SIGNAL(dropbook(newbook)), view, SLOT(bookdrop(books*)));
     //emit dropbook(newbook);
-    connect(newbook, SIGNAL(emitpts(int)), mc, SLOT(updatescore(int)));
-    connect(newbook, SIGNAL(emittype(int)), this, SLOT(updatescorelabel(int)));
+
     //emit signal to gameview
 }
 
@@ -104,6 +102,11 @@ void singlewindow::returntomain(){
 void singlewindow::updatescorelabel(int num){
     pscore->setText(QString::number(num));
 }
+
+//qlabel the lives
+//size_t lives;
+//in constructor connect(lives, zerolives(), singlewindow, emittomainwindow_
+//connect(singlewindow, emittomain, main/this, changeindex(loserwindow);
 
 
 

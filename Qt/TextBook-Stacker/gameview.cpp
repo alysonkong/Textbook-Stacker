@@ -1,6 +1,9 @@
 #include "gameview.h"
 #include <QKeyEvent>
 #include<QGraphicsView>
+#include <QRandomGenerator>
+#include <QtGlobal>
+#include <QTime>
 
 /**
  * @brief GameView::GameView implementation for the gameview constructor
@@ -22,14 +25,12 @@ GameView::GameView(avatar* mc, books* yb)
     scene.addItem(mc); //adds avatar to scene
    // b->setPos(100,0);
 
-    for(int i = 0; i< 3; ++i){
-        books* temp = new books(1);
-        temp->setPos(i*100, 0);
-        scene.addItem(temp);
-    }
+//    for(int i = 0; i< 3; ++i){
+//        books* temp = new books(1);
+//        temp->setPos(i*100, 0);
+//        scene.addItem(temp);
+//    }
 
-   // scene.addItem(b); //adds books to scene
-   // setScene(&scene); //sets the scene of the gameview to our scene
 
     QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
     //timer.setInterval();
@@ -37,15 +38,10 @@ GameView::GameView(avatar* mc, books* yb)
     timer.start(1000/30); //starts the timer
     //while loop
 
-//    QTimer timer2;
-//    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
-//    timer2.start(1000/30);
-    //if(mc->collidesWithItem(b, Qt::IntersectsItemShape)){
 
-//    if(mc->boundingRect()->contains(boundingRect()))
-//        scene.removeItem(b);
-//        delete b;
-//    }
+    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
+    timer2.start(3000);
+
     setScene(&scene);
 
 }
@@ -88,17 +84,36 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
  * @param rect the rect in which the gameview will be painted within
  */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
-    painter->setBrush(Qt::blue); //sets the brush to blue
+    QRect rectangle(0, 0, 200, 300);
+    QPixmap back(":/bkgnd/classroom.png"); //chooses custom picture for the background
+    QPixmap cropped = back.copy(rectangle);
+    QSize area(500,750);
+    cropped.scaled(area, Qt::IgnoreAspectRatio);
+    painter->setBrush(cropped);
+    this->setAutoFillBackground(true); //fills the entire background
     painter->drawRect(0,0, 500,750); //sets dimensions for the rect
 }
 
 
 void GameView::bookdrop(){
    // QCoreApplication::processEvents();
-    books* boo= new books(1);
+   // std::seed_seq sseq(0, 5);
+   // qsrand(QTime::currentTime().msec());
+    //QRandomGenerator generator(QRandomGenerator::global()->bounded(0,5);;
+    books* boo= new books(QRandomGenerator::global()->bounded(0,5));
+
+    boo->setX(QRandomGenerator::global()->bounded(0,width()));
+    //quint32 v;
+    //v->QRandomGenerator::bounded(5);
+    //boo->setPos(v*100, 0);
     scene.addItem(boo);
     scene.update();
+    connect(boo, SIGNAL(emittype(int)), this, SLOT(getbooktype(int)));
 
+}
+
+void GameView::getbooktype(int n){
+    emit booktypetowindow(n);
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);

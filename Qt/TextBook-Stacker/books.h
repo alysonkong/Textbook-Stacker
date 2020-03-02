@@ -32,6 +32,10 @@ private:
     QPixmap* biobook;
     QPixmap* chembook;
     QPixmap* philobook;
+    QPixmap* cbook;
+    QPixmap* engbook;
+    QPixmap* socbook;
+    QPixmap* book;
     qreal speed=1;
     int booktype = 1;
     int points = 5;
