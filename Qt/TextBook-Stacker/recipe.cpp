@@ -18,36 +18,36 @@ Recipe::Recipe() {
 
         if (book_code == 0) {
             ++bigcplusplus_count;
-            //stack.push_back(0);
+            stack.push_back(0);
         }
 
         if (book_code == 1) {
             ++bio_count;
-            //stack.push_back(1);
+            stack.push_back(1);
         }
 
         if (book_code == 2) {
             ++chem_count;
-            //stack.push_back(2);
+            stack.push_back(2);
         }
 
 
 
         if (book_code == 3) {
             ++soc_count;
-            //stack.push_back(3);
+            stack.push_back(3);
 
         }
 
         if (book_code == 4) {
             ++eng_count;
-            //stack.push_back(4);
+            stack.push_back(4);
 
         }
 
         if (book_code == 5) {
             ++philo_count;
-            //stack.push_back(5);
+            stack.push_back(5);
 
         }
 
@@ -75,7 +75,7 @@ QWidget* Recipe::display_recipe() {
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
     QFont f(ffamily, 40);
 
-    recipee = new QWidget;
+    QWidget* recipee = new QWidget;
 
     QLabel *book_names_title  = new QLabel("Textbooks:");
     book_names_title->setFont(f);
@@ -98,19 +98,32 @@ QWidget* Recipe::display_recipe() {
         bigc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bigc_count_display, 1, 1, 1, 1);
 
-        QPixmap book_pic(":/spritesheets/redbook.png");
-        book_pic = book_pic.scaled(100,100,Qt::IgnoreAspectRatio);
+//        void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
+//            QRectF source(0,0,500,161); //image is 500x161
+//            painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
+//            //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
 
-        QWidget* book_icon = new QWidget();
+//        }
+
+//        QRectF books::boundingRect() const{
+//            return QRectF(0,0,500*0.2,161*0.2);
+//        }
+
+//        QPainter *painter;
+//        QRectF source(0,0,500,161);
+//        painter->drawPixmap(QRectF(0,0,500*0.2, 161*0.2));
 
 
-//        QPixmap musicpic(":/icons/music.png");
-//        musicpic = musicpic.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
-//        music_icon = new QPushButton();
-//        QIcon ButtonIcon(musicpic);
-//        music_icon->setIcon(ButtonIcon); //change pushbutton visual into the imported icon
-//        music_icon->setIconSize(musicpic.rect().size());
-//        music_icon->setStyleSheet("QPushButton { border:none;}");
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/redbook.png");
+        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+
+
 
     }
 
@@ -126,6 +139,14 @@ QWidget* Recipe::display_recipe() {
         bio_count_display->setFont(f);
         bio_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bio_count_display, 2, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/orangebook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,2,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -140,6 +161,14 @@ QWidget* Recipe::display_recipe() {
         chem_count_display->setFont(f);
         chem_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(chem_count_display, 3, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/yellowbook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,3,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -154,6 +183,14 @@ QWidget* Recipe::display_recipe() {
         soc_count_display->setFont(f);
         soc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(soc_count_display, 4, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/greenbook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,4,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -168,6 +205,14 @@ QWidget* Recipe::display_recipe() {
         eng_count_display->setFont(f);
         eng_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(eng_count_display, 5, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/bluebook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,5,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -182,6 +227,14 @@ QWidget* Recipe::display_recipe() {
         philo_count_display->setFont(f);
         philo_count_display->setStyleSheet("QLabel { font: 18pt;}");
        layout->addWidget(philo_count_display, 6, 1,1,1);
+
+       QLabel* book_label = new QLabel;
+       QPixmap pixmap(":/spritesheets/purplebook.png");
+       pixmap = pixmap.scaled(71,23);
+       book_label->setPixmap(pixmap);
+       //book_label.setMask(pixmap.mask());
+
+       layout->addWidget(book_label,6,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -190,6 +243,11 @@ QWidget* Recipe::display_recipe() {
     return recipee;
 
 }
+
+//void Recipe::paint(QPainter *painter, QPixmap* pixmap, const QStyleOptionGraphicsItem *, QWidget *) {
+//    QRectF source(0,0,500,161); //image is 500x161
+//    painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),*pixmap, source); //boundingrect is the target in which to draw the book into
+//}
 
 
 

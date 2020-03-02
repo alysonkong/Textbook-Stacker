@@ -10,6 +10,8 @@
 #include <list>
 #include <string>
 
+#include <QGraphicsScene>
+#include <QPainter>
 
 namespace Recipe {
 
@@ -31,7 +33,9 @@ public:
   *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
  */
     QWidget* display_recipe();
-    //void display_recipe();
+
+//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr);
+//    QRectF boundingRect() const;
 
 
 //public slots:
@@ -61,12 +65,12 @@ private:
     int total_books = 0;
 
 
-    QWidget* recipee;
+    //QWidget* recipee;
 
 
 
 
-    //std::list<int> stack; //list keeps track of which books need to be caught
+    std::list<int> stack; //list keeps track of which books need to be caught
 
 
 };
