@@ -3,13 +3,26 @@
 
 books::books(int book_type)
 {
-    //book = new QPixmap(":/spritesheets/yellowbook.png"); //use resource file to create a book visual
-    if(book_type ==1){
-        biobook = new QPixmap(":/spritesheets/yellowbook.png");
+    if(book_type ==0){
+        book = new QPixmap(":/spritesheets/redbook.png");
     }
-    else if(book_type ==2){
-        chembook = new QPixmap(":/spritesheets/yellowbook.png");
+    else if(book_type ==1){
+        book = new QPixmap(":/spritesheets/orangebook.png");
+
     }
+    else if(book_type == 2){
+        book = new QPixmap(":/spritesheets/yellowbook.png");
+    }
+    else if(book_type == 3){
+        book = new QPixmap(":/spritesheets/greenbook.png");
+    }
+    else if(book_type == 4){
+        book =  new QPixmap(":/spritesheets/bluebook.png");
+    }
+    else if(book_type == 5){
+        book = new QPixmap(":/spritesheets/purplebook.png");
+    }
+
 }
 
 /**
@@ -20,7 +33,7 @@ books::books(int book_type)
  */
 void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     QRectF source(0,0,500,161); //image is 500x161
-    painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
+    painter->drawPixmap(boundingRect(),*book, source); //boundingrect is the target in which to draw the book into
     //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
 
 }
@@ -46,21 +59,30 @@ void books::advance(int phase) {
         if(mcMoveBoundary.contains(nextPos)) {
             setPos(nextPos);
         }
-//        else{
-//            scene()->removeItem(this);
-//        }
+
+        if(!scene()->collidingItems(this).isEmpty()){
+            scene()->removeItem(this);
+            delete this;
+            getbooktype();
+        }
+        else if(!mcMoveBoundary.contains(nextPos)){
+            scene()->removeItem(this);
+            delete this;
+        }
 
 //        QPointF down(0,7);
 //        down*=speed;
 //        setPos(mapToScene(down)); // set my next position
         //speed+=(QRandomGenerator::global()->bounded(0.4)-0.2);
     }
+
     if(!scene()->collidingItems(this).isEmpty()){
         //stacktainer.add(this);
         scene()->removeItem(this);
         //Lucas: shouldn't lines 60 and 61 be switched?
         getbooktype();
     }
+
 }
 
 void books::getbooktype(){

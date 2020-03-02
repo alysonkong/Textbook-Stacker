@@ -83,3 +83,4 @@ void avatar::updatescore(int addval){
 //        return QGraphicsItem::itemChange(change, value);
 //}
 
+//create wrapper class for avatar & bookstack
