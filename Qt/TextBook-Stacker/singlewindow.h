@@ -45,7 +45,6 @@ private:
     books* m; //falling books that the player has to catch with their avatar
     QLabel* pscore;
     GameView* view;
-    //BookStack* bookstack;
 
 };
 

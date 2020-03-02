@@ -35,7 +35,7 @@ private:
     qreal speed=1;
     int booktype = 1;
     int points = 5;
-    //BookStack* stacktainer = bookstack;
+
 };
 
 #endif // BOOKS_H
