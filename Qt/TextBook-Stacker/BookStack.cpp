@@ -2,9 +2,10 @@
 
 #include "BookStack.h"
 
-BookStack::BookStack() {
-    height = Avatar_object.get_height();
-    x_coord = Avatar_object.get_cy();
-}
+BookStack::BookStack(bookcount(0)) {}
 
+void add::BookStack(const books& new_book) {
+    bstack.push_back(new_book.getbooktype());
+    ++bookcount;
+}
 */
