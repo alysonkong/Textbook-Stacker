@@ -7,7 +7,7 @@
 #include <QPixmap>
 #include <QGridLayout>
 #include <QGraphicsItem>
-#include <list>
+//#include <list>
 #include <string>
 
 #include <QGraphicsScene>
@@ -45,9 +45,10 @@ public:
 
 
 //signals:
-    //void round_complete(); //needs to send signal that round is complete, tells
+//    void round_complete();
+//    void wrong_book();
+
     //void update_stack(int code);
-    //void wrong_book();
 
 
 
@@ -59,12 +60,12 @@ private:
     int eng_count = 0;
     int philo_count = 0;
 
-    QLabel *title;
+    //QLabel *title;
     QGridLayout *layout;
 
     int total_books = 0;
 
-    std::list<int> stack; //list keeps track of which books need to be caught
+    //std::list<int> stack; //list keeps track of which books need to be caught
 
 
 };

@@ -8,8 +8,6 @@ namespace Recipe {
 
 Recipe::Recipe() {
 
-
-
     //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
     total_books = QRandomGenerator::global()->bounded(10, 16);
 
@@ -18,36 +16,36 @@ Recipe::Recipe() {
 
         if (book_code == 0) {
             ++bigcplusplus_count;
-            stack.push_back(0);
+            //stack.push_back(0);
         }
 
         if (book_code == 1) {
             ++bio_count;
-            stack.push_back(1);
+            //stack.push_back(1);
         }
 
         if (book_code == 2) {
             ++chem_count;
-            stack.push_back(2);
+            //stack.push_back(2);
         }
 
 
 
         if (book_code == 3) {
             ++soc_count;
-            stack.push_back(3);
+            //stack.push_back(3);
 
         }
 
         if (book_code == 4) {
             ++eng_count;
-            stack.push_back(4);
+            //stack.push_back(4);
 
         }
 
         if (book_code == 5) {
             ++philo_count;
-            stack.push_back(5);
+            //stack.push_back(5);
 
         }
 
@@ -100,12 +98,19 @@ QWidget* Recipe::display_recipe() {
         bigc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bigc_count_display, 1, 1, 1, 1);
 
+        //still working on the display
+
 //        void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
 //            QRectF source(0,0,500,161); //image is 500x161
 //            painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
 //            //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
 
 //        }
+
+        //void Recipe::paint(QPainter *painter, QPixmap* pixmap, const QStyleOptionGraphicsItem *, QWidget *) {
+        //    QRectF source(0,0,500,161); //image is 500x161
+        //    painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),*pixmap, source); //boundingrect is the target in which to draw the book into
+        //}
 
 //        QRectF books::boundingRect() const{
 //            return QRectF(0,0,500*0.2,161*0.2);
@@ -134,22 +139,17 @@ QWidget* Recipe::display_recipe() {
 //        }
 
 
-        QPainter* painter;
-        QRectF source(0,0,500,161);
+
+
+
+
+        QLabel* book_label = new QLabel;
         QPixmap pixmap(":/spritesheets/redbook.png");
-        painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),pixmap, source);
+        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
 
-
-
-
-
-//        QLabel* book_label = new QLabel;
-//        QPixmap pixmap(":/spritesheets/redbook.png");
-//        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
-//        book_label->setPixmap(pixmap);
-//        //book_label.setMask(pixmap.mask());
-
-//        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
 
 
 
@@ -273,42 +273,93 @@ QWidget* Recipe::display_recipe() {
 
 }
 
-//void Recipe::paint(QPainter *painter, QPixmap* pixmap, const QStyleOptionGraphicsItem *, QWidget *) {
-//    QRectF source(0,0,500,161); //image is 500x161
-//    painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),*pixmap, source); //boundingrect is the target in which to draw the book into
-//}
-
 
 
 
 //void Recipe::book_caught(int code) {
 //    if (code == 0) {
-//        --bigcplusplus_count;
+//        if (bigcplusplus_count != 0) {
+//            --bigcplusplus_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 1) {
-//        --bio_count;
+//        if (bio_count != 0) {
+//            --bio_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 2) {
-//        --chem_count;
+//        if (chem_count != 0) {
+//            --chem_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 3) {
-//        --soc_count;
+//        if (soc_count != 0) {
+//            --soc_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 4) {
-//        --eng_count;
+//        if (eng_count != 0) {
+//            --eng_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 5) {
-//        --philo_count;
+//        if (philo_count != 0) {
+//            --philo_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
-//    //call display_recipe
+//    if (total_books == 0) {
+//        emit round_complete();
+//    }
+
+//    //call display_recipe, needs to change display in single window too
 
 
+
+//}
+
+//void Recipe::wrong_book() {
+
+//}
+
+
+
+//void Recipe::round_complete() {
 
 //}
 
