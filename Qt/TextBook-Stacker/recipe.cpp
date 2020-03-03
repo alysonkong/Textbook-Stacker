@@ -55,6 +55,8 @@ Recipe::Recipe() {
 
     }
 
+    display_recipe();
+
 
 }
 
@@ -114,14 +116,40 @@ QWidget* Recipe::display_recipe() {
 //        painter->drawPixmap(QRectF(0,0,500*0.2, 161*0.2));
 
 
+//        void particles::make(){
+//              for(auto i = 0; i <row; ++i){ //go through the rows
+//                  for(auto n= 0; n<column; ++n){ //go through the columns
+//                      oneparticle *one = new oneparticle; //creates a new particle
+//                      layout->addWidget(one, i+1, n, Qt::AlignCenter);
+//                  }
+//              }
 
-        QLabel* book_label = new QLabel;
+//        void oneparticle::paintEvent(QPaintEvent *e){
+//            QPainter painter(this);
+//            painter.setBrush(QBrush(QColorConstants::Svg::pink));
+//            painter.setPen(Qt::white);
+//            QRectF rectangle(1, 1, 15, 15);
+//            painter.drawEllipse(rectangle);
+
+//        }
+
+
+        QPainter* painter;
+        QRectF source(0,0,500,161);
         QPixmap pixmap(":/spritesheets/redbook.png");
-        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
-        book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
+        painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),pixmap, source);
 
-        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+
+
+
+
+//        QLabel* book_label = new QLabel;
+//        QPixmap pixmap(":/spritesheets/redbook.png");
+//        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
+//        book_label->setPixmap(pixmap);
+//        //book_label.setMask(pixmap.mask());
+
+//        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
 
 
 
@@ -240,6 +268,7 @@ QWidget* Recipe::display_recipe() {
 
     recipee->setLayout(layout);
 
+    //recipee->show();
     return recipee;
 
 }

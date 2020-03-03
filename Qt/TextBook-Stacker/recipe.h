@@ -64,12 +64,6 @@ private:
 
     int total_books = 0;
 
-
-    //QWidget* recipee;
-
-
-
-
     std::list<int> stack; //list keeps track of which books need to be caught
 
 
