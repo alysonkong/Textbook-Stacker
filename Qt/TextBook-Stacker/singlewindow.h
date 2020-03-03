@@ -11,8 +11,8 @@
 #include "avatar.h"
 #include "books.h"
 #include "gameview.h"
-
 #include "recipe.h"
+
 
 /**
  * @brief The singlewindow class inherits from QWidget to create the window which the singleplayer plays the game on
@@ -35,6 +35,8 @@ public slots:
     void returntomain(); //directs this window back to the main window
     void updatescorelabel(int);
     void dropobject();
+    void newrecipe();
+    void deductlife();
 
 private:
    // QGraphicsScene scene; //scene where the game is taking place
@@ -44,8 +46,11 @@ private:
     avatar* mc; //avatar for the player to control
     books* m; //falling books that the player has to catch with their avatar
     QLabel* pscore;
-    QLabel* lives;
+    size_t lives;
+    QLabel* livesnum;
     GameView* view;
+
+
     //BookStack* bookstack;
 
 };

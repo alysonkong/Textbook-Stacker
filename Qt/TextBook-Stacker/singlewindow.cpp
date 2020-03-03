@@ -9,7 +9,7 @@
  * @brief singlewindow::singlewindow constructor implementation for singlewindow
  * @param name1 the one parameter that this constructor takes (the player's name)
  */
-singlewindow::singlewindow(QString const & name1)
+singlewindow::singlewindow(QString const & name1) : lives(3)
 {
     spritesheet = new QPixmap(":/spritesheets/moreoverworld.png"); //creates the spritesheet as a pixmap with a custom image
 
@@ -36,7 +36,7 @@ singlewindow::singlewindow(QString const & name1)
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
 
-    Recipe::Recipe r;
+    Recipe::Recipe* r;
     QWidget* recipe_display = r.display_recipe();
 
    // m = new books(1); //creates new books object
@@ -44,8 +44,8 @@ singlewindow::singlewindow(QString const & name1)
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
-    lives = new QLabel("Lives \n" + QString::number(3));
-    lives->setFont(f);
+    livesnum = new QLabel("Lives \n" + lives);
+    livesnum->setFont(f);
 
 
 //    timer = new QTimer();
@@ -74,10 +74,19 @@ singlewindow::singlewindow(QString const & name1)
 
     connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
     connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
+    connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
+    //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
+    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
 
 
     show(); //shows the singlewindo
 }
+
+void singlewindow::deductlife(){
+    --lives;
+    livesnum->setText("Lives \n" + lives);
+}
+
 
 void singlewindow::dropobject(){
     books* newbook = new books(1);
@@ -85,6 +94,11 @@ void singlewindow::dropobject(){
     //emit dropbook(newbook);
 
     //emit signal to gameview
+}
+
+
+void singlewindow::newrecipe(){
+    Recipe::Recipe newr = new Recipe::Recipe();
 }
 
 
