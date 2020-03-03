@@ -1,7 +1,7 @@
 #include "books.h"
 #include <QPainter>
 
-books::books(int book_type)
+books::books(int book_type) : booktype(book_type)
 {
     if(book_type ==0){
         book = new QPixmap(":/spritesheets/redbook.png");

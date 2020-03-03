@@ -44,7 +44,9 @@ private:
     avatar* mc; //avatar for the player to control
     books* m; //falling books that the player has to catch with their avatar
     QLabel* pscore;
+    QLabel* lives;
     GameView* view;
+    //BookStack* bookstack;
 
 };
 
