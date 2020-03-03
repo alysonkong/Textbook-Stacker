@@ -1,4 +1,5 @@
 #include "recipe.h"
+#include "books.h"
 #include <QRandomGenerator>
 #include <QFontDatabase>
 
@@ -53,7 +54,7 @@ Recipe::Recipe() {
 
     }
 
-    display_recipe();
+    //display_recipe();
 
 
 }
@@ -139,17 +140,23 @@ QWidget* Recipe::display_recipe() {
 //        }
 
 
+//        books* book(0);
+//        layout->addItem(book,1,2,1,1);
 
 
+        QLabel* book_label = new QLabel();
+        book_label->setScaledContents(true);
 
-
-        QLabel* book_label = new QLabel;
         QPixmap pixmap(":/spritesheets/redbook.png");
-        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
+
+//        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
+//        book_label->setPixmap(pixmap);
+//        //book_label.setMask(pixmap.mask());
 
         layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+
+
 
 
 
