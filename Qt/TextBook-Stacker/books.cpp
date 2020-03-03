@@ -76,13 +76,6 @@ void books::advance(int phase) {
         //speed+=(QRandomGenerator::global()->bounded(0.4)-0.2);
     }
 
-    if(!scene()->collidingItems(this).isEmpty()){
-        //stacktainer.add(this);
-        scene()->removeItem(this);
-        //Lucas: shouldn't lines 60 and 61 be switched?
-        getbooktype();
-    }
-
 }
 
 void books::getbooktype(){
