@@ -5,12 +5,13 @@
 #include<vector>
 #include"books.h"
 #include<QWidget>
+#include"recipe.h"
 #include"avatar.h"
 
 class BookStack : public QWidget {
     Q_OBJECT
 public:
-    BookStack(avatar& p1);
+    BookStack(avatar& p1, Recipe::Recipe& r);
     void add(books& new_book);
 public slots:
     void push(int nb);
@@ -22,6 +23,7 @@ protected:
     friend class books;
     friend class FallingObject;
     avatar* player;
+    Recipe::Recipe* recipe;
     QVBoxLayout* bkstk;
 };
 
