@@ -32,7 +32,7 @@ public:
  /**
   *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
  */
-    QWidget* display_recipe();
+    void display_recipe();
 
 //    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr);
 //    QRectF boundingRect() const;

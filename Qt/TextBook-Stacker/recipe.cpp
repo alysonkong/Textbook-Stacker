@@ -54,7 +54,7 @@ Recipe::Recipe() {
 
     }
 
-    //display_recipe();
+    display_recipe();
 
 
 }
@@ -70,7 +70,7 @@ Recipe::Recipe() {
 
 
 
-QWidget* Recipe::display_recipe() {
+void Recipe::display_recipe() {
 
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
@@ -144,17 +144,17 @@ QWidget* Recipe::display_recipe() {
 //        layout->addItem(book,1,2,1,1);
 
 
-        QLabel* book_label = new QLabel();
-        book_label->setScaledContents(true);
+//        QLabel* book_label = new QLabel();
+//        book_label->setScaledContents(true);
 
-        QPixmap pixmap(":/spritesheets/redbook.png");
-        book_label->setPixmap(pixmap);
+//        QPixmap pixmap(":/spritesheets/redbook.png");
+//        book_label->setPixmap(pixmap);
 
 //        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
 //        book_label->setPixmap(pixmap);
 //        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+        //layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
 
 
 
@@ -177,7 +177,10 @@ QWidget* Recipe::display_recipe() {
 
         QLabel* book_label = new QLabel;
         QPixmap pixmap(":/spritesheets/orangebook.png");
-        pixmap = pixmap.scaled(71,23);
+        //pixmap = pixmap.scaled(71,23); //original: 500 x 161
+        //set qwidget sizepolicy
+        //set width for height/height for width
+        //setaspectratio set width for height
         book_label->setPixmap(pixmap);
         //book_label.setMask(pixmap.mask());
 
@@ -275,8 +278,8 @@ QWidget* Recipe::display_recipe() {
 
     recipee->setLayout(layout);
 
-    //recipee->show();
-    return recipee;
+    recipee->show();
+    //return recipee;
 
 }
 
