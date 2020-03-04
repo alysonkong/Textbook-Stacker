@@ -54,7 +54,7 @@ Recipe::Recipe() {
 
     }
 
-    display_recipe();
+    //display_recipe();
 
 
 }
@@ -70,7 +70,7 @@ Recipe::Recipe() {
 
 
 
-void Recipe::display_recipe() {
+QWidget* Recipe::display_recipe() {
 
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
@@ -278,8 +278,8 @@ void Recipe::display_recipe() {
 
     recipee->setLayout(layout);
 
-    recipee->show();
-    //return recipee;
+    //recipee->show();
+    return recipee;
 
 }
 
