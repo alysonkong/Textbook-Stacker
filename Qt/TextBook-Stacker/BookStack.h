@@ -8,11 +8,13 @@
 #include"recipe.h"
 #include"avatar.h"
 
-class BookStack : public QWidget {
+class BookStack : public QGraphicsObject {
     Q_OBJECT
 public:
     BookStack(avatar& p1, Recipe::Recipe& r);
     void add(books& new_book);
+signals:
+    void getstack();
 public slots:
     void push(int nb);
 protected:
@@ -25,6 +27,7 @@ protected:
     avatar* player;
     Recipe::Recipe* recipe;
     QVBoxLayout* bkstk;
+    friend class Wrapper;
 };
 
 #endif // STACK_H
