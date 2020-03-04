@@ -49,7 +49,6 @@ private:
     size_t lives;
     QLabel* livesnum;
     GameView* view;
-    //BookStack* bookstack;
 
 
     //BookStack* bookstack;
