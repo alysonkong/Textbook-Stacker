@@ -10,8 +10,8 @@
 //#include <list>
 #include <string>
 
-#include <QGraphicsScene>
-#include <QPainter>
+//#include <QGraphicsScene>
+//#include <QPainter>
 
 namespace Recipe {
 
@@ -34,12 +34,10 @@ public:
  */
     QWidget* display_recipe(); //should it be void????
 
-//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr);
-//    QRectF boundingRect() const;
 
+//these slots and signals should be ready whenever the corresponding slots and signals are ready
 
 //public slots:
-    //void paintEvent(QPaintEvent *) override;
 //    void book_caught(int code);
 
 
@@ -47,8 +45,8 @@ public:
 //signals:
 //    void round_complete();
 //    void wrong_book();
+//    void updatescore(int);
 
-    //void update_stack(int code);
 
 
 
