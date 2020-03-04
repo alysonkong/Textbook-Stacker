@@ -1,11 +1,17 @@
-/*
-
+#include<QCoreApplication>
 #include "BookStack.h"
 
-BookStack::BookStack(bookcount(0)) {}
+BookStack::BookStack(avatar& p1, Recipe::Recipe& r) : bookcount(0), player(&p1), recipe(&r), bkstk(new QVBoxLayout) {}
 
-void add::BookStack(const books& new_book) {
-    bstack.push_back(new_book.getbooktype());
-    ++bookcount;
+void BookStack::push(int nb) {
+    bstack.push_back(nb);
 }
-*/
+void BookStack::add(books& new_book) {
+    QObject::connect(&new_book, &books::emittype, this, &BookStack::push);
+    //bstack.push_back(new_book.emittype(int));
+    //bookcount = player->getscore();
+    //bkstk->addWidget(new_book);
+    QCoreApplication::processEvents();
+    repaint();
+}
+
