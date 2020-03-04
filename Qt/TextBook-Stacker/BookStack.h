@@ -12,6 +12,8 @@ class BookStack : public QWidget {
 public:
     BookStack(avatar& p1);
     void add(books& new_book);
+public slots:
+    void push(int nb);
 protected:
     //vector<books*> bstack; //since books now disappear when caught, no need for vector to hold books themselves, only booktype
     std::vector<int> bstack;
