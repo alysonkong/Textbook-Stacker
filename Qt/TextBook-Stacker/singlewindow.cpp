@@ -77,7 +77,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
     //connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
     //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
-    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductli fe()));
+    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
 
 
     show(); //shows the singlewindow
@@ -90,6 +90,9 @@ void singlewindow::avatar_book(){
 void singlewindow::deductlife(){
     --lives;
     livesnum->setText("Lives \n" + QString::number(lives));
+    if(lives == 0){
+        emit finalscore(mc->getscore());
+    }
 }
 
 

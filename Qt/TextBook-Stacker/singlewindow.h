@@ -30,6 +30,7 @@ public:
 signals:
    void pressedmain(); // @brief pressedmain signal that a
    void dropbook(books*);
+   void finalscore(int);
 
 public slots:
     void returntomain(); //directs this window back to the main window

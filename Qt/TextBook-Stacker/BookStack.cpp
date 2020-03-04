@@ -6,6 +6,7 @@ BookStack::BookStack(avatar& p1, Recipe::Recipe& r) : bookcount(0), player(&p1),
 void BookStack::push(int nb) {
     bstack.push_back(nb);
 }
+
 void BookStack::add(books& new_book) {
     QObject::connect(&new_book, &books::emittype, this, &BookStack::push);
     //bstack.push_back(new_book.emittype(int));
