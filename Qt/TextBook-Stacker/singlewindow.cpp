@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QPixmap>
 #include <QFontDatabase>
+#include "BookStack.h"
 
 /**
  * @brief singlewindow::singlewindow constructor implementation for singlewindow
@@ -36,7 +37,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
 
-    Recipe::Recipe* r;
+    Recipe::Recipe r;
     QWidget* recipe_display = r.display_recipe();
 
    // m = new books(1); //creates new books object
@@ -44,7 +45,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
-    livesnum = new QLabel("Lives \n" + lives);
+    livesnum = new QLabel("Lives \n" + QString::number(lives));
     livesnum->setFont(f);
 
 
@@ -64,7 +65,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     layout->addWidget(recipe_display,0,0,2,2, Qt::AlignTop);
     layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
-    layout->addWidget(lives, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
+    layout->addWidget(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(pscore, 2,3,1,2, Qt::AlignLeft);
     layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
 
@@ -74,31 +75,27 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
     connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
     connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
-    connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
+    //connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
     //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
-    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
+    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductli fe()));
 
 
-    show(); //shows the singlewindo
+    show(); //shows the singlewindow
+}
+
+void singlewindow::avatar_book(){
+   // BookStack* ab = new BookStack(mc);
 }
 
 void singlewindow::deductlife(){
     --lives;
-    livesnum->setText("Lives \n" + lives);
+    livesnum->setText("Lives \n" + QString::number(lives));
 }
 
-
-void singlewindow::dropobject(){
-    books* newbook = new books(1);
-    //connect(this, SIGNAL(dropbook(newbook)), view, SLOT(bookdrop(books*)));
-    //emit dropbook(newbook);
-
-    //emit signal to gameview
-}
 
 
 void singlewindow::newrecipe(){
-    Recipe::Recipe newr = new Recipe::Recipe();
+    Recipe::Recipe* newr = new Recipe::Recipe();
 }
 
 
