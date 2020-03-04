@@ -158,6 +158,13 @@ QWidget* Recipe::display_recipe() {
 
 
 
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/redbook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
 
 
     }
@@ -175,16 +182,25 @@ QWidget* Recipe::display_recipe() {
         bio_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bio_count_display, 2, 1, 1,1);
 
+
         QLabel* book_label = new QLabel;
         QPixmap pixmap(":/spritesheets/orangebook.png");
-        //pixmap = pixmap.scaled(71,23); //original: 500 x 161
-        //set qwidget sizepolicy
-        //set width for height/height for width
-        //setaspectratio set width for height
+        pixmap = pixmap.scaled(71,23);
         book_label->setPixmap(pixmap);
         //book_label.setMask(pixmap.mask());
 
         layout->addWidget(book_label,2,2,1,1, Qt::AlignLeft);
+
+        //        QLabel* book_label = new QLabel;
+        //        QPixmap pixmap(":/spritesheets/orangebook.png");
+        //        //pixmap = pixmap.scaled(71,23); //original: 500 x 161
+        //        //set qwidget sizepolicy
+        //        //set width for height/height for width
+        //        //setaspectratio set width for height
+        //        book_label->setPixmap(pixmap);
+        //        //book_label.setMask(pixmap.mask());
+
+        //        layout->addWidget(book_label,2,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -291,6 +307,7 @@ QWidget* Recipe::display_recipe() {
 //        if (bigcplusplus_count != 0) {
 //            --bigcplusplus_count;
 //            --total_books;
+//            updatescore(0);
 //        }
 
 //        else {
@@ -302,6 +319,7 @@ QWidget* Recipe::display_recipe() {
 //        if (bio_count != 0) {
 //            --bio_count;
 //            --total_books;
+//            updatescore(1);
 //        }
 
 //        else {
@@ -313,6 +331,7 @@ QWidget* Recipe::display_recipe() {
 //        if (chem_count != 0) {
 //            --chem_count;
 //            --total_books;
+//            updatescore(2);
 //        }
 
 //        else {
@@ -324,6 +343,7 @@ QWidget* Recipe::display_recipe() {
 //        if (soc_count != 0) {
 //            --soc_count;
 //            --total_books;
+//            updatescore(3);
 //        }
 
 //        else {
@@ -335,6 +355,7 @@ QWidget* Recipe::display_recipe() {
 //        if (eng_count != 0) {
 //            --eng_count;
 //            --total_books;
+//            updatescore(4);
 //        }
 
 //        else {
@@ -346,6 +367,7 @@ QWidget* Recipe::display_recipe() {
 //        if (philo_count != 0) {
 //            --philo_count;
 //            --total_books;
+//            updatescore(5);
 //        }
 
 //        else {
@@ -370,6 +392,10 @@ QWidget* Recipe::display_recipe() {
 
 
 //void Recipe::round_complete() {
+
+//}
+
+//void Recipe::updatescore(int) {
 
 //}
 
