@@ -4,6 +4,8 @@
         <file>textbookbkgnd.png</file>
         <file>textbookbkgndclear.png</file>
         <file>classroom.png</file>
+        <file>classroom2.png</file>
+        <file>classroom3.jpg</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>Retro Gaming.ttf</file>

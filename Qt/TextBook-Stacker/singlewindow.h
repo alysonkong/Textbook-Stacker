@@ -34,9 +34,9 @@ signals:
 public slots:
     void returntomain(); //directs this window back to the main window
     void updatescorelabel(int);
-    void dropobject();
     void newrecipe();
     void deductlife();
+    void avatar_book();
 
 private:
    // QGraphicsScene scene; //scene where the game is taking place

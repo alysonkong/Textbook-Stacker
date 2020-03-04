@@ -21,7 +21,7 @@ GameView::GameView(avatar* mc, books* yb)
 
     scene.setSceneRect(0,0,500,750); //sets the dimensions of the scene Rect
     fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
-    mc->setPos(193, 604); //sets position of the avatar in the gameview
+    mc->setPos(193, 654); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
    // b->setPos(100,0);
 
@@ -84,12 +84,13 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
  * @param rect the rect in which the gameview will be painted within
  */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
-    QRect rectangle(0, 0, 200, 300);
-    QPixmap back(":/bkgnd/classroom.png"); //chooses custom picture for the background
-    QPixmap cropped = back.copy(rectangle);
-    QSize area(500,750);
-    cropped.scaled(area, Qt::IgnoreAspectRatio);
-    painter->setBrush(cropped);
+    //QRect rectangle(0, 0, 200, 300);
+    QPixmap back(":/bkgnd/classroom3.jpg"); //chooses custom picture for the background
+    //back = back.scaled(this->size(), Qt::IgnoreAspectRatio);
+   // QPixmap cropped = back.copy(rectangle);
+   // QSize area(500,750);
+    //cropped.scaled(area, Qt::IgnoreAspectRatio);
+    painter->setBrush(back);
     this->setAutoFillBackground(true); //fills the entire background
     painter->drawRect(0,0, 500,750); //sets dimensions for the rect
 }
