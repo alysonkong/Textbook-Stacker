@@ -9,7 +9,7 @@
  * @brief singlewindow::singlewindow constructor implementation for singlewindow
  * @param name1 the one parameter that this constructor takes (the player's name)
  */
-singlewindow::singlewindow(QString const & name1)
+singlewindow::singlewindow(QString const & name1) : lives(3)
 {
     spritesheet = new QPixmap(":/spritesheets/moreoverworld.png"); //creates the spritesheet as a pixmap with a custom image
 
@@ -36,13 +36,17 @@ singlewindow::singlewindow(QString const & name1)
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
 
-    Recipe::Recipe r;
+    Recipe::Recipe* r;
     QWidget* recipe_display = r.display_recipe();
 
    // m = new books(1); //creates new books object
 
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
+
+    livesnum = new QLabel("Lives \n" + lives);
+    livesnum->setFont(f);
+
 
 //    timer = new QTimer();
     //connect(timer, SIGNAL(timeout()), this, SLOT(dropobject()));
@@ -59,9 +63,10 @@ singlewindow::singlewindow(QString const & name1)
 
     layout->addWidget(recipe_display,0,0,2,2, Qt::AlignTop);
     layout->addWidget(view,0,2,-1,1);
-    layout->addWidget(p1_name,0,2,1,2, Qt::AlignTop|Qt::AlignLeft);
-    layout->addWidget(pscore, 1,2,1,2, Qt::AlignLeft);
-    layout->addWidget(exit, 2,2,5,2, Qt::AlignCenter);
+    layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
+    layout->addWidget(lives, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
+    layout->addWidget(pscore, 2,3,1,2, Qt::AlignLeft);
+    layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
 
     this->setLayout(layout); //sets window's layout to the gridlayout
     //setCentralWidget(view);
@@ -69,10 +74,19 @@ singlewindow::singlewindow(QString const & name1)
 
     connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
     connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
+    connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
+    //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
+    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
 
 
     show(); //shows the singlewindo
 }
+
+void singlewindow::deductlife(){
+    --lives;
+    livesnum->setText("Lives \n" + lives);
+}
+
 
 void singlewindow::dropobject(){
     books* newbook = new books(1);
@@ -80,6 +94,11 @@ void singlewindow::dropobject(){
     //emit dropbook(newbook);
 
     //emit signal to gameview
+}
+
+
+void singlewindow::newrecipe(){
+    Recipe::Recipe newr = new Recipe::Recipe();
 }
 
 

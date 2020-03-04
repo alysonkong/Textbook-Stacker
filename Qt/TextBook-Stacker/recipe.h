@@ -7,9 +7,11 @@
 #include <QPixmap>
 #include <QGridLayout>
 #include <QGraphicsItem>
-#include <list>
+//#include <list>
 #include <string>
 
+#include <QGraphicsScene>
+#include <QPainter>
 
 namespace Recipe {
 
@@ -31,7 +33,9 @@ public:
   *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
  */
     QWidget* display_recipe();
-    //void display_recipe();
+
+//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr);
+//    QRectF boundingRect() const;
 
 
 //public slots:
@@ -41,9 +45,10 @@ public:
 
 
 //signals:
-    //void round_complete(); //needs to send signal that round is complete, tells
+//    void round_complete();
+//    void wrong_book();
+
     //void update_stack(int code);
-    //void wrong_book();
 
 
 
@@ -55,16 +60,10 @@ private:
     int eng_count = 0;
     int philo_count = 0;
 
-    QLabel *title;
+    //QLabel *title;
     QGridLayout *layout;
 
     int total_books = 0;
-
-
-    QWidget* recipee;
-
-
-
 
     //std::list<int> stack; //list keeps track of which books need to be caught
 

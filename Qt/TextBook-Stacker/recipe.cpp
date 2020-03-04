@@ -1,4 +1,5 @@
 #include "recipe.h"
+#include "books.h"
 #include <QRandomGenerator>
 #include <QFontDatabase>
 
@@ -7,8 +8,6 @@
 namespace Recipe {
 
 Recipe::Recipe() {
-
-
 
     //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
     total_books = QRandomGenerator::global()->bounded(10, 16);
@@ -55,6 +54,8 @@ Recipe::Recipe() {
 
     }
 
+    //display_recipe();
+
 
 }
 
@@ -75,7 +76,7 @@ QWidget* Recipe::display_recipe() {
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
     QFont f(ffamily, 40);
 
-    recipee = new QWidget;
+    QWidget* recipee = new QWidget;
 
     QLabel *book_names_title  = new QLabel("Textbooks:");
     book_names_title->setFont(f);
@@ -98,19 +99,66 @@ QWidget* Recipe::display_recipe() {
         bigc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bigc_count_display, 1, 1, 1, 1);
 
-        QPixmap book_pic(":/spritesheets/redbook.png");
-        book_pic = book_pic.scaled(100,100,Qt::IgnoreAspectRatio);
+        //still working on the display
 
-        QWidget* book_icon = new QWidget();
+//        void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
+//            QRectF source(0,0,500,161); //image is 500x161
+//            painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
+//            //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
+
+//        }
+
+        //void Recipe::paint(QPainter *painter, QPixmap* pixmap, const QStyleOptionGraphicsItem *, QWidget *) {
+        //    QRectF source(0,0,500,161); //image is 500x161
+        //    painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),*pixmap, source); //boundingrect is the target in which to draw the book into
+        //}
+
+//        QRectF books::boundingRect() const{
+//            return QRectF(0,0,500*0.2,161*0.2);
+//        }
+
+//        QPainter *painter;
+//        QRectF source(0,0,500,161);
+//        painter->drawPixmap(QRectF(0,0,500*0.2, 161*0.2));
 
 
-//        QPixmap musicpic(":/icons/music.png");
-//        musicpic = musicpic.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
-//        music_icon = new QPushButton();
-//        QIcon ButtonIcon(musicpic);
-//        music_icon->setIcon(ButtonIcon); //change pushbutton visual into the imported icon
-//        music_icon->setIconSize(musicpic.rect().size());
-//        music_icon->setStyleSheet("QPushButton { border:none;}");
+//        void particles::make(){
+//              for(auto i = 0; i <row; ++i){ //go through the rows
+//                  for(auto n= 0; n<column; ++n){ //go through the columns
+//                      oneparticle *one = new oneparticle; //creates a new particle
+//                      layout->addWidget(one, i+1, n, Qt::AlignCenter);
+//                  }
+//              }
+
+//        void oneparticle::paintEvent(QPaintEvent *e){
+//            QPainter painter(this);
+//            painter.setBrush(QBrush(QColorConstants::Svg::pink));
+//            painter.setPen(Qt::white);
+//            QRectF rectangle(1, 1, 15, 15);
+//            painter.drawEllipse(rectangle);
+
+//        }
+
+
+//        books* book(0);
+//        layout->addItem(book,1,2,1,1);
+
+
+        QLabel* book_label = new QLabel();
+        book_label->setScaledContents(true);
+
+        QPixmap pixmap(":/spritesheets/redbook.png");
+        book_label->setPixmap(pixmap);
+
+//        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
+//        book_label->setPixmap(pixmap);
+//        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft);
+
+
+
+
 
     }
 
@@ -126,6 +174,14 @@ QWidget* Recipe::display_recipe() {
         bio_count_display->setFont(f);
         bio_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bio_count_display, 2, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/orangebook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,2,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -140,6 +196,14 @@ QWidget* Recipe::display_recipe() {
         chem_count_display->setFont(f);
         chem_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(chem_count_display, 3, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/yellowbook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,3,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -154,6 +218,14 @@ QWidget* Recipe::display_recipe() {
         soc_count_display->setFont(f);
         soc_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(soc_count_display, 4, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/greenbook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,4,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -168,6 +240,14 @@ QWidget* Recipe::display_recipe() {
         eng_count_display->setFont(f);
         eng_count_display->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(eng_count_display, 5, 1, 1,1);
+
+        QLabel* book_label = new QLabel;
+        QPixmap pixmap(":/spritesheets/bluebook.png");
+        pixmap = pixmap.scaled(71,23);
+        book_label->setPixmap(pixmap);
+        //book_label.setMask(pixmap.mask());
+
+        layout->addWidget(book_label,5,2,1,1, Qt::AlignLeft);
     }
 
 
@@ -182,11 +262,20 @@ QWidget* Recipe::display_recipe() {
         philo_count_display->setFont(f);
         philo_count_display->setStyleSheet("QLabel { font: 18pt;}");
        layout->addWidget(philo_count_display, 6, 1,1,1);
+
+       QLabel* book_label = new QLabel;
+       QPixmap pixmap(":/spritesheets/purplebook.png");
+       pixmap = pixmap.scaled(71,23);
+       book_label->setPixmap(pixmap);
+       //book_label.setMask(pixmap.mask());
+
+       layout->addWidget(book_label,6,2,1,1, Qt::AlignLeft);
     }
 
 
     recipee->setLayout(layout);
 
+    //recipee->show();
     return recipee;
 
 }
@@ -196,32 +285,88 @@ QWidget* Recipe::display_recipe() {
 
 //void Recipe::book_caught(int code) {
 //    if (code == 0) {
-//        --bigcplusplus_count;
+//        if (bigcplusplus_count != 0) {
+//            --bigcplusplus_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 1) {
-//        --bio_count;
+//        if (bio_count != 0) {
+//            --bio_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 2) {
-//        --chem_count;
+//        if (chem_count != 0) {
+//            --chem_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 3) {
-//        --soc_count;
+//        if (soc_count != 0) {
+//            --soc_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 4) {
-//        --eng_count;
+//        if (eng_count != 0) {
+//            --eng_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
 //    if (code == 5) {
-//        --philo_count;
+//        if (philo_count != 0) {
+//            --philo_count;
+//            --total_books;
+//        }
+
+//        else {
+//            emit wrong_book();
+//        }
 //    }
 
-//    //call display_recipe
+//    if (total_books == 0) {
+//        emit round_complete();
+//    }
+
+//    //call display_recipe, needs to change display in single window too
 
 
+
+//}
+
+//void Recipe::wrong_book() {
+
+//}
+
+
+
+//void Recipe::round_complete() {
 
 //}
 
