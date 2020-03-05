@@ -84,12 +84,8 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
  * @param rect the rect in which the gameview will be painted within
  */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
-    //QRect rectangle(0, 0, 200, 300);
+
     QPixmap back(":/bkgnd/classroom3.jpg"); //chooses custom picture for the background
-    //back = back.scaled(this->size(), Qt::IgnoreAspectRatio);
-   // QPixmap cropped = back.copy(rectangle);
-   // QSize area(500,750);
-    //cropped.scaled(area, Qt::IgnoreAspectRatio);
     painter->setBrush(back);
     this->setAutoFillBackground(true); //fills the entire background
     painter->drawRect(0,0, 500,750); //sets dimensions for the rect
@@ -110,11 +106,19 @@ void GameView::bookdrop(){
     scene.addItem(boo);
     scene.update();
     connect(boo, SIGNAL(emittype(int)), this, SLOT(getbooktype(int)));
+    //connect(boo, SIGNAL(emitbook(books*)), this, SLOT(getbook(books*)));
 
 }
 
 void GameView::getbooktype(int n){
     emit booktypetowindow(n);
+   // books* nbook = new books(n);
+   // emit sendbook(nbook);
+}
+
+
+void GameView::getbook(books* n){
+    emit sendbook(n);
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);

@@ -12,6 +12,7 @@
 #include "books.h"
 #include "gameview.h"
 #include "recipe.h"
+#include "sidestack.h"
 
 
 /**
@@ -50,7 +51,7 @@ private:
     size_t lives;
     QLabel* livesnum;
     GameView* view;
-
+    SideStack* sstack;
 
     //BookStack* bookstack;
 

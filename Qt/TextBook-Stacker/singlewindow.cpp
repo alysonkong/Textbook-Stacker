@@ -58,11 +58,14 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     view = new GameView(mc, m); //creates new gameview object
     QGridLayout *layout = new QGridLayout(); //creates new gridlayout
 
+    sstack = new SideStack();
+
     /**
       adds the widgets we created earlier to the gridlayout
       **/
 
     layout->addWidget(recipe_display,0,0,2,2, Qt::AlignTop);
+    layout->addWidget(sstack, 1,0,3,2,Qt::AlignBottom);
     layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
@@ -75,6 +78,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
     connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
     connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
+     connect(view, SIGNAL(booktypetowindow(int)), sstack, SLOT(addbooks(int)));
+   // connect(view,SIGNAL(sendbook(books*)), sstack, SLOT(addbooks(books*)));
     //connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
     //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
     //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
@@ -119,7 +124,9 @@ void singlewindow::returntomain(){
 }
 
 void singlewindow::updatescorelabel(int num){
+    //int temp = 4;
     pscore->setText(QString::number(num));
+    pscore->repaint();
 }
 
 //qlabel the lives

@@ -73,7 +73,7 @@ namespace Leaderboardwindow{
     }
 
     //not relevant yet
-    void leaderboard::getplayerscore(){
+    void leaderboard::getplayerscore(size_t n){
 
     }
 
