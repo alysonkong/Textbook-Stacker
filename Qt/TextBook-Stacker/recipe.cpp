@@ -94,7 +94,7 @@ QWidget* Recipe::display_recipe() {
         bigc_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bigc_book, 1, 0, 1, 1);
 
-        QLabel *bigc_count_display = new QLabel;
+        bigc_count_display = new QLabel;
         bigc_count_display->setText(QString::number(bigcplusplus_count));
         bigc_count_display->setFont(f);
         bigc_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -177,7 +177,7 @@ QWidget* Recipe::display_recipe() {
         bio_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(bio_book, 2, 0, 1, 1);
 
-        QLabel *bio_count_display = new QLabel;
+        bio_count_display = new QLabel;
         bio_count_display->setText(QString::number(bio_count));
         bio_count_display->setFont(f);
         bio_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -216,7 +216,7 @@ QWidget* Recipe::display_recipe() {
         chem_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(chem_book, 3, 0, 1,1);
 
-        QLabel *chem_count_display = new QLabel;
+        chem_count_display = new QLabel;
         chem_count_display->setText(QString::number(chem_count));
         chem_count_display->setFont(f);
         chem_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -238,7 +238,7 @@ QWidget* Recipe::display_recipe() {
         soc_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(soc_book, 4, 0, 1,1);
 
-        QLabel *soc_count_display = new QLabel;
+        soc_count_display = new QLabel;
         soc_count_display->setText(QString::number(soc_count));
         soc_count_display->setFont(f);
         soc_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -260,7 +260,7 @@ QWidget* Recipe::display_recipe() {
         eng_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(eng_book, 5, 0, 1,1);
 
-        QLabel *eng_count_display = new QLabel;
+        eng_count_display = new QLabel;
         eng_count_display->setText(QString::number(eng_count));
         eng_count_display->setFont(f);
         eng_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -282,7 +282,7 @@ QWidget* Recipe::display_recipe() {
         philo_book->setStyleSheet("QLabel { font: 18pt;}");
         layout->addWidget(philo_book, 6, 0, 1,1);
 
-        QLabel *philo_count_display = new QLabel;
+        philo_count_display = new QLabel;
         philo_count_display->setText(QString::number(philo_count));
         philo_count_display->setFont(f);
         philo_count_display->setStyleSheet("QLabel { font: 18pt;}");
@@ -314,6 +314,7 @@ void Recipe::book_caught(int code) {
             --bigcplusplus_count;
             --total_books;
             updatescore(0);
+            update_recipe_display(0);
         }
 
         else {
@@ -326,6 +327,7 @@ void Recipe::book_caught(int code) {
             --bio_count;
             --total_books;
             updatescore(1);
+            update_recipe_display(1);
         }
 
         else {
@@ -338,6 +340,7 @@ void Recipe::book_caught(int code) {
             --chem_count;
             --total_books;
             updatescore(2);
+            update_recipe_display(2);
         }
 
         else {
@@ -350,6 +353,7 @@ void Recipe::book_caught(int code) {
             --soc_count;
             --total_books;
             updatescore(3);
+            update_recipe_display(3);
         }
 
         else {
@@ -362,6 +366,7 @@ void Recipe::book_caught(int code) {
             --eng_count;
             --total_books;
             updatescore(4);
+            update_recipe_display(4);
         }
 
         else {
@@ -374,6 +379,7 @@ void Recipe::book_caught(int code) {
             --philo_count;
             --total_books;
             updatescore(5);
+            update_recipe_display(5);
         }
 
         else {
@@ -388,4 +394,36 @@ void Recipe::book_caught(int code) {
     //call display_recipe, needs to change display in single window too
 
 }
+
+
+void Recipe::update_recipe_display(int code) {
+    if (code == 0) {
+//        if (bigcplusplus_count == 0) {
+//            //should remove it from display?
+//        }
+        bigc_count_display->setText(QString::number(bigcplusplus_count));
+    }
+
+    if (code == 1) {
+        bio_count_display->setText(QString::number(bio_count));
+    }
+
+    if (code == 2) {
+        chem_count_display->setText(QString::number(chem_count));
+    }
+
+    if (code == 3) {
+        soc_count_display->setText(QString::number(soc_count));
+    }
+
+    if (code == 4) {
+        eng_count_display->setText(QString::number(eng_count));
+    }
+
+    if (code == 5) {
+        philo_count_display->setText(QString::number(philo_count));
+    }
+}
+
+
 }
