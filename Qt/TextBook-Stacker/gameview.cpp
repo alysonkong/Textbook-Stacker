@@ -105,16 +105,17 @@ void GameView::bookdrop(){
     //boo->setPos(v*100, 0);
     scene.addItem(boo);
     scene.update();
-    connect(boo, SIGNAL(emittype(int)), this, SLOT(getbooktype(int)));
+
+    connect(boo, SIGNAL(emittype(int)), this, SIGNAL(booktypetowindow(int)));
     //connect(boo, SIGNAL(emitbook(books*)), this, SLOT(getbook(books*)));
 
 }
 
-void GameView::getbooktype(int n){
-    emit booktypetowindow(n);
-   // books* nbook = new books(n);
-   // emit sendbook(nbook);
-}
+//void GameView::getbooktype(int n){
+//    emit booktypetowindow(n);
+//   // books* nbook = new books(n);
+//   // emit sendbook(nbook);
+//}
 
 
 void GameView::getbook(books* n){

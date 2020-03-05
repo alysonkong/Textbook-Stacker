@@ -27,7 +27,7 @@ public:
     //void advance()
 public slots:
     void bookdrop();
-    void getbooktype(int);
+   // void getbooktype(int);
     void getbook(books*);
 signals:
     void booktypetowindow(int);
