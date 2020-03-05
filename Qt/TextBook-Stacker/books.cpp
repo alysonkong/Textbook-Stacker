@@ -42,6 +42,7 @@ void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
  * @brief books::boundingRect bounds the size of the rect in which the book is drawn in, scaling the size by 0.2
  * @return a QRectF with custom parameters
  */
+//take in qrectf of
 QRectF books::boundingRect() const{
     return QRectF(0,0,500*0.2,161*0.2);
 }
@@ -61,9 +62,11 @@ void books::advance(int phase) {
         }
 
         if(!scene()->collidingItems(this).isEmpty()){
+            emit emittype(this->gettype());
             scene()->removeItem(this);
             delete this;
-            getbooktype();
+           //
+
         }
         else if(!mcMoveBoundary.contains(nextPos)){
             scene()->removeItem(this);
@@ -78,11 +81,10 @@ void books::advance(int phase) {
 
 }
 
-void books::getbooktype(){
-    emit emittype(booktype);
-   // emit emitpts(points);
-
+int books::gettype(){
+    return booktype;
 }
+
 
 //bool books::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const{
 //    emit type_pts(booktype, points);

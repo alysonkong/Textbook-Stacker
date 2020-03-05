@@ -28,8 +28,10 @@ public:
 public slots:
     void bookdrop();
     void getbooktype(int);
+    void getbook(books*);
 signals:
     void booktypetowindow(int);
+    void sendbook(books*);
 
 
 protected:

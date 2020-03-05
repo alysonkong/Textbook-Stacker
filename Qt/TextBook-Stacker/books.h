@@ -16,16 +16,11 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr) override;
     QRectF boundingRect() const override;
     void advance(int phase) override;
-    void gettype_pts();
-
-
-public slots:
-    void getbooktype();
-   // bool collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode = Qt::IntersectsItemShape) const override;
+    int gettype();
 
 signals:
     void emittype(int);
-    void emitpts(int);
+    void emitbook(books*);
     //void type_pts(int, int) const;
 
 private:

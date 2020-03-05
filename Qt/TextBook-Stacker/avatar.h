@@ -91,6 +91,6 @@ public:
 
 //qgraphicsitem , qgraphicsscene
 //Qpixmap private member variables
-
+//return pos of avatar
 
 #endif // AVATAR_H
