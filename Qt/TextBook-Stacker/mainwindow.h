@@ -58,6 +58,7 @@ public slots:
     void getname(QString n);  //creates the singleplayer window by getting the names from name input window
     void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
 
+
 private:
     QWidget *widgets;
     QWidget *widget2;

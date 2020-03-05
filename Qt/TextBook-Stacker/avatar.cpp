@@ -63,7 +63,9 @@ size_t avatar::getscore(){
     return score;
 }
 
-
+QString avatar::getname(){
+    return name;
+}
 
 void avatar::updatescore(){
     ++score;

@@ -4,6 +4,8 @@
 #include<QGraphicsItem>
 
 
+
+//modify using base rectangle
 /**
  * @brief The Sprite class creates a graphicsitem from a srite sheet
  */
