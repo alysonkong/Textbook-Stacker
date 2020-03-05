@@ -2,6 +2,7 @@
 #include "books.h"
 #include <QRandomGenerator>
 #include <QFontDatabase>
+#include <QSizePolicy>
 
 
 
@@ -9,11 +10,11 @@ namespace Recipe {
 
 Recipe::Recipe() {
 
-    //randomly generate a number between 10 and 15 for the total number of books the player needs to catch
-    total_books = QRandomGenerator::global()->bounded(10, 16);
+    //randomly generate a number between 6-9 for the total number of books the player needs to catch
+    total_books = QRandomGenerator::global()->bounded(6, 10);
 
-    for (int i = 0; i < total_books; ++i) { //stack consists of 10-15 textbooks
-        int book_code = QRandomGenerator::global()->bounded(6);
+    for (int i = 0; i < total_books; ++i) { //stack consists of 5-8 textbooks
+        int book_code = QRandomGenerator::global()->bounded(4);
 
         if (book_code == 0) {
             ++bigcplusplus_count;
@@ -190,6 +191,11 @@ QWidget* Recipe::display_recipe() {
         //book_label.setMask(pixmap.mask());
 
         layout->addWidget(book_label,2,2,1,1, Qt::AlignLeft);
+
+//        QLabel* book_label = new QLabel;
+//        QPixmap pixmap(":/spritesheets/orangebook.png");
+//        book_label->setPixmap(pixmap);
+//        book_label->setSizePolicy(QSizePolicy());
 
         //        QLabel* book_label = new QLabel;
         //        QPixmap pixmap(":/spritesheets/orangebook.png");

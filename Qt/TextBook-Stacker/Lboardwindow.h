@@ -21,6 +21,7 @@ public:
     public:
         leaders(QString n, size_t s): name(n), score(s){}
         QString namescore(){return name+"    " +QString::number(score);}
+        size_t getscore(){ return score;}
     private:
         QString name;
         size_t score;
@@ -31,7 +32,7 @@ signals:
 
 public slots:
     void returntomain();
-    void getplayerscore();
+    void getplayerscore(size_t);
 
 
 private:

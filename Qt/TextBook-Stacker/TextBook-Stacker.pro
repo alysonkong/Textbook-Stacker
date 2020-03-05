@@ -26,11 +26,13 @@ SOURCES += \
     books.cpp \
     gameview.cpp \
     helpwindow.cpp \
+    loserwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     multiwindow.cpp \
     nameinputwindow.cpp \
     recipe.cpp \
+    sidestack.cpp \
     singlewindow.cpp \
     sprite.cpp \
     twonamesinput.cpp
@@ -44,10 +46,12 @@ HEADERS += \
     books.h \
     gameview.h \
     helpwindow.h \
+    loserwindow.h \
     mainwindow.h \
     multiwindow.h \
     nameinputwindow.h \
     recipe.h \
+    sidestack.h \
     singlewindow.h \
     sprite.h \
     twonamesinput.h
