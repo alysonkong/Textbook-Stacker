@@ -86,10 +86,14 @@ public:
 
     void advance(int phase) override; //advances the avatar in animation
     size_t getscore();
+    QString getname();
     void setscore();
+
 };
 
-
+//override boundingrect, shape, and paint
+//in paint, draw stack of books, expand
+//also modify shape, polygon
 //qgraphicsitem , qgraphicsscene
 //Qpixmap private member variables
 //return pos of avatar

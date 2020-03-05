@@ -17,14 +17,14 @@ class leaderboard : public QWidget{
      Q_OBJECT
 public:
     leaderboard();
-    class leaders{
+    class leaders{ //technically can hold
     public:
-        leaders(QString n, size_t s): name(n), score(s){}
+        leaders(QString n, int s): name(n), score(s){}
         QString namescore(){return name+"    " +QString::number(score);}
-        size_t getscore(){ return score;}
+        int getscore(){ return score;}
     private:
         QString name;
-        size_t score;
+        int score;
     };
 
 signals:
@@ -32,11 +32,12 @@ signals:
 
 public slots:
     void returntomain();
-    void getplayerscore(size_t);
+    void getplayerscore(QString, int);
+
 
 
 private:
-    std::vector<leaders> namelists;
+    std::vector<leaders> namelists;   
     QLabel* names;
     QLabel* lboard;
     QPushButton* returnmain;

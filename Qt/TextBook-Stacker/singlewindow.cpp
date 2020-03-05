@@ -97,10 +97,13 @@ void singlewindow::avatar_book(){
 
 void singlewindow::deductlife(){
     --lives;
-    livesnum->setText("Lives \n" + QString::number(lives));
     if(lives == 0){
-        emit finalscore(mc->getscore());
+        livesnum->setText("Lives \n" + QString::number(0));
+        emit finalscore(mc->getname(),mc->getscore());
+
     }
+   livesnum->setText("Lives \n" + QString::number(lives)) ;
+
 }
 
 

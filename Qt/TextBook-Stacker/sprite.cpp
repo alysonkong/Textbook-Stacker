@@ -6,9 +6,9 @@
  * @return
  */
 QRectF Sprite::boundingRect() const {
-    return QRectF(0,0,_scale*w,_scale*h);
+    return
 }
-
+//tells qt what parts im painting
 
 /**
  * @brief Sprite::paint paints the sprite object into the designated area
@@ -16,7 +16,7 @@ QRectF Sprite::boundingRect() const {
  */
 void Sprite::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
     QRectF sr(x_off + w*cx,y_off + h*cy,w,h);
-    painter->drawPixmap(boundingRect(),*ss,sr);
+    painter->drawPixmap(QRectF(0,0,_scale*w,_scale*h),*ss,sr);
 }
 
 /**

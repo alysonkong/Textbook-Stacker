@@ -73,8 +73,14 @@ namespace Leaderboardwindow{
     }
 
     //not relevant yet
-    void leaderboard::getplayerscore(size_t n){
-
+    void leaderboard::getplayerscore(QString name_, int n){
+        leaders* player = new leaders(name_, n);
+        for(auto i: namelists){
+            if(player->getscore() > i.getscore()){
+                namelists.insert(namelists.begin(), player);
+                break;
+            }
+        }
     }
 
 

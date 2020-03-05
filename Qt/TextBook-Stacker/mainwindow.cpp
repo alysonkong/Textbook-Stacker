@@ -118,11 +118,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay())); //clicking helpbutton button set current stackedwidget to helpbutton
     connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString))); //set up singleplayer window by getting nameinput window's edits
     connect(twonameswindow, SIGNAL(playernames(QString, QString)), this, SLOT(getnames(QString, QString))); //set up multiplayer window by getting twonameiput's edits
+    connect(singleplayer, SIGNAL(finalscore(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+
 
     setCentralWidget(swindows); //sets the stacked widget inside the mainwindow
     setWindowTitle("TextBook Stacker"); //changes window title
 
 }
+
 
 /**
  * @brief MainWindow::getname takes the QString user input from namewindow to create singleplayer window

@@ -31,7 +31,7 @@ public:
 signals:
    void pressedmain(); // @brief pressedmain signal that a
    void dropbook(books*);
-   void finalscore(int);
+   void finalscore(QString, int);
 
 public slots:
     void returntomain(); //directs this window back to the main window
