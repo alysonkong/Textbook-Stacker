@@ -35,6 +35,9 @@ public:
     QWidget* display_recipe(); //should it be void????
 
 
+    void update_recipe_display(int code);
+
+
 //these slots and signals should be ready whenever the corresponding slots and signals are ready
 
 public slots:
@@ -45,7 +48,7 @@ public slots:
 signals:
     void round_complete();
     void wrong_book();
-    void updatescore(int);
+    void updatescore(int); //the int here is gonna be the book code, not points added
 
 
 
@@ -58,7 +61,13 @@ private:
     int eng_count = 0;
     int philo_count = 0;
 
-    //QLabel *title;
+    QLabel* bigc_count_display;
+    QLabel *bio_count_display;
+    QLabel *chem_count_display;
+    QLabel *soc_count_display;
+    QLabel *eng_count_display;
+    QLabel *philo_count_display;
+
     QGridLayout *layout;
 
     int total_books = 0;

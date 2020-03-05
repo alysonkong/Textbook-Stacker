@@ -98,8 +98,8 @@ void GameView::bookdrop(){
    // qsrand(QTime::currentTime().msec());
     //QRandomGenerator generator(QRandomGenerator::global()->bounded(0,5);;
     books* boo= new books(QRandomGenerator::global()->bounded(0,5));
-
-    boo->setX(QRandomGenerator::global()->bounded(0,width()));
+    int x = QRandomGenerator::global()->bounded(0,4);
+    boo->setX(x*100);
     //quint32 v;
     //v->QRandomGenerator::bounded(5);
     //boo->setPos(v*100, 0);
