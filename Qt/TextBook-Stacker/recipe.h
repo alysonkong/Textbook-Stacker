@@ -37,15 +37,15 @@ public:
 
 //these slots and signals should be ready whenever the corresponding slots and signals are ready
 
-//public slots:
-//    void book_caught(int code);
+public slots:
+    void book_caught(int code);
 
 
 
-//signals:
-//    void round_complete();
-//    void wrong_book();
-//    void updatescore(int);
+signals:
+    void round_complete();
+    void wrong_book();
+    void updatescore(int);
 
 
 
