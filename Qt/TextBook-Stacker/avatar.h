@@ -30,7 +30,7 @@ private:
     size_t score;
 
 public slots:
-    void updatescore(int);
+    void updatescore();
 
 public:
    // QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
@@ -86,6 +86,7 @@ public:
 
     void advance(int phase) override; //advances the avatar in animation
     size_t getscore();
+    void setscore();
 };
 
 

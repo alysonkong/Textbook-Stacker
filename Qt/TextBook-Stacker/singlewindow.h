@@ -35,7 +35,7 @@ signals:
 
 public slots:
     void returntomain(); //directs this window back to the main window
-    void updatescorelabel(int);
+    void updatescorelabel();
     void newrecipe();
     void deductlife();
     void avatar_book();

@@ -37,8 +37,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
 
-    Recipe::Recipe r;
-    QWidget* recipe_display = r.display_recipe();
+    Recipe::Recipe* r = new Recipe::Recipe();
+    QWidget* recipe_display = r->display_recipe();
 
    // m = new books(1); //creates new books object
 
@@ -76,13 +76,16 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     //setCentralWidget(view);
     //connect(m, SIGNAL(type_pts(int, int)), ); check with recipe
 
-    connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
-    connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
-     connect(view, SIGNAL(booktypetowindow(int)), sstack, SLOT(addbooks(int)));
-   // connect(view,SIGNAL(sendbook(books*)), sstack, SLOT(addbooks(books*)));
-    //connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
-    //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
-    //connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
+   // connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
+   // connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
+    // connect(view, SIGNAL(booktypetowindow(int)), sstack, SLOT(addbooks(int)));
+
+    connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
+    connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatescore()));
+    connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel()));
+    connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
+    connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
+    connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
 
 
     show(); //shows the singlewindow
@@ -123,9 +126,9 @@ void singlewindow::returntomain(){
 
 }
 
-void singlewindow::updatescorelabel(int num){
+void singlewindow::updatescorelabel(){
     //int temp = 4;
-    pscore->setText(QString::number(num));
+    pscore->setText(QString::number(mc->getscore()));
     pscore->repaint();
 }
 

@@ -64,9 +64,12 @@ size_t avatar::getscore(){
 }
 
 
-void avatar::updatescore(int addval){
-    score += addval;
+
+void avatar::updatescore(){
+    ++score;
 }
+
+
 
 //QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
 //    if (change == ItemPositionChange && scene()) {

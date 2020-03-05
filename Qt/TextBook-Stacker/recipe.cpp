@@ -308,101 +308,84 @@ QWidget* Recipe::display_recipe() {
 
 
 
-//void Recipe::book_caught(int code) {
-//    if (code == 0) {
-//        if (bigcplusplus_count != 0) {
-//            --bigcplusplus_count;
-//            --total_books;
-//            updatescore(0);
-//        }
+void Recipe::book_caught(int code) {
+    if (code == 0) {
+        if (bigcplusplus_count != 0) {
+            --bigcplusplus_count;
+            --total_books;
+            updatescore(0);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (code == 1) {
-//        if (bio_count != 0) {
-//            --bio_count;
-//            --total_books;
-//            updatescore(1);
-//        }
+    if (code == 1) {
+        if (bio_count != 0) {
+            --bio_count;
+            --total_books;
+            updatescore(1);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (code == 2) {
-//        if (chem_count != 0) {
-//            --chem_count;
-//            --total_books;
-//            updatescore(2);
-//        }
+    if (code == 2) {
+        if (chem_count != 0) {
+            --chem_count;
+            --total_books;
+            updatescore(2);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (code == 3) {
-//        if (soc_count != 0) {
-//            --soc_count;
-//            --total_books;
-//            updatescore(3);
-//        }
+    if (code == 3) {
+        if (soc_count != 0) {
+            --soc_count;
+            --total_books;
+            updatescore(3);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (code == 4) {
-//        if (eng_count != 0) {
-//            --eng_count;
-//            --total_books;
-//            updatescore(4);
-//        }
+    if (code == 4) {
+        if (eng_count != 0) {
+            --eng_count;
+            --total_books;
+            updatescore(4);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (code == 5) {
-//        if (philo_count != 0) {
-//            --philo_count;
-//            --total_books;
-//            updatescore(5);
-//        }
+    if (code == 5) {
+        if (philo_count != 0) {
+            --philo_count;
+            --total_books;
+            updatescore(5);
+        }
 
-//        else {
-//            emit wrong_book();
-//        }
-//    }
+        else {
+            emit wrong_book();
+        }
+    }
 
-//    if (total_books == 0) {
-//        emit round_complete();
-//    }
+    if (total_books == 0) {
+        emit round_complete();
+    }
 
-//    //call display_recipe, needs to change display in single window too
+    //call display_recipe, needs to change display in single window too
 
-
-
-//}
-
-//void Recipe::wrong_book() {
-
-//}
-
-
-
-//void Recipe::round_complete() {
-
-//}
-
-//void Recipe::updatescore(int) {
-
-//}
-
+}
 }
