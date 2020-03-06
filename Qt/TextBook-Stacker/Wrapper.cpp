@@ -1,5 +1,9 @@
+/*
 #include"Wrapper.h"
 
-Wrapper::Wrapper(avatar& a, BookStack& bs, Recipe::Recipe& r) : player(a), bookstack(bs)) {}
+Wrapper::Wrapper(avatar& a, BookStack& bs) : player(&a), bookstack(&bs) {}
 
-
+void Wrapper::emitcx() {
+   emit player->cx;
+}
+*/

@@ -1,8 +1,10 @@
+
 #ifndef STACK_H
 #define STACK_H
 
 #include<QVBoxLayout>
 #include<vector>
+#include<QPaintEvent>
 #include"books.h"
 #include<QWidget>
 #include"recipe.h"
@@ -11,23 +13,27 @@
 class BookStack : public QGraphicsObject {
     Q_OBJECT
 public:
-    BookStack(avatar& p1, Recipe::Recipe& r);
+    BookStack(avatar& p1);
     void add(books& new_book);
+    ~BookStack();
 signals:
     void getstack();
 public slots:
-    void push(int nb);
+    void push(int b);
+    void updatex(int x);
 protected:
-    //vector<books*> bstack; //since books now disappear when caught, no need for vector to hold books themselves, only booktype
-    std::vector<int> bstack;
-    //int height;
+    std::vector<books*> bstack;
+    //std::vector<int> bstack;
+    int height;
+    int x_pos;
     size_t bookcount;
     friend class books;
     friend class FallingObject;
     avatar* player;
-    Recipe::Recipe* recipe;
+    //Recipe::Recipe* recipe;
     QVBoxLayout* bkstk;
     friend class Wrapper;
 };
 
 #endif // STACK_H
+
