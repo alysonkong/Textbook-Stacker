@@ -63,6 +63,7 @@ void books::advance(int phase) {
 
         if(!scene()->collidingItems(this).isEmpty()){
             emit emittype(this->gettype());
+            //QObject::connect
             scene()->removeItem(this);
             delete this;
            //

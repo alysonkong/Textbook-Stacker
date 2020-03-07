@@ -21,6 +21,7 @@ SOURCES += \
     BookStack.cpp \
     FallingObject.cpp \
     Lboardwindow.cpp \
+    Wrapper.cpp \
     avatar.cpp \
     books.cpp \
     gameview.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     BookStack.h \
     FallingObject.h \
     Lboardwindow.h \
+    Wrapper.h \
     avatar.h \
     books.h \
     gameview.h \
