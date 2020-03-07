@@ -22,6 +22,9 @@ books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(16
     else if(book_type == 5){
         book = new QPixmap(":/spritesheets/purplebook.png");
     }
+    else if(book_type >5 | book_type <=9){
+        book = new QPixmap(":/spritesheets/letter_F.png");
+    }
 
 }
 
@@ -32,9 +35,14 @@ books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(16
  * @param widget is what the
  */
 void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
+    if(booktype<=5){
     QRectF source(0,0,500,161); //image is 500x161
     painter->drawPixmap(QRectF(0,0,bookwidth*0.2,bookheight*0.2),*book, source); //boundingrect is the target in which to draw the book into
-    //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
+    }
+    else{
+        QRectF source(0,0,512,512);
+        painter->drawPixmap(QRectF(0,0,512*0.15,512*0.15),*book, source);
+    }
 
 }
 
@@ -44,7 +52,12 @@ void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
  */
 //take in qrectf of
 QRectF books::boundingRect() const{
-    return QRectF(0,0,bookwidth*0.2,bookheight*0.2);
+    if(booktype<=5){
+        return QRectF(0,0,bookwidth*0.2,bookheight*0.2);
+    }
+    else{
+        return QRectF(0,0,512*0.15,512*0.15);
+    }
 }
 
 /**

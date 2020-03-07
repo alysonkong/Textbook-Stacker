@@ -53,6 +53,7 @@ Recipe::Recipe() {
 
 
 
+
     }
 
     //display_recipe();
@@ -385,6 +386,9 @@ void Recipe::book_caught(int code) {
         else {
             emit wrong_book();
         }
+    }
+    if(code >5){
+        emit wrong_book();
     }
 
     if (total_books == 0) {
