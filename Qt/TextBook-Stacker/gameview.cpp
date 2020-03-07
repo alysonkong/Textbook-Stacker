@@ -137,6 +137,7 @@ void GameView::getbook(books* n){
 void GameView::stop_timer() {
     timer2.stop();
     timer2.start(1000);
+    emit new_round();
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
