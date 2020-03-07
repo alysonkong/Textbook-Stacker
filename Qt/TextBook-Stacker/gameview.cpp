@@ -55,9 +55,15 @@ void GameView::keyPressEvent(QKeyEvent *event) {
         case Qt::Key_Left: //if key is the left key
             mc->go(Left); //make the avatar go left
            break;
+    case Qt::Key_A:
+        mc->go(Left);
+        break;
         case Qt::Key_Right: //if the key is the right key
             mc->go(Right); //make the avatar go right
             break;
+    case Qt::Key_D:
+        mc->go(Right);
+        break;
 
     }
 }
@@ -71,8 +77,14 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
     case Qt::Key_Left: //if key is left
         mc->stop(Left); //stop avatar movement from going left
         break;
+    case Qt::Key_A:
+        mc->stop(Left);
+        break;
     case Qt::Key_Right: //if key is right
         mc->stop(Right); //stop avatar movement from going right
+        break;
+    case Qt::Key_D:
+        mc->stop(Right);
         break;
     }
 
