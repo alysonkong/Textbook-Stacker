@@ -21,7 +21,7 @@ void BookStack::updatex(int x) {
 
 void BookStack::add(books& new_book) {
     QObject::connect(&new_book, &books::emittype, this, &BookStack::push);
-    QObject::connect(this->player, &avatar::emitcx, this, &BookStack::updatex);
+   // QObject::connect(this->player, &avatar::emitcx, this, &BookStack::updatex);
     //bstack.push_back(new_book.emittype(int));
     //bookcount = player->getscore();
     //bkstk->addWidget(new_book);
