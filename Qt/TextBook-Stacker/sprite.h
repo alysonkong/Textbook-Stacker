@@ -23,10 +23,10 @@ private:
     int ticks = 1;
 
     bool _animating=false;
-signals:
-    void emitcx(int);
+//signals:
+//    void emitcx(int);
 public:
-    int getcx();
+   // int getcx();
     // overrides
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;

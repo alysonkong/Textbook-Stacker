@@ -30,15 +30,15 @@ void Sprite::advance(int phase) {
         if(!ticks) {
             ++cx;
             cx %= nx;
-            emitcx(this->getcx());
-            update(boundingRect());
+           // emitcx(this->getcx());
+          //  update(boundingRect());
         }
     }
 }
 
-int Sprite::getcx() {
-    return cx;
-}
+//int Sprite::getcx() {
+//    return cx;
+//}
 
 
 
