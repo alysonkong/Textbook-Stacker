@@ -26,5 +26,6 @@
         <file>greenbook.png</file>
         <file>bluebook.png</file>
         <file>redbook.png</file>
+        <file>letter_F.png</file>
     </qresource>
 </RCC>
