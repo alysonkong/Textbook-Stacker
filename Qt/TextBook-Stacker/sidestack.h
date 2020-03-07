@@ -7,6 +7,7 @@
 #include <QVariant>
 
 
+
 class SideStack : public QGraphicsView
 {
     Q_OBJECT

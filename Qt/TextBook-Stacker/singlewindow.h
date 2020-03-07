@@ -38,7 +38,6 @@ public slots:
     void updatescorelabel();
     void newrecipe();
     void deductlife();
-    void avatar_book();
 
 private:
    // QGraphicsScene scene; //scene where the game is taking place

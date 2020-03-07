@@ -31,6 +31,9 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     QFont f(family, 20); //selects the specific font we want using the id and family
 
     exit = new QPushButton("Exit"); //creates new button with the label "exit
+    exit->setFont(f);
+    exit->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
+                          "border-width: 2px; border-color: solid yellow;}");
     connect(exit, SIGNAL(clicked()), this, SLOT(returntomain())); //makes it so clicking this button will return to the main window
 
     QLabel* p1_name = new QLabel(name1); //creates new label for the player's name
@@ -55,7 +58,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 //    timer->start(3000);
 
 
-    view = new GameView(mc, m); //creates new gameview object
+    view = new GameView(mc,  m); //creates new gameview object
     QGridLayout *layout = new QGridLayout(); //creates new gridlayout
 
     sstack = new SideStack();
@@ -73,12 +76,6 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
 
     this->setLayout(layout); //sets window's layout to the gridlayout
-    //setCentralWidget(view);
-    //connect(m, SIGNAL(type_pts(int, int)), ); check with recipe
-
-   // connect(view, SIGNAL(booktypetowindow(int)), mc, SLOT(updatescore(int)));
-   // connect(view, SIGNAL(booktypetowindow(int)), this, SLOT(updatescorelabel(int)));
-    // connect(view, SIGNAL(booktypetowindow(int)), sstack, SLOT(addbooks(int)));
 
     connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatescore()));
@@ -91,13 +88,10 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     show(); //shows the singlewindow
 }
 
-void singlewindow::avatar_book(){
-   // BookStack* ab = new BookStack(mc);
-}
 
 void singlewindow::deductlife(){
     --lives;
-    if(lives == 0){
+    if(lives == 0){ //if player has no lives
         livesnum->setText("Lives \n" + QString::number(0));
         emit finalscore(mc->getname(),mc->getscore());
 

@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay())); //clicking helpbutton button set current stackedwidget to helpbutton
     connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString))); //set up singleplayer window by getting nameinput window's edits
     connect(twonameswindow, SIGNAL(playernames(QString, QString)), this, SLOT(getnames(QString, QString))); //set up multiplayer window by getting twonameiput's edits
-    connect(singleplayer, SIGNAL(finalscore(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+
 
 
     setCentralWidget(swindows); //sets the stacked widget inside the mainwindow
@@ -136,6 +136,8 @@ void MainWindow::getname(QString n){
     swindows->addWidget(single_window);
     connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
+    connect(single_window, SIGNAL(finalscore(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+    //connect(single_window, SIGNAL(finalscore(QString, int))) ; connect to loser window
 }
 
 /**

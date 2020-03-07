@@ -72,15 +72,14 @@ void books::advance(int phase) {
             scene()->removeItem(this);
             delete this;
         }
-
-//        QPointF down(0,7);
-//        down*=speed;
-//        setPos(mapToScene(down)); // set my next position
-        //speed+=(QRandomGenerator::global()->bounded(0.4)-0.2);
     }
 
 }
 
+/**
+ * @brief books::gettype accessor function
+ * @return book type index
+ */
 int books::gettype(){
     return booktype;
 }

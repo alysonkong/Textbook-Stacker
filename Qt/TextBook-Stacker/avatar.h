@@ -4,8 +4,11 @@
 #include<QPaintEvent>
 #include<QWidget>
 #include<string>
+#include <vector>
 #include "sprite.h"
 #include <QGraphicsObject>
+#include "books.h"
+
 
 /**
  * @brief The Direction enum sets up the left or right movements for avatar
@@ -28,6 +31,7 @@ private:
     Direction facing; //direction that the avatar is facing
     QString name;
     size_t score;
+    std::vector<books*> bookstack;
 
 public slots:
     void updatescore();
@@ -48,7 +52,7 @@ public:
      */
     inline
     avatar(QString user_name, QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
-        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0)
+        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0), bookstack()
     {
         turn(Left); //sets the direction of avatar in beg as facing left
     }
@@ -84,6 +88,7 @@ public:
      */
     inline void stop(Direction d) { if(facing == d) stop(); }
 
+   // QRectF boundingRect() const override;
     void advance(int phase) override; //advances the avatar in animation
     size_t getscore();
     QString getname();
@@ -92,6 +97,7 @@ public:
 };
 
 //override boundingrect, shape, and paint
+//QGraphicsItem::shape() const ->
 //in paint, draw stack of books, expand
 //also modify shape, polygon
 //qgraphicsitem , qgraphicsscene

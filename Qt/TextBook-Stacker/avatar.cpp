@@ -40,6 +40,10 @@ void avatar::turn(Direction d) // turn to a given direction
     }
 }
 
+//QRectF avatar::boundingRect() const{
+
+//}
+
 /**
  * @brief avatar::advance the avatar will be set at a specific point in QGraphicsView
  * @param phase

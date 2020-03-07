@@ -77,7 +77,7 @@ namespace Leaderboardwindow{
         leaders* player = new leaders(name_, n);
         for(auto i: namelists){
             if(player->getscore() > i.getscore()){
-                namelists.insert(namelists.begin(), player);
+                //namelists.insert(namelists.begin(), player);
                 break;
             }
         }
