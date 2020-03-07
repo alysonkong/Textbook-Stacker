@@ -5,9 +5,9 @@
 // * @brief Sprite::boundingRect creates an area for sprite to be drawn into
 // * @return
 
-QRectF Sprite::boundingRect() const {
-    return QRectF(0,0,_scale*w,_scale*h);
-}
+//QRectF Sprite::boundingRect() const {
+//    return QRectF(0,0,_scale*w,_scale*h);
+//}
 //tells qt what parts im painting
 
 /**

@@ -17,7 +17,17 @@ public:
     QRectF boundingRect() const override;
     void advance(int phase) override;
     int gettype();
+    inline
+    int getbwidth() const{
+        return bookwidth;
+    }
+    inline
+    int getbheight() const{
+        return bookheight;
+    }
+    //~books();
 
+    QPixmap* getbookpic() const;
 signals:
     void emittype(int);
     void emitbook(books*);
@@ -34,6 +44,9 @@ private:
     qreal speed=1;
     int booktype;
     int points = 5;
+    int bookwidth;
+    int bookheight;
+
     //BookStack* stacktainer = bookstack;
 };
 

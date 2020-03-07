@@ -1,6 +1,8 @@
 
 #include "avatar.h"
 #include <QGraphicsScene>
+#include <QPixmap>
+#include <QPainter>
 
 
 /**
@@ -49,7 +51,13 @@ void avatar::turn(Direction d) // turn to a given direction
  * @param phase
  */
 void avatar::advance(int phase) {
-    QRectF mcMoveBoundary(0,0, 436, 750);
+    QRectF mcMoveBoundary;
+    if(bookstack.size() ==0){
+        mcMoveBoundary= QRectF(-18,0, 436, 750);
+    }
+    else{
+        mcMoveBoundary = QRectF(0,0, 400, 750);
+    }
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));
         if(mcMoveBoundary.contains(nextPos)) {
@@ -75,7 +83,51 @@ void avatar::updatescore(){
     ++score;
 }
 
+QRectF avatar::boundingRect() const{
+    //int xdimension = 100;
+//    if(bookstack.size() == 0){
+//        xdimension = Sprite::scale()*Sprite::getw();
+//    }
+//    else{
+    //}
+    //int ydimension = Sprite::scale()*Sprite::geth()+(bookstack.size()*(161*0.2));
+    return QRectF(0,0,100, 389.8);
+}
 
+QPainterPath avatar::shape() const{
+    QPainterPath path;
+    QPolygonF myPolygon;
+    int n = bookstack.size();
+    if(bookstack.size()== 0){
+        myPolygon << QPointF(18,293.8) << QPointF(82, 289.8) << QPointF(50,289.8) <<QPointF(18,289.8);
+    }
+    else{
+        myPolygon << QPointF(0,(389.8-96-n*32.2)) << QPointF(100, (389.8-96-n*32.2)) << QPointF(50,(389.8-96-n*32.2+10)) <<QPointF(0,(389.8-96-n*32.2));
+    }
+    path.addPolygon(myPolygon);
+    return path;
+}
+
+void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    QRectF sr(Sprite::getx_off() + Sprite::getw()*Sprite::getcx(),Sprite::gety_off() + Sprite::geth()*Sprite::getcy(),32,48);
+    //QRectF sr(ax_off+aw*acx, ay_off+ah*acy, 32, 48);
+
+    painter->drawPixmap(QRectF((0+18),293.8,(2*32),(2*48)),*Sprite::getss(), sr);
+
+    //QRectF source(0,0,500,161);
+    int y = 1;
+    for(auto i: bookstack){
+        painter->drawPixmap(QRectF(0,(293.8-32.2*y), 500*0.2, 161*0.2), *i->getbookpic(), QRectF(0,0,500,161));
+        ++y;
+    }
+
+
+}
+
+void avatar::addbooks(int index){
+    books* temp = new books(index);
+    bookstack.push_back(temp);
+}
 
 //QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
 //    if (change == ItemPositionChange && scene()) {

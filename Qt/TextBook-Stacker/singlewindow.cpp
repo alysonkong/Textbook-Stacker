@@ -81,6 +81,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatescore()));
     connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel()));
     connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
+    connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
     connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
 

@@ -13,7 +13,7 @@ class Sprite : public QGraphicsItem
 {
 
 private:
-    QPixmap* ss; // spritesheet
+    QPixmap* ss;
     int w, h; // width/height of a single frame
     int nx, ny; // number of frames in the x/y direction
     int cx=0, cy=0; // current frame position
@@ -26,11 +26,17 @@ private:
 //signals:
 //    void emitcx(int);
 public:
+     // spritesheet
    // int getcx();
     // overrides
-    QRectF boundingRect() const override;
+    //QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
     void advance(int phase) override;
+
+    inline
+    QPixmap* getss() const{
+        return ss;
+    }
 
     /**
      * @brief Sprite constructor
@@ -52,13 +58,39 @@ public:
         _scale = s;
     }
 
+    inline int getcx() const{
+        return cx;
+    }
+
+    inline int getcy() const{
+        return cy;
+    }
+    inline int getw() const {
+        return w;
+    }
+
+    inline
+    int geth() const{
+        return h;
+    }
+
+    inline
+    int getx_off() const{
+        return x_off;
+    }
+
+    inline
+    int gety_off() const{
+        return y_off;
+    }
+
     /**
      * @brief scale gets the scale of sprite
      * @return return scale
      */
 
     inline
-    double scale() {
+    double scale() const {
         return _scale;
     }
 

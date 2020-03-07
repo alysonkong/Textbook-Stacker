@@ -1,7 +1,7 @@
 #include "books.h"
 #include <QPainter>
 
-books::books(int book_type) : booktype(book_type)
+books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(161)
 {
     if(book_type ==0){
         book = new QPixmap(":/spritesheets/redbook.png");
@@ -33,7 +33,7 @@ books::books(int book_type) : booktype(book_type)
  */
 void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     QRectF source(0,0,500,161); //image is 500x161
-    painter->drawPixmap(boundingRect(),*book, source); //boundingrect is the target in which to draw the book into
+    painter->drawPixmap(QRectF(0,0,bookwidth*0.2,bookheight*0.2),*book, source); //boundingrect is the target in which to draw the book into
     //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
 
 }
@@ -44,7 +44,7 @@ void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
  */
 //take in qrectf of
 QRectF books::boundingRect() const{
-    return QRectF(0,0,500*0.2,161*0.2);
+    return QRectF(0,0,bookwidth*0.2,bookheight*0.2);
 }
 
 /**
@@ -65,13 +65,17 @@ void books::advance(int phase) {
             emit emittype(this->gettype());
             //QObject::connect
             scene()->removeItem(this);
-            delete this;
+            delete book;
+            book = nullptr;
+            //delete this;
            //
 
         }
         else if(!mcMoveBoundary.contains(nextPos)){
             scene()->removeItem(this);
-            delete this;
+            delete book;
+            book = nullptr;
+            //delete this;
         }
     }
 
@@ -85,6 +89,13 @@ int books::gettype(){
     return booktype;
 }
 
+
+QPixmap* books::getbookpic() const{
+    return book;
+}
+//books::~books(){
+//    delete book;
+//}
 
 //bool books::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const{
 //    emit type_pts(booktype, points);

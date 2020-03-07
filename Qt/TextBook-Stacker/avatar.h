@@ -28,13 +28,21 @@ class avatar : public QObject, public Sprite
 private:
     double vx=0; //velocity in the x direction
     double spd=0; //speed of the avatar
-    Direction facing; //direction that the avatar is facing
     QString name;
     size_t score;
     std::vector<books*> bookstack;
+    int aw, ah;
+    int ax_off, ay_off;
+    double a_scale;
+    int acx=0, acy = 0;
+    Direction facing; //direction that the avatar is facing
+
+
+
 
 public slots:
     void updatescore();
+    void addbooks(int);
 
 public:
    // QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
@@ -52,7 +60,8 @@ public:
      */
     inline
     avatar(QString user_name, QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
-        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0), bookstack()
+        : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0), bookstack(), aw(w), ah(h), ax_off(x_off), ay_off(y_off), a_scale(scale),
+          acx(nx), acy(ny)
     {
         turn(Left); //sets the direction of avatar in beg as facing left
     }
@@ -88,8 +97,10 @@ public:
      */
     inline void stop(Direction d) { if(facing == d) stop(); }
 
-   // QRectF boundingRect() const override;
+    QRectF boundingRect() const override;
     void advance(int phase) override; //advances the avatar in animation
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
     size_t getscore();
     QString getname();
     void setscore();

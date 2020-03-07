@@ -21,7 +21,7 @@ GameView::GameView(avatar* mc, books* yb)
 
     scene.setSceneRect(0,0,500,750); //sets the dimensions of the scene Rect
     fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
-    mc->setPos(193, 654); //sets position of the avatar in the gameview
+    mc->setPos(193, 360.2); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
    // b->setPos(100,0);
 
@@ -119,6 +119,7 @@ void GameView::bookdrop(){
     scene.update();
 
     connect(boo, SIGNAL(emittype(int)), this, SIGNAL(booktypetowindow(int)));
+
     //connect(boo, SIGNAL(emitbook(books*)), this, SLOT(getbook(books*)));
 
 }
