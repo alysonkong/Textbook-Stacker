@@ -398,9 +398,7 @@ void Recipe::book_caught(int code) {
 
 void Recipe::update_recipe_display(int code) {
     if (code == 0) {
-//        if (bigcplusplus_count == 0) {
-//            //should remove it from display?
-//        }
+
         bigc_count_display->setText(QString::number(bigcplusplus_count));
     }
 
