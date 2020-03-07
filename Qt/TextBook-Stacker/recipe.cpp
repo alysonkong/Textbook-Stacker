@@ -14,7 +14,7 @@ Recipe::Recipe() {
     total_books = QRandomGenerator::global()->bounded(6, 10);
 
     for (int i = 0; i < total_books; ++i) { //stack consists of 5-8 textbooks
-        int book_code = QRandomGenerator::global()->bounded(4);
+        int book_code = QRandomGenerator::global()->bounded(5);
 
         if (book_code == 0) {
             ++bigcplusplus_count;
