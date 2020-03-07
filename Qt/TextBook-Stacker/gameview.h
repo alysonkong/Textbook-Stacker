@@ -29,6 +29,7 @@ public slots:
     void bookdrop();
    // void getbooktype(int);
     void getbook(books*);
+    void stop_timer();
 signals:
     void booktypetowindow(int);
     void sendbook(books*);

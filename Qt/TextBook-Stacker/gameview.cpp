@@ -109,7 +109,7 @@ void GameView::bookdrop(){
    // std::seed_seq sseq(0, 5);
    // qsrand(QTime::currentTime().msec());
     //QRandomGenerator generator(QRandomGenerator::global()->bounded(0,5);;
-    books* boo= new books(QRandomGenerator::global()->bounded(0,5));
+    books* boo= new books(QRandomGenerator::global()->bounded(0,6));
     int x = QRandomGenerator::global()->bounded(0,4);
     boo->setX(x*100);
     //quint32 v;
@@ -132,6 +132,10 @@ void GameView::bookdrop(){
 
 void GameView::getbook(books* n){
     emit sendbook(n);
+}
+
+void GameView::stop_timer() {
+    timer2.stop();
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);

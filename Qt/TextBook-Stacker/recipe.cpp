@@ -13,8 +13,8 @@ Recipe::Recipe() {
     //randomly generate a number between 6-9 for the total number of books the player needs to catch
     total_books = QRandomGenerator::global()->bounded(6, 10);
 
-    for (int i = 0; i < total_books; ++i) { //stack consists of 5-8 textbooks
-        int book_code = QRandomGenerator::global()->bounded(5);
+    for (int i = 0; i < total_books; ++i) { //stack consists of 6-9 textbooks
+        int book_code = QRandomGenerator::global()->bounded(6);
 
         if (book_code == 0) {
             ++bigcplusplus_count;

@@ -83,6 +83,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
     connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
+    connect(r, SIGNAL(round_complete()), view, SLOT(stop_timer()));
 
 
     show(); //shows the singlewindow
