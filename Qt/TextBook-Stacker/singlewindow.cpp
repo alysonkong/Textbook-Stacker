@@ -40,8 +40,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
 
 
-    Recipe::Recipe* r = new Recipe::Recipe();
-    QWidget* recipe_display = r->display_recipe();
+    r = new Recipe::Recipe();
+    recipe_display = r->display_recipe();
 
    // m = new books(1); //creates new books object
 
@@ -84,6 +84,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
     connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
+    connect(r, SIGNAL(round_complete()), view, SLOT(stop_timer()));
+    //connect(view, SIGNAL(new_round()), this, SLOT(newrecipe()));
 
 
     show(); //shows the singlewindow
@@ -104,7 +106,10 @@ void singlewindow::deductlife(){
 
 
 void singlewindow::newrecipe(){
-    Recipe::Recipe* newr = new Recipe::Recipe();
+    //Recipe::Recipe* newr = new Recipe::Recipe();
+    r = new Recipe::Recipe();
+    recipe_display = r->display_recipe();
+
 }
 
 

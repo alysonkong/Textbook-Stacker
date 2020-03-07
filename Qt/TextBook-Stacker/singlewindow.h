@@ -51,6 +51,8 @@ private:
     QLabel* livesnum;
     GameView* view;
     SideStack* sstack;
+    Recipe::Recipe* r;
+    QWidget* recipe_display;
 
     //BookStack* bookstack;
 
