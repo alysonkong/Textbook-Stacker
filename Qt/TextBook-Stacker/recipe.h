@@ -9,6 +9,7 @@
 #include <QGraphicsItem>
 //#include <list>
 #include <string>
+//#include <QStackedWidget>
 
 //#include <QGraphicsScene>
 //#include <QPainter>
@@ -36,6 +37,15 @@ public:
 
 
     void update_recipe_display(int code);
+    //void clear_recipe();
+    int get_bigc_count();
+    int get_bio_count();
+    int get_chem_count();
+    int get_soc_count();
+    int get_eng_count();
+    int get_philo_count();
+
+
 
 
 //these slots and signals should be ready whenever the corresponding slots and signals are ready

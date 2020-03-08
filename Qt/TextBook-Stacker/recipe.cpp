@@ -307,6 +307,51 @@ QWidget* Recipe::display_recipe() {
 }
 
 
+//void Recipe::clear_recipe() {
+//    bigcplusplus_count = 0;
+//    bio_count = 0;
+//    chem_count = 0;
+//    soc_count = 0;
+//    eng_count = 0;
+//    philo_count = 0;
+
+//    total_books = 0;
+
+//    Recipe();
+
+//    update_recipe_display(bigcplusplus_count);
+//    update_recipe_display(bio_count);
+//    update_recipe_display(chem_count);
+//    update_recipe_display(soc_count);
+//    update_recipe_display(eng_count);
+//    update_recipe_display(philo_count);
+//}
+
+
+int Recipe::get_bigc_count() {
+    return bigcplusplus_count;
+}
+
+int Recipe::get_bio_count() {
+    return bio_count;
+}
+
+int Recipe::get_chem_count() {
+    return chem_count;
+}
+
+int Recipe::get_soc_count() {
+    return soc_count;
+}
+
+int Recipe::get_eng_count() {
+    return eng_count;
+}
+
+int Recipe::get_philo_count() {
+    return philo_count;
+}
+
 
 
 void Recipe::book_caught(int code) {

@@ -29,11 +29,10 @@ public slots:
     void bookdrop();
    // void getbooktype(int);
     void getbook(books*);
-    void stop_timer();
+    void increase_speed(int);
 signals:
     void booktypetowindow(int);
     void sendbook(books*);
-    void new_round(); //supposed to update recipe display, but it's not working i guess it could be used for other purposes?
 
 
 protected:

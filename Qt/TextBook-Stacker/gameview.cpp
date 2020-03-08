@@ -135,10 +135,9 @@ void GameView::getbook(books* n){
     emit sendbook(n);
 }
 
-void GameView::stop_timer() {
+void GameView::increase_speed(int round_num) {
     timer2.stop();
-    timer2.start(1000);
-    emit new_round();
+    timer2.start(3000 - 1000*round_num);
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);

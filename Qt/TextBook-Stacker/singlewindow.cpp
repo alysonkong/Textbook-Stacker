@@ -59,7 +59,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
 
     view = new GameView(mc,  m); //creates new gameview object
-    QGridLayout *layout = new QGridLayout(); //creates new gridlayout
+    layout = new QGridLayout(); //creates new gridlayout
 
     sstack = new SideStack();
 
@@ -84,12 +84,14 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
     connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
-    connect(r, SIGNAL(round_complete()), view, SLOT(stop_timer()));
+    //connect(r, SIGNAL(round_complete()), view, SLOT(increase_speed()));
     //connect(view, SIGNAL(new_round()), this, SLOT(newrecipe()));
+    connect(this, SIGNAL(change_timer(int)), view, SLOT(increase_speed(int)));
 
 
     show(); //shows the singlewindow
 }
+
 
 
 void singlewindow::deductlife(){
@@ -106,10 +108,18 @@ void singlewindow::deductlife(){
 
 
 void singlewindow::newrecipe(){
-    //Recipe::Recipe* newr = new Recipe::Recipe();
-    r = new Recipe::Recipe();
+    ++round_number;
+    emit change_timer(round_number);
+    delete r;
+    Recipe::Recipe* newr = new Recipe::Recipe();
+    this->layout->removeWidget(recipe_display); //need to delete the old recipe too
+    delete recipe_display;
+    r = newr;
     recipe_display = r->display_recipe();
+    this->layout->addWidget(recipe_display, 0,0,2,2,Qt::AlignTop);
 
+    //with new recipe: nothing happens in new round
+    //should delete book stack
 }
 
 

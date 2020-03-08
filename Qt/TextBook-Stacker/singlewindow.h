@@ -27,11 +27,13 @@ public:
 
     singlewindow(QString const & name1);
     ~singlewindow(); //destructor for singlewindow class
+    //int get_round_num();
 
 signals:
    void pressedmain(); // @brief pressedmain signal that a
    void dropbook(books*);
    void finalscore(QString, int);
+   void change_timer(int);
 
 public slots:
     void returntomain(); //directs this window back to the main window
@@ -53,6 +55,8 @@ private:
     SideStack* sstack;
     Recipe::Recipe* r;
     QWidget* recipe_display;
+    QGridLayout *layout;
+    int round_number = 0;
 
     //BookStack* bookstack;
 
