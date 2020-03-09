@@ -17,12 +17,11 @@ private:
     avatar* mc; //avatar that the players can control
     QGraphicsScene scene; //the scene where our game is taking place
     QTimer timer; //timer for constructing and moving the sprites
-    books* b; //books that fall from the sky
     QTimer timer2;
 
 public:
 
-    GameView(avatar* mc, books*);
+    GameView(avatar* mc);
     void drawBackground(QPainter *painter, const QRectF &rect) override;
     //void advance()
 public slots:

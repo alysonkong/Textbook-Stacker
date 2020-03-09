@@ -51,8 +51,8 @@ gamewindow::gamewindow(QString const & name1, QString const & name2)
 
    // m = new books();
 
-    GameView* view = new GameView(mc3, m);
-    GameView* view2 = new GameView(mc2, m);
+    GameView* view = new GameView(mc3);
+    GameView* view2 = new GameView(mc2);
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(p1_name,0,0,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(temp,1,0,3,1, Qt::AlignTop);

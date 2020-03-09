@@ -129,6 +129,15 @@ void avatar::addbooks(int index){
     bookstack.push_back(temp);
 }
 
+
+void avatar::deletestack(){
+    bookstack.clear();
+    this->update();
+//    for(auto i: bookstack){
+//        delete i;
+//        i = nullptr;
+//    }
+}
 //QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
 //    if (change == ItemPositionChange && scene()) {
 //            // value is the new position.

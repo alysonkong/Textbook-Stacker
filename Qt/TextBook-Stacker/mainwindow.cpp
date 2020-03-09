@@ -91,7 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
     buttonslayout = new QGridLayout();
     buttonslayout->addWidget(gametitle, 0, 0, 1, -1);
     buttonslayout->addWidget(singleplayer, 1, 0, 1, -1, Qt::AlignCenter);
-    buttonslayout->addWidget(multiplayer, 2, 0, 1, -1, Qt::AlignCenter);
+    //buttonslayout->addWidget(multiplayer, 2, 0, 1, -1, Qt::AlignCenter);
     buttonslayout->addWidget(leaderboard, 3, 0, 1,-1, Qt::AlignCenter);
     buttonslayout->addWidget(helpbutton, 4, 0, 1, -1, Qt::AlignCenter);
 
@@ -112,7 +112,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay())); //clicking leaderboard button set current stackedwidget to lboard
     connect(singleplayer, SIGNAL(clicked()) , this, SLOT(namewindowdisplay())); //clicking singleplayer button set current stackedwidget to lboard
-    connect(multiplayer, SIGNAL(clicked()), this, SLOT(twonamesdisplay())); //clicking multiplayer button set current stackedwidget to lboard
+   // connect(multiplayer, SIGNAL(clicked()), this, SLOT(twonamesdisplay())); //clicking multiplayer button set current stackedwidget to lboard
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay())); //connecting lboard back to main
     connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay())); //connecting helpwindow back to main
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay())); //clicking helpbutton button set current stackedwidget to helpbutton
@@ -137,8 +137,19 @@ void MainWindow::getname(QString n){
     connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
     connect(single_window, SIGNAL(finalscore(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+   // connect(single_window, SIGNAL(finalscore(QString, int)), this, SLOT(loserdisplay(QString, int)));
+
     //connect(single_window, SIGNAL(finalscore(QString, int))) ; connect to loser window
 }
+
+
+void MainWindow::loserdisplay(QString pname, int pscore){
+    lostwindow = new loserwindow(pname, pscore);
+    swindows->addWidget(lostwindow);
+    swindows->setCurrentWidget(lostwindow);
+    connect(lostwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+}
+
 
 /**
  * @brief MainWindow::getnames takes the QString user inputs from twonameswindow to create multiplayer window

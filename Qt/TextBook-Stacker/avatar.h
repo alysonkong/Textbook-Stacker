@@ -43,6 +43,7 @@ private:
 public slots:
     void updatescore();
     void addbooks(int);
+    void deletestack();
 
 public:
    // QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;

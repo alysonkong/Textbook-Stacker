@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-loserwindow::loserwindow(QWidget *parent) : QWidget(parent)
+loserwindow::loserwindow(QString pname, int pscore) : player_name(pname), score_value(pscore)
 {
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
     QString family = QFontDatabase::applicationFontFamilies(id).at(0); //get the correct font name
@@ -17,7 +17,7 @@ loserwindow::loserwindow(QWidget *parent) : QWidget(parent)
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 
-    QLabel *title = new QLabel("You Lost! Your score is ");
+    QLabel *title = new QLabel("You Lost! Your score is " + QString::number(score_value));
     title->setFont(f);
     title->setAlignment(Qt::AlignCenter);
     title->setStyleSheet("QLabel { border:none; color : white;}");
@@ -27,7 +27,7 @@ loserwindow::loserwindow(QWidget *parent) : QWidget(parent)
     main_menu->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
                              "border-width: 2px; border-color: white;}");
 
-    //connect(main_menu, SIGNAL(clicked()), this, SLOT(returntomain()));
+    connect(main_menu, SIGNAL(clicked()), this, SLOT(returntomain()));
 
     QPushButton *leaderboard = new QPushButton("Leaderboard");
     leaderboard->setFont(f);
@@ -49,8 +49,8 @@ loserwindow::loserwindow(QWidget *parent) : QWidget(parent)
     show();
 }
 
-/**void loserwindow::returntomain(){
-    emit pressedmain(1); //emit pressedmain signal
+void loserwindow::returntomain(){
+    emit pressedmain(); //emit pressedmain signal
 
-}**/
+}
 

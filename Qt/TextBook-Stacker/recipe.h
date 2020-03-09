@@ -33,7 +33,7 @@ public:
  /**
   *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
  */
-    QWidget* display_recipe(); //should it be void????
+    //QWidget* display_recipe(); //should it be void????
 
 
     void update_recipe_display(int code);
@@ -52,6 +52,7 @@ public:
 
 public slots:
     void book_caught(int code);
+    void newrecipe(QLayout* layout);
 
 
 

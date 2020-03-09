@@ -44,10 +44,10 @@ public slots:
 private:
    // QGraphicsScene scene; //scene where the game is taking place
     QPixmap* spritesheet; //holds the avatar sprite
+    QPixmap back;
     QTimer* timer; //timer that controls the construction of the sprites and how they fall
     QPushButton* exit; //exit button that takes the player back to the main window
     avatar* mc; //avatar for the player to control
-    books* m; //falling books that the player has to catch with their avatar
     QLabel* pscore;
     size_t lives;
     QLabel* livesnum;

@@ -19,7 +19,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     mc->setPos(100,100); //sets position of this avatar
     mc->setSpeed(20); //sets speed of the avatar
 
-    QPixmap back(":/bkgnd/textbookbkgndclear.png"); //chooses custom picture for the background
+    back = QPixmap(":/bkgnd/textbookbkgndclear.png"); //chooses custom picture for the background
     back = back.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
     QPalette palette; //defines a QPalette
     palette.setBrush(QPalette::Background, back); //sets the brush for the background and the custom background image
@@ -41,10 +41,6 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
 
     r = new Recipe::Recipe();
-    recipe_display = r->display_recipe();
-
-   // m = new books(1); //creates new books object
-
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
@@ -52,23 +48,17 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     livesnum->setFont(f);
 
 
-//    timer = new QTimer();
-    //connect(timer, SIGNAL(timeout()), this, SLOT(dropobject()));
-//    connect(timer, SIGNAL(timeout()), view, SLOT(bookdrop(books*)));
-//    timer->start(3000);
-
-
-    view = new GameView(mc,  m); //creates new gameview object
+    view = new GameView(mc); //creates new gameview object
     layout = new QGridLayout(); //creates new gridlayout
 
-    sstack = new SideStack();
+    //sstack = new SideStack();
 
     /**
       adds the widgets we created earlier to the gridlayout
       **/
 
-    layout->addWidget(recipe_display,0,0,2,2, Qt::AlignTop);
-    layout->addWidget(sstack, 1,0,3,2,Qt::AlignBottom);
+    layout->addWidget(r,0,0,2,2, Qt::AlignTop);
+   // layout->addWidget(sstack, 1,0,3,2,Qt::AlignBottom);
     layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
@@ -80,9 +70,10 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatescore()));
     connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel()));
-    connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
+    //connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
-    connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));;
+    //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
+    connect(r, SIGNAL(round_complete()), mc, SLOT(deletestack()));
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
     //connect(r, SIGNAL(round_complete()), view, SLOT(increase_speed()));
     //connect(view, SIGNAL(new_round()), this, SLOT(newrecipe()));
@@ -97,11 +88,11 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 void singlewindow::deductlife(){
     --lives;
     if(lives == 0){ //if player has no lives
-        livesnum->setText("Lives \n" + QString::number(0));
+        livesnum->setText("Lives \n 0");
         emit finalscore(mc->getname(),mc->getscore());
 
     }
-   livesnum->setText("Lives \n" + QString::number(lives)) ;
+    livesnum->setText("Lives \n" + QString::number(lives)) ;
 
 }
 
@@ -110,16 +101,6 @@ void singlewindow::deductlife(){
 void singlewindow::newrecipe(){
     ++round_number;
     emit change_timer(round_number);
-    delete r;
-    Recipe::Recipe* newr = new Recipe::Recipe();
-    this->layout->removeWidget(recipe_display); //need to delete the old recipe too
-    delete recipe_display;
-    r = newr;
-    recipe_display = r->display_recipe();
-    this->layout->addWidget(recipe_display, 0,0,2,2,Qt::AlignTop);
-
-    //with new recipe: nothing happens in new round
-    //should delete book stack
 }
 
 

@@ -10,9 +10,9 @@
  * @param mc avatar for the player
  * @param yb books that fall from the sky
  */
-GameView::GameView(avatar* mc, books* yb)
+GameView::GameView(avatar* mc)
     : QGraphicsView()
-    , mc(mc), b(yb)
+    , mc(mc)
 {
     setFixedSize(500, 750);
     this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
@@ -40,7 +40,7 @@ GameView::GameView(avatar* mc, books* yb)
 
 
     connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
-    timer2.start(3000);
+    timer2.start(1000);
 
     setScene(&scene);
 
@@ -137,7 +137,13 @@ void GameView::getbook(books* n){
 
 void GameView::increase_speed(int round_num) {
     timer2.stop();
-    timer2.start(3000 - 1000*round_num);
+//    if(round_num < 2){
+//    timer2.start(3000 - 1000*round_num); //1000/round_num
+//    }
+//    else{
+        timer2.start(1000/round_num);
+    //}
+
 }
 
 // mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
