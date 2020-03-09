@@ -19,7 +19,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     BookStack.cpp \
-    FallingObject.cpp \
     Lboardwindow.cpp \
     Wrapper.cpp \
     avatar.cpp \
@@ -39,7 +38,6 @@ SOURCES += \
 
 HEADERS += \
     BookStack.h \
-    FallingObject.h \
     Lboardwindow.h \
     Wrapper.h \
     avatar.h \
