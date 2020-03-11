@@ -35,12 +35,15 @@ signals:
    void pname_score(QString, int);
    void finalscore(int);
    void change_timer(int);
+   void roundcomplete(int);
 
 public slots:
     void returntomain(); //directs this window back to the main window
     void updatescorelabel();
     void newrecipe();
     void deductlife();
+    void roundupdate();
+    void newround();
 
 private:
    // QGraphicsScene scene; //scene where the game is taking place

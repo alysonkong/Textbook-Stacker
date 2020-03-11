@@ -543,7 +543,7 @@ void Recipe::book_caught(int code) {
 
     if (total_books == 0) {
         this->newrecipe(layout);
-        emit round_complete();
+        emit round_complete(1);
     }
 
     //call display_recipe, needs to change display in single window too

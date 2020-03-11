@@ -33,7 +33,7 @@ GameView::GameView(avatar* mc)
 
 
     connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
-    timer2.start(1000);
+    timer2.start(1500);
 
     setScene(&scene);
 
@@ -117,14 +117,18 @@ void GameView::getbook(int n){
 }
 
 void GameView::increase_speed(int round_num) {
-    timer2.stop();
-//    if(round_num < 2){
-//    timer2.start(3000 - 1000*round_num); //1000/round_num
+   // timer2.stop();
+//    if(round_num == 2){
+//    timer2.start(1000); //1000/round_num
 //    }
 //    else{
-        timer2.start(1000/round_num);
-    //}
+        timer2.start(1500/(1.3*round_num));
+   // }
 
+}
+
+void GameView::stopbookdrop(){
+    timer2.stop();
 }
 
 GameView::~GameView(){

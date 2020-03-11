@@ -31,6 +31,7 @@ Pic 10C, UCLA
 #include "nameinputwindow.h"
 #include "twonamesinput.h"
 #include "loserwindow.h"
+#include "roundwindow.h"
 
 #include "recipe.h"
 
@@ -59,6 +60,7 @@ public slots:
     void getname(QString n);  //creates the singleplayer window by getting the names from name input window
     void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
     void loserdisplay(int);
+    void rounddisplay(int);
 
 
 private:
@@ -82,6 +84,8 @@ private:
     nameinputwindow* namewindow;
     twonamesinput* twonameswindow;
     loserwindow* lostwindow;
+    roundwindow* round_window;
+    int rounds;
 
 };
 #endif // MAINWINDOW_H

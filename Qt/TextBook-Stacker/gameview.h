@@ -26,10 +26,13 @@ public:
     GameView(avatar* mc);
     void drawBackground(QPainter *painter, const QRectF &rect) override;
     //void advance()
+
 public slots:
     void bookdrop();
    // void getbooktype(int);
     void getbook(int);
+
+    void stopbookdrop();
     void increase_speed(int);
 signals:
     void booktypetowindow(int);

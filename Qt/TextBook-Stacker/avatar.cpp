@@ -61,10 +61,10 @@ void avatar::deletelife(){
 void avatar::advance(int phase) {
     QRectF mcMoveBoundary;
     if(bookstack.size() ==0){
-        mcMoveBoundary= QRectF(-25,0, 450, 750);
+        mcMoveBoundary= QRectF(-25,0, 454, 750);
     }
     else{
-        mcMoveBoundary = QRectF(-18,0, 400, 750);
+        mcMoveBoundary = QRectF(0,0, 400, 750);
     }
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));

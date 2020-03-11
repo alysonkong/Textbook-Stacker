@@ -37,7 +37,7 @@ roundwindow::roundwindow(int n): round(n){
     nextround->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
                              "border-width: 5px; border-color: white;}");
 
-    connect(main_menu, SIGNAL(clicked()), this, SIGNAL(nextround()));
+    connect(nextround, SIGNAL(clicked()), this, SIGNAL(nextround()));
 
     QPixmap successpic(":/spritesheets/successbaby.png");
     successpic = successpic.scaled(1024*0.3,1088*0.3,Qt::IgnoreAspectRatio); //resized the icon graphics

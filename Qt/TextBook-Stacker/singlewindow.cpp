@@ -71,10 +71,13 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatepscore()));
     connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel()));
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
-    //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
-    connect(r, SIGNAL(round_complete()), mc, SLOT(deletestack()));
+
+    connect(r, SIGNAL(round_complete(int)), mc, SLOT(deletestack()));
+    connect(r, SIGNAL(round_complete(int)), view, SLOT(stopbookdrop()));
+    connect(r, SIGNAL(round_complete(int)), this, SLOT(roundupdate()));
+    //connect(r, SIGNAL(round_complete(int)), this, SIGNAL(roundcomplete(int)));
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
-    //connect(r, SIGNAL(round_complete()), view, SLOT(increase_speed()));
+    //connect(r, SIGNAL(round_complete()), view, SLOT(increase_speed(int)));
     //connect(view, SIGNAL(new_round()), this, SLOT(newrecipe()));
     connect(this, SIGNAL(change_timer(int)), view, SLOT(increase_speed(int)));
 
@@ -136,6 +139,18 @@ void singlewindow::updatescorelabel(){
     pscore->repaint();
 }
 
+void singlewindow::roundupdate(){
+    ++round_number;
+    emit roundcomplete(round_number);
+   //view->increase_speed(round_number);
+}
+
+void singlewindow::newround(){
+    //view->increase_speed(round_number);
+    pscore->setText(QString::number(mc->getscore()));
+    emit change_timer(round_number);
+
+}
 //qlabel the lives
 //size_t lives;
 //in constructor connect(lives, zerolives(), singlewindow, emittomainwindow_

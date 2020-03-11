@@ -152,11 +152,25 @@ void MainWindow::getname(QString n){
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
     connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
     connect(single_window, SIGNAL(finalscore(int)), this, SLOT(loserdisplay(int)));
+    connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int)));
     }
     running = false;
+
+
     //connect(single_window, SIGNAL(finalscore(QString, int))) ; connect to loser window
 }
 
+
+void MainWindow::rounddisplay(int r){
+    round_window = new roundwindow(r);
+    swindows->addWidget(round_window);
+    swindows->setCurrentWidget(round_window);
+    connect(round_window, SIGNAL(returntomain()), this, SLOT(maindisplay()));
+    connect(round_window, SIGNAL(nextround()), single_window, SLOT(newround()));
+    connect(round_window, SIGNAL(nextround()), this, SLOT(splayerdisplay()));
+
+
+}
 
 void MainWindow::loserdisplay(int pscore){
     lostwindow = new loserwindow(pscore);
@@ -204,6 +218,11 @@ void  MainWindow::lboarddisplay(){
  * @brief MainWindow::splayerdisplay set stackedwidget to singleplayer
  */
 void  MainWindow::splayerdisplay(){
+    if(round_window){
+        swindows->removeWidget(round_window);
+        delete round_window;
+        round_window=nullptr;
+    }
     //swindows->setCurrentIndex(2);
     swindows->setCurrentWidget(single_window);
 }
@@ -220,6 +239,11 @@ void  MainWindow::mplayerdisplay(){
  * @brief MainWindow::maindisplay set stackedwidget to homepage
  */
 void MainWindow::maindisplay(){
+    if(single_window){
+        swindows->removeWidget(single_window);
+        delete single_window;
+        single_window=nullptr;
+    }
     swindows->setCurrentIndex(0);
 }
 
