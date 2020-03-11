@@ -10,9 +10,9 @@
  * @param mc avatar for the player
  * @param yb books that fall from the sky
  */
-GameView::GameView(avatar* mc, books* boo)
+GameView::GameView(avatar* mc)
     : QGraphicsView()
-    , mc(mc), b(boo)
+    , mc(mc)
 {
     setFixedSize(500, 750);
     this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );

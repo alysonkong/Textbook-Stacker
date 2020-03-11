@@ -23,7 +23,7 @@ private:
 
 public:
     ~GameView();
-    GameView(avatar* mc, books*);
+    GameView(avatar* mc);
     void drawBackground(QPainter *painter, const QRectF &rect) override;
     //void advance()
 public slots:

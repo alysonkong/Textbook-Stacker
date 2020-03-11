@@ -58,7 +58,7 @@ public slots:
     void twonamesdisplay(); //display name inputs for multiplayer
     void getname(QString n);  //creates the singleplayer window by getting the names from name input window
     void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
-    void loserdisplay(QString, int);
+    void loserdisplay(int);
 
 
 private:

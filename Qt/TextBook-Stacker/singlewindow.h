@@ -32,7 +32,8 @@ public:
 signals:
    void pressedmain(); // @brief pressedmain signal that a
    void dropbook(books*);
-   void finalscore(QString, int);
+   void pname_score(QString, int);
+   void finalscore(int);
    void change_timer(int);
 
 public slots:

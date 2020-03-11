@@ -68,9 +68,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     this->setLayout(layout); //sets window's layout to the gridlayout
 
     connect(view, SIGNAL(booktypetowindow(int)), r, SLOT(book_caught(int)));
-    connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatescore()));
+    connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatepscore()));
     connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel()));
-    //connect(r, SIGNAL(updatescore(int)), sstack, SLOT(addbooks(int)));
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int)));
     //connect(r, SIGNAL(round_complete()), this, SLOT(newrecipe()));
     connect(r, SIGNAL(round_complete()), mc, SLOT(deletestack()));
@@ -87,9 +86,20 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
 void singlewindow::deductlife(){
     --lives;
+//    if (lives == 2) {
+//            livesnum->removeWidget(heart3);
+//            delete heart3;
+//        }
+
+//        if (lives == 1) {
+//            livesnum->removeWidget(heart2);
+//            delete heart2;
+//        }
+
     if(lives == 0){ //if player has no lives
         livesnum->setText("Lives \n 0");
-        emit finalscore(mc->getname(),mc->getscore());
+        emit finalscore(mc->getscore());
+        emit pname_score(mc->getname(), mc->getscore());
 
     }
     livesnum->setText("Lives \n" + QString::number(lives)) ;

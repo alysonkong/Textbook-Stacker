@@ -17,7 +17,7 @@ Pic 10C, UCLA
 Constructor for mainwindow containing the layout, stacked widget, background, fonts
 */
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent), single_window(nullptr)
 
 {
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
@@ -132,19 +132,34 @@ MainWindow::MainWindow(QWidget *parent)
  * @param n player name
  */
 void MainWindow::getname(QString n){
+//    if(single_window){
+//        swindows->removeWidget(single_window);
+//        delete single_window;
+//        single_window = nullptr;
+//    }
+    static bool running = false;
+    if(!running) {
+       running = true;
+       if(single_window) {
+           swindows->removeWidget(single_window);
+           delete single_window;
+           single_window=nullptr;
+       }
     single_window = new singlewindow(n); //sets up singlewindow using the user input names
     swindows->addWidget(single_window);
+    swindows->setCurrentWidget(single_window);
     connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
-    connect(single_window, SIGNAL(finalscore(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
-   // connect(single_window, SIGNAL(finalscore(QString, int)), this, SLOT(loserdisplay(QString, int)));
-
+    connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+    connect(single_window, SIGNAL(finalscore(int)), this, SLOT(loserdisplay(int)));
+    }
+    running = false;
     //connect(single_window, SIGNAL(finalscore(QString, int))) ; connect to loser window
 }
 
 
-void MainWindow::loserdisplay(QString pname, int pscore){
-    lostwindow = new loserwindow(pname, pscore);
+void MainWindow::loserdisplay(int pscore){
+    lostwindow = new loserwindow(pscore);
     swindows->addWidget(lostwindow);
     swindows->setCurrentWidget(lostwindow);
     connect(lostwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));

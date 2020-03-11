@@ -45,6 +45,7 @@ public slots:
 
     void addbooks(int);
     void deletestack();
+    void updatepscore();
 
 public:
    // QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
@@ -108,7 +109,7 @@ public:
     int getlife();
     void deletelife();
     void setscore();
-    void updatepscore();
+
 
 };
 
