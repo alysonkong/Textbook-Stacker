@@ -36,12 +36,13 @@ private:
     double a_scale;
     int acx=0, acy = 0;
     Direction facing; //direction that the avatar is facing
+    int life;
 
 
 
 
 public slots:
-    void updatescore();
+
     void addbooks(int);
     void deletestack();
 
@@ -62,7 +63,7 @@ public:
     inline
     avatar(QString user_name, QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1)
         : Sprite(ss,w,h,nx,ny,x_off,y_off,scale,tpf), name(user_name), score(0), bookstack(), aw(w), ah(h), ax_off(x_off), ay_off(y_off), a_scale(scale),
-          acx(nx), acy(ny)
+          acx(nx), acy(ny), life(3)
     {
         turn(Left); //sets the direction of avatar in beg as facing left
     }
@@ -104,7 +105,10 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
     size_t getscore();
     QString getname();
+    int getlife();
+    void deletelife();
     void setscore();
+    void updatepscore();
 
 };
 

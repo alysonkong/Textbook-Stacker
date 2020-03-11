@@ -3,14 +3,14 @@
 #include <QLabel>
 #include <QPushButton>
 
-loserwindow::loserwindow(QString pname, int pscore) : player_name(pname), score_value(pscore)
+loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
 {
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
     QString family = QFontDatabase::applicationFontFamilies(id).at(0); //get the correct font name
     QFont f(family, 40);
 
     setFixedSize(1300,800); //set size of window
-    QPixmap back(":/bkgnd/loser.jpg");
+    QPixmap back(":/bkgnd/textbookbkgndclear.png");
     back = back.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
     QPalette palette;
     palette.setBrush(QPalette::Background, back);
@@ -27,7 +27,8 @@ loserwindow::loserwindow(QString pname, int pscore) : player_name(pname), score_
     main_menu->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
                              "border-width: 2px; border-color: white;}");
 
-    connect(main_menu, SIGNAL(clicked()), this, SLOT(returntomain()));
+    //connect(main_menu, SIGNAL(clicked()), this, SLOT(returntomain()));
+    connect(main_menu, SIGNAL(clicked()), this, SIGNAL(pressedmain()));
 
     QPushButton *leaderboard = new QPushButton("Leaderboard");
     leaderboard->setFont(f);

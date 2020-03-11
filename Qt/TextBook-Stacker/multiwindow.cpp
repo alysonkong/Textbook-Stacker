@@ -49,10 +49,10 @@ gamewindow::gamewindow(QString const & name1, QString const & name2)
     QLabel* temp = new QLabel("recipe");
     QLabel* temp2 = new QLabel("recipe2");
 
-   // m = new books();
+    m = new books(1);
 
-    GameView* view = new GameView(mc3);
-    GameView* view2 = new GameView(mc2);
+    GameView* view = new GameView(mc3,m );
+   GameView* view2 = new GameView(mc2, m);
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(p1_name,0,0,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(temp,1,0,3,1, Qt::AlignTop);

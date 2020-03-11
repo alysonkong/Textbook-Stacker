@@ -54,7 +54,7 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
 
     connect(nameEdit, SIGNAL(editingFinished()),this, SLOT(namechanged()));
 
-    connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(gotosingle_window()));
+    //connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(gotosingle_window()));
 }
 
 /**
@@ -62,6 +62,7 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
  */
 void nameinputwindow::namechanged(){
    emit playername(nameEdit->text());
+   //emit single_windowindex();
 }
 
 

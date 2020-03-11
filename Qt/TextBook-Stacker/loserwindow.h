@@ -11,7 +11,7 @@ class loserwindow : public QWidget
     Q_OBJECT
 public:
     //explicit loserwindow(QWidget *parent = nullptr);
-    loserwindow(QString, int);
+    loserwindow(int);
 signals:
      void pressedmain();
 public slots:

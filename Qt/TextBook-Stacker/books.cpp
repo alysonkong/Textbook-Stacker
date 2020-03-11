@@ -37,11 +37,11 @@ books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(16
 void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     if(booktype<=5){
     QRectF source(0,0,500,161); //image is 500x161
-    painter->drawPixmap(QRectF(0,0,bookwidth*0.2,bookheight*0.2),*book, source); //boundingrect is the target in which to draw the book into
+    painter->drawPixmap(QRectF(0,0,bookwidth*0.2,bookheight*0.2), *book, source); //boundingrect is the target in which to draw the book into
     }
     else{
         QRectF source(0,0,512,512);
-        painter->drawPixmap(QRectF(0,0,512*0.15,512*0.15),*book, source);
+        painter->drawPixmap(QRectF(0,0,512*0.15,512*0.15), *book, source);
     }
 
 }
@@ -65,31 +65,109 @@ QRectF books::boundingRect() const{
  * @param phase
  */
 void books::advance(int phase) {
-    QRectF mcMoveBoundary(0,0, 400, 717.8);
+    QRectF mcMoveBoundary(0,0, 500, 650);
     if(phase) {
         QPointF down(0,7);
         down*=speed;
         QPointF nextPos = mapToScene(down);
-        if(mcMoveBoundary.contains(nextPos)) {
-            setPos(nextPos);
-        }
+       // QRectF itemSceneBoundingRect = this->mapRectToScene(this->boundingRect());
+        //this->prepareGeometryChange();
+        //if(!scene()->intersects(itemSceneBoundingRect)){
+       // if(!mcMoveBoundary.contains(nextPos)){
+            //this->deleteLater();
 
-        if(!scene()->collidingItems(this).isEmpty()){
-            emit emittype(this->gettype());
-            //QObject::connect
-            scene()->removeItem(this);
-            delete book;
-            book = nullptr;
+            //delete this;
+         //   scene()->removeItem(this);
+            //delete(this);
+            //delete book;
+            //book = nullptr;
+       // }
+//        if(!scene()->collidingItems(this).isEmpty()){
+//            emit emittype(booktype);
+
+//            this->deleteLater();
+//            scene()->removeItem(this);
+//            delete book;
+//            book = nullptr;
             //delete this;
            //
 
-        }
-        else if(!mcMoveBoundary.contains(nextPos)){
-            scene()->removeItem(this);
-            delete book;
-            book = nullptr;
-            //delete this;
-        }
+       //}
+
+
+               // else { //if(!mcMoveBoundary.contains(nextPos))
+                 // setPos(nextPos);
+                    //delete book;
+                   // book = nullptr;
+
+             //   }
+
+//        if(!mcMoveBoundary.contains(nextPos)){ //|| !scene()->collidingItems(this).isEmpty()
+//           // this->prepareGeometryChange();
+//            this->deleteLater();
+//           // scene()->removeItem(this); //having only this uncommented leads to crash
+//            //delete book;
+//           // book = nullptr;
+
+//            //delete this;
+//            //scene()->update();
+//        }
+
+//        if(mcMoveBoundary.contains(nextPos)){ //&& scene()->collidingItems(this).isEmpty()
+//            if(!scene()->collidingItems(this).isEmpty()){
+//                emit emittype(this->gettype());
+
+//                this->deleteLater();
+//                //scene()->removeItem(this);
+//               // delete this;
+//            }
+//            else{
+//                setPos(nextPos);
+//            }
+//        }
+
+
+//        if(mcMoveBoundary.contains(nextPos) && scene()->collidingItems(this).isEmpty()) {
+//            setPos(nextPos);
+//        }
+//        else if(!scene()->collidingItems(this).isEmpty()){
+//            emit emittype(this->gettype());
+//            this->deleteLater();
+//            //scene()->removeItem(this);
+//           // delete book;
+//           // book = nullptr;
+//           // delete this;
+//           //scene()->update();
+//        }
+//        else{
+
+//            scene()->removeItem(this);
+
+//            delete this;
+
+//        }
+
+        if(mcMoveBoundary.contains(nextPos)) {
+                    setPos(nextPos);
+                }
+
+                if(!scene()->collidingItems(this).isEmpty()){
+                    emit emittype(this->gettype());
+                    //QObject::connect
+                    scene()->removeItem(this);
+                    delete book;
+                    book = nullptr;
+                    //delete this;
+                   //
+
+                }
+                else if(!mcMoveBoundary.contains(nextPos)){
+                    scene()->removeItem(this); //should i delete the qgraphicsobject or just the pixmap???
+                    delete book;
+                    book = nullptr;
+                    //delete this;
+                }
+
     }
 
 }
@@ -106,9 +184,12 @@ int books::gettype(){
 QPixmap* books::getbookpic() const{
     return book;
 }
-//books::~books(){
-//    delete book;
-//}
+
+books::~books(){
+    this->prepareGeometryChange();
+    delete book;
+    book = nullptr;
+}
 
 //bool books::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const{
 //    emit type_pts(booktype, points);

@@ -31,6 +31,7 @@ SOURCES += \
     multiwindow.cpp \
     nameinputwindow.cpp \
     recipe.cpp \
+    roundwindow.cpp \
     sidestack.cpp \
     singlewindow.cpp \
     sprite.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     multiwindow.h \
     nameinputwindow.h \
     recipe.h \
+    roundwindow.h \
     sidestack.h \
     singlewindow.h \
     sprite.h \

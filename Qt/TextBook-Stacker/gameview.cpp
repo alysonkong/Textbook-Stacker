@@ -10,9 +10,9 @@
  * @param mc avatar for the player
  * @param yb books that fall from the sky
  */
-GameView::GameView(avatar* mc)
+GameView::GameView(avatar* mc, books* boo)
     : QGraphicsView()
-    , mc(mc)
+    , mc(mc), b(boo)
 {
     setFixedSize(500, 750);
     this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
@@ -24,13 +24,6 @@ GameView::GameView(avatar* mc)
     mc->setPos(193, 360.2); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
    // b->setPos(100,0);
-
-//    for(int i = 0; i< 3; ++i){
-//        books* temp = new books(1);
-//        temp->setPos(i*100, 0);
-//        scene.addItem(temp);
-//    }
-
 
     QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
     //timer.setInterval();
@@ -97,42 +90,30 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
  */
 void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
 
-    QPixmap back(":/bkgnd/classroom3.jpg"); //chooses custom picture for the background
-    painter->setBrush(back);
+    back = new QPixmap(":/bkgnd/classroom3.jpg"); //chooses custom picture for the background
+    painter->setBrush(*back);
     this->setAutoFillBackground(true); //fills the entire background
     painter->drawRect(0,0, 500,750); //sets dimensions for the rect
 }
 
 
 void GameView::bookdrop(){
-   // QCoreApplication::processEvents();
-   // std::seed_seq sseq(0, 5);
-   // qsrand(QTime::currentTime().msec());
-    //QRandomGenerator generator(QRandomGenerator::global()->bounded(0,5);;
-    books* boo= new books(QRandomGenerator::global()->bounded(0,9));
+    b= new books(QRandomGenerator::global()->bounded(0,9));
     int x = QRandomGenerator::global()->bounded(0,5);
-    boo->setX(x*100);
-    //quint32 v;
-    //v->QRandomGenerator::bounded(5);
-    //boo->setPos(v*100, 0);
-    scene.addItem(boo);
+    b->setX(x*100);
+    scene.addItem(b); //scene takes ownership of the item
+    //boo->setParent(scene)
     scene.update();
 
-    connect(boo, SIGNAL(emittype(int)), this, SIGNAL(booktypetowindow(int)));
+    //connect(b, SIGNAL(emittype(int)), this, SIGNAL(booktypetowindow(int)));
 
-    //connect(boo, SIGNAL(emitbook(books*)), this, SLOT(getbook(books*)));
+    connect(b, SIGNAL(emittype(int)), this, SLOT(getbook(int)));
 
 }
 
-//void GameView::getbooktype(int n){
-//    emit booktypetowindow(n);
-//   // books* nbook = new books(n);
-//   // emit sendbook(nbook);
-//}
 
-
-void GameView::getbook(books* n){
-    emit sendbook(n);
+void GameView::getbook(int n){
+    emit booktypetowindow(n);
 }
 
 void GameView::increase_speed(int round_num) {
@@ -146,15 +127,7 @@ void GameView::increase_speed(int round_num) {
 
 }
 
-// mc->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
-//if(mc->pos() == QPointF(0,604)){ code for stopping animation
-//    mc->pause();
-//    if(!scene.sceneRect().contains(mc->pos())){
-//        mc->stop();
-//        //mc->stop(Left);
-//        //mc->setPos(0,604);
-//        mc->itemChange(QGraphicsItem::GraphicsItemChange::ItemPositionHasChanged, QPointF(0,604));
-//    }
-//    else if(mc->pos() == QPointF(386,604)){
-//        mc->stop(Right);
-//}
+GameView::~GameView(){
+    delete back;
+}
+

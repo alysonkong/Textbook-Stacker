@@ -3,6 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QGraphicsScene>
+#include "recipe.h"
 
 
 /**
@@ -13,6 +14,7 @@ class books : public QGraphicsObject
     Q_OBJECT
 public:
     books(int);
+    //books(int, Recipe::Recipe*);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *widget = nullptr) override;
     QRectF boundingRect() const override;
     void advance(int phase) override;
@@ -25,7 +27,7 @@ public:
     int getbheight() const{
         return bookheight;
     }
-    //~books();
+    ~books();
 
     QPixmap* getbookpic() const;
 signals:
@@ -46,6 +48,7 @@ private:
     int points = 5;
     int bookwidth;
     int bookheight;
+    Recipe::Recipe* rec;
 
     //BookStack* stacktainer = bookstack;
 };
