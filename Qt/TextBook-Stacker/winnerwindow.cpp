@@ -56,6 +56,6 @@ void winnerwindow::pressedmain(){
 }
 
 void winnerwindow::pressedLboard() {
-    emit gotoLboard(player_name, score_value);
+    emit gotoLboard();
 }
 

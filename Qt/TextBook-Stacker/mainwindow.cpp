@@ -162,6 +162,7 @@ void MainWindow::winnerdisplay(QString pname, int pscore) {
     swindows->addWidget(wonwindow);
     swindows->setCurrentWidget(wonwindow);
     connect(wonwindow, SIGNAL(returntomain()), this, SLOT(maindisplay()));
+    connect(wonwindow, SIGNAL(gotoLboard()), this, SLOT(lboarddisplay()));
 }
 
 void MainWindow::rounddisplay(int r){

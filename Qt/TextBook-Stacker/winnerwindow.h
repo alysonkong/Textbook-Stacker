@@ -14,7 +14,7 @@ public:
     winnerwindow(QString, int);
 signals:
     void returntomain();
-    void gotoLboard(QString, int);
+    void gotoLboard();
 public slots:
     void pressedmain();
     void pressedLboard();
