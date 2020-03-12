@@ -72,3 +72,4 @@ private:
 
 
 #endif // SINGLEWINDOW_H
+

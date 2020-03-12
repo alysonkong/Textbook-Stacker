@@ -44,9 +44,6 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
-//    livesnum = new QLabel("Lives \n" + QString::number(lives));
-//    livesnum->setFont(f);
-
     livesnum = new QHBoxLayout;
     heart1 = new QLabel;
     QPixmap heart_pixmap = QPixmap(":/icons/heart.png");
@@ -61,6 +58,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     livesnum->addWidget(heart1);
     livesnum->addWidget(heart2);
     livesnum->addWidget(heart3);
+
 
     view = new GameView(mc); //creates new gameview object
     layout = new QGridLayout(); //creates new gridlayout
@@ -179,6 +177,3 @@ void singlewindow::newround(){
 //size_t lives;
 //in constructor connect(lives, zerolives(), singlewindow, emittomainwindow_
 //connect(singlewindow, emittomain, main/this, changeindex(loserwindow);
-
-
-
