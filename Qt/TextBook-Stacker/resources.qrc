@@ -17,6 +17,7 @@
     </qresource>
     <qresource prefix="/icons">
         <file>music.png</file>
+        <file>heart.png</file>
     </qresource>
     <qresource prefix="/spritesheets">
         <file>moreoverworld.png</file>

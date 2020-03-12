@@ -54,7 +54,10 @@ private:
     avatar* mc; //avatar for the player to control
     QLabel* pscore;
     size_t lives;
-    QLabel* livesnum;
+    QHBoxLayout* livesnum;
+    QLabel* heart1;
+    QLabel* heart2;
+    QLabel* heart3;
     GameView* view;
     SideStack* sstack;
     Recipe::Recipe* r;

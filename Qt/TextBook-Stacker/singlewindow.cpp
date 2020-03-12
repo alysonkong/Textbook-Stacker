@@ -44,9 +44,23 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
-    livesnum = new QLabel("Lives \n" + QString::number(lives));
-    livesnum->setFont(f);
+//    livesnum = new QLabel("Lives \n" + QString::number(lives));
+//    livesnum->setFont(f);
 
+    livesnum = new QHBoxLayout;
+    heart1 = new QLabel;
+    QPixmap heart_pixmap = QPixmap(":/icons/heart.png");
+    heart_pixmap = heart_pixmap.scaledToWidth(50);
+    heart1->setPixmap(heart_pixmap);
+
+    heart2 = new QLabel;
+    heart2->setPixmap(heart_pixmap);
+    heart3 = new QLabel;
+    heart3->setPixmap(heart_pixmap);
+
+    livesnum->addWidget(heart1);
+    livesnum->addWidget(heart2);
+    livesnum->addWidget(heart3);
 
     view = new GameView(mc); //creates new gameview object
     layout = new QGridLayout(); //creates new gridlayout
@@ -61,7 +75,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
    // layout->addWidget(sstack, 1,0,3,2,Qt::AlignBottom);
     layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
-    layout->addWidget(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
+    layout->addLayout(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(pscore, 2,3,1,2, Qt::AlignLeft);
     layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
 
@@ -89,23 +103,28 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
 
 void singlewindow::deductlife(){
     --lives;
-//    if (lives == 2) {
-//            livesnum->removeWidget(heart3);
-//            delete heart3;
-//        }
 
-//        if (lives == 1) {
-//            livesnum->removeWidget(heart2);
-//            delete heart2;
-//        }
+        if (lives == 2) {
+            livesnum->removeWidget(heart3);
+            delete heart3;
+            heart3 = nullptr;
+        }
 
-    if(lives == 0){ //if player has no lives
-        livesnum->setText("Lives \n 0");
-        emit finalscore(mc->getscore());
-        emit pname_score(mc->getname(), mc->getscore());
+        if (lives == 1) {
+            livesnum->removeWidget(heart2);
+            delete heart2;
+            heart2 = nullptr;
+        }
 
-    }
-    livesnum->setText("Lives \n" + QString::number(lives)) ;
+        if(lives == 0){ //if player has no lives
+            livesnum->removeWidget(heart1);
+            delete heart1;
+            heart1 = nullptr;
+            emit finalscore(mc->getscore());
+            emit pname_score(mc->getname(), mc->getscore());
+
+        }
+
 
 }
 
