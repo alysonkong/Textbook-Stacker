@@ -155,17 +155,17 @@ void books::advance(int phase) {
                     emit emittype(this->gettype());
                     //QObject::connect
                     scene()->removeItem(this);
-                    delete book;
-                    book = nullptr;
-                    //delete this;
+//                    delete book;
+//                    book = nullptr;
+                     delete this;
                    //
 
                 }
                 else if(!mcMoveBoundary.contains(nextPos)){
                     scene()->removeItem(this); //should i delete the qgraphicsobject or just the pixmap???
-                    delete book;
-                    book = nullptr;
-                    //delete this;
+//                    delete book;
+//                    book = nullptr;
+                     delete this;
                 }
 
     }

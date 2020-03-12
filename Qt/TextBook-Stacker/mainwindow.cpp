@@ -86,6 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
     hwindow = new HelpWindow::helpwindow();
     namewindow = new nameinputwindow();
     twonameswindow = new twonamesinput();
+    single_window = nullptr;
 
     widgets = new QWidget(); //widgets contains the game title and buttons excluding music icon
     buttonslayout = new QGridLayout();
@@ -132,11 +133,7 @@ MainWindow::MainWindow(QWidget *parent)
  * @param n player name
  */
 void MainWindow::getname(QString n){
-//    if(single_window){
-//        swindows->removeWidget(single_window);
-//        delete single_window;
-//        single_window = nullptr;
-//    }
+
     static bool running = false;
     if(!running) {
        running = true;
@@ -156,8 +153,6 @@ void MainWindow::getname(QString n){
     }
     running = false;
 
-
-    //connect(single_window, SIGNAL(finalscore(QString, int))) ; connect to loser window
 }
 
 

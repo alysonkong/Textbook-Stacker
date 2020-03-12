@@ -36,6 +36,7 @@ signals:
    void finalscore(int);
    void change_timer(int);
    void roundcomplete(int);
+   void gamewon();
 
 public slots:
     void returntomain(); //directs this window back to the main window

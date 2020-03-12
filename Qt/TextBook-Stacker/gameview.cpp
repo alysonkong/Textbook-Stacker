@@ -128,7 +128,13 @@ void GameView::increase_speed(int round_num) {
 }
 
 void GameView::stopbookdrop(){
+    if(b){
+        scene.removeItem(b);
+        delete b;
+        b = nullptr;
+    }
     timer2.stop();
+
 }
 
 GameView::~GameView(){
