@@ -57,7 +57,7 @@ public slots:
 
 
 signals:
-    void round_complete(int);
+    void round_complete();
     void wrong_book();
     void updatescore(int); //the int here is gonna be the book code, not points added
 
