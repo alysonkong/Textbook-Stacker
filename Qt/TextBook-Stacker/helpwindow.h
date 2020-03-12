@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QStackedWidget>
 
 
@@ -31,8 +32,26 @@ public slots:
 private:
     QLabel* title;
     QLabel* instructions;
+    QLabel* instructions1;
+    QLabel* instructions2;
+    QLabel* instructions3;
+    QLabel* instructions4;
+    QLabel* instructions5;
     QPushButton* returntomain;
-    QVBoxLayout* layout;
+    QVBoxLayout* main_layout;
+    QHBoxLayout* first_layout;
+    QHBoxLayout* second_layout;
+    QHBoxLayout* third_layout;
+    QHBoxLayout* fourth_layout;
+    QHBoxLayout* fifth_layout;
+    QPushButton* pic_Left;
+    QPushButton* pic_Right;
+    QPushButton* pic_left;
+    QPushButton* pic_right;
+    QPushButton* book;
+    QPushButton* heart;
+    QPushButton* fletter;
+    QPushButton* recipe;
     int index;
 
 };
