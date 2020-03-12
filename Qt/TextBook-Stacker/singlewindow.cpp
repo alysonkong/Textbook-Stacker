@@ -59,6 +59,15 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     livesnum->addWidget(heart2);
     livesnum->addWidget(heart3);
 
+    QPixmap musicpix(":/icons/music.png");
+    musicpix = musicpix.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
+    music_button = new QPushButton();
+    QIcon ButtonIcon(musicpix);
+    music_button->setIcon(ButtonIcon); //change pushbutton visual into the imported icon
+    music_button->setIconSize(musicpix.rect().size());
+    music_button->setStyleSheet("QPushButton { border:none;}");
+    connect(music_button, SIGNAL(clicked()), this, SLOT(playpause_music()));
+
 
     view = new GameView(mc); //creates new gameview object
     layout = new QGridLayout(); //creates new gridlayout
@@ -76,6 +85,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     layout->addLayout(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
     layout->addWidget(pscore, 2,3,1,2, Qt::AlignLeft);
     layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
+    layout->addWidget(music_button, 4,3,1,1, Qt::AlignLeft);
 
     this->setLayout(layout); //sets window's layout to the gridlayout
 
@@ -126,7 +136,9 @@ void singlewindow::deductlife(){
 
 }
 
-
+void singlewindow::playpause_music() {
+    emit change_music();
+}
 
 void singlewindow::newrecipe(){
     ++round_number;
