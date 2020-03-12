@@ -151,11 +151,18 @@ void MainWindow::getname(QString n){
     connect(single_window, SIGNAL(finalscore(int)), this, SLOT(loserdisplay(int)));
     connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int)));
     connect(single_window, SIGNAL(change_music()), this, SLOT(musiconoff()));
+    connect(single_window, SIGNAL(gamewon(QString, int)), this, SLOT(winnerdisplay(QString, int)));
     }
     running = false;
 
 }
 
+void MainWindow::winnerdisplay(QString pname, int pscore) {
+    wonwindow = new winnerwindow(pname, pscore);
+    swindows->addWidget(wonwindow);
+    swindows->setCurrentWidget(wonwindow);
+    connect(wonwindow, SIGNAL(returntomain()), this, SLOT(maindisplay()));
+}
 
 void MainWindow::rounddisplay(int r){
     round_window = new roundwindow(r);
