@@ -150,6 +150,7 @@ void MainWindow::getname(QString n){
     connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
     connect(single_window, SIGNAL(finalscore(int)), this, SLOT(loserdisplay(int)));
     connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int)));
+    connect(single_window, SIGNAL(change_music()), this, SLOT(musiconoff()));
     }
     running = false;
 

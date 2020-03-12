@@ -37,6 +37,7 @@ signals:
    void change_timer(int);
    void roundcomplete(int);
    void gamewon();
+   void change_music();
 
 public slots:
     void returntomain(); //directs this window back to the main window
@@ -45,6 +46,7 @@ public slots:
     void deductlife();
     void roundupdate();
     void newround();
+    void playpause_music();
 
 private:
    // QGraphicsScene scene; //scene where the game is taking place
@@ -59,6 +61,7 @@ private:
     QLabel* heart1;
     QLabel* heart2;
     QLabel* heart3;
+    QPushButton* music_button;
     GameView* view;
     SideStack* sstack;
     Recipe::Recipe* r;
