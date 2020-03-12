@@ -20,7 +20,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     BookStack.cpp \
     Lboardwindow.cpp \
-    Wrapper.cpp \
     avatar.cpp \
     books.cpp \
     gameview.cpp \
@@ -35,12 +34,12 @@ SOURCES += \
     sidestack.cpp \
     singlewindow.cpp \
     sprite.cpp \
-    twonamesinput.cpp
+    twonamesinput.cpp \
+    winnerwindow.cpp
 
 HEADERS += \
     BookStack.h \
     Lboardwindow.h \
-    Wrapper.h \
     avatar.h \
     books.h \
     gameview.h \
@@ -54,7 +53,8 @@ HEADERS += \
     sidestack.h \
     singlewindow.h \
     sprite.h \
-    twonamesinput.h
+    twonamesinput.h \
+    winnerwindow.h
 
 FORMS += \
     mainwindow.ui \
