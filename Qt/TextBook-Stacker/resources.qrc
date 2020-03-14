@@ -21,6 +21,13 @@
     <qresource prefix="/icons">
         <file>music.png</file>
         <file>heart.png</file>
+        <file>rightarrow.svg</file>
+        <file>leftarrow.svg</file>
+        <file>recipe.png</file>
+        <file>recipe2.png</file>
+        <file>checkmark_book.png</file>
+        <file>xmark_f.png</file>
+        <file>avatarinstruct.png</file>
     </qresource>
     <qresource prefix="/spritesheets">
         <file>moreoverworld.png</file>

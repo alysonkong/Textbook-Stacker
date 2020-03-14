@@ -108,7 +108,7 @@ helpwindow::helpwindow() {
     pic_right->setStyleSheet("QPushButton { border:none;}");
 
     QPixmap book1(":/spritesheets/redbook.png");
-    book1 = book1.scaled(70,90,Qt::IgnoreAspectRatio); //resized the icon graphics
+    book1 = book1.scaled(500*0.2, 161*0.2,Qt::IgnoreAspectRatio); //resized the icon graphics
     book = new QPushButton();
     QIcon icon5(book1);
     book->setIcon(icon5); //change pushbutton visual into the imported icon
@@ -123,15 +123,15 @@ helpwindow::helpwindow() {
     fletter->setIconSize(f_letter.rect().size());
     fletter->setStyleSheet("QPushButton { border:none;}");
 
-    QPixmap rec(":/icons/recipe.png");
-    rec = rec.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
+    QPixmap rec(":/icons/recipe2.png");
+    rec = rec.scaled(728*0.2,574*0.2,Qt::IgnoreAspectRatio); //resized the icon graphics
     recipe = new QPushButton();
     QIcon icon7(rec);
     recipe->setIcon(icon7); //change pushbutton visual into the imported icon
     recipe->setIconSize(rec.rect().size());
     recipe->setStyleSheet("QPushButton { border:none;}");
 
-    QPixmap hearts(":/spritesheets/pixel-heart.png");
+    QPixmap hearts(":/icons/heart.png");
     hearts = hearts.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
     heart = new QPushButton();
     QIcon icon8(hearts);
