@@ -16,7 +16,7 @@ winnerwindow::winnerwindow(QString pname, int pscore) : player_name(pname), scor
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 
-    QLabel *title = new QLabel("Congratulations, " + player_name + "! You won!");
+    QLabel *title = new QLabel("Congrats, " + player_name + "!\nYou won!\nYour score is " + QString::number(score_value));
     title->setFont(f);
     title->setAlignment(Qt::AlignCenter);
     title->setStyleSheet("QLabel { border:none; color : white;}");
@@ -37,9 +37,9 @@ winnerwindow::winnerwindow(QString pname, int pscore) : player_name(pname), scor
     connect(leaderboard, SIGNAL(clicked()), this, SLOT(pressedLboard()));
 
     layout = new QGridLayout();
-    layout->addWidget(title, 0, 0, 1, -1);
-    layout->addWidget(main_menu, 1, 0, 1, -1, Qt::AlignCenter);
-    layout->addWidget(leaderboard, 2, 0, 1, -1, Qt::AlignCenter);
+    layout->addWidget(title, -1, 0, 0, -1);
+    layout->addWidget(main_menu, 4, 0, 1, -1, Qt::AlignCenter);
+    layout->addWidget(leaderboard, 5, 0, 1, -1, Qt::AlignCenter);
 
 
     layout->setContentsMargins( 100, 50, 100, 50);
@@ -56,6 +56,6 @@ void winnerwindow::pressedmain(){
 }
 
 void winnerwindow::pressedLboard() {
-    emit gotoLboard(this->player_name, this->score_value);
+    emit gotoLboard();
 }
 

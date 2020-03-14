@@ -170,11 +170,11 @@ void singlewindow::updatescorelabel(){
 
 void singlewindow::roundupdate(){
     ++round_number;
-    if(round_number <4){
+    if(round_number < 2){
          emit roundcomplete(round_number);
     }
     else{
-        emit gamewon();
+        emit gamewon(mc->getname(), mc->getscore());
     }
    //view->increase_speed(round_number);
 }

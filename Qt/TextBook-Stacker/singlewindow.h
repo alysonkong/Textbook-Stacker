@@ -36,7 +36,7 @@ signals:
    void finalscore(int);
    void change_timer(int);
    void roundcomplete(int);
-   void gamewon();
+   void gamewon(QString, int);
    void change_music();
 
 public slots:

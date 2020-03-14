@@ -13,11 +13,11 @@ public:
     //explicit loserwindow(QWidget *parent = nullptr);
     winnerwindow(QString, int);
 signals:
-     void returntomain();
-     void gotoLboard(QString, int);
+    void returntomain();
+    void gotoLboard();
 public slots:
-     void pressedmain();
-     void pressedLboard();
+    void pressedmain();
+    void pressedLboard();
 private:
     QGridLayout *layout;
     QString player_name;
