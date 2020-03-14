@@ -12,10 +12,10 @@
  */
 singlewindow::singlewindow(QString const & name1) : lives(3)
 {
-    spritesheet = new QPixmap(":/spritesheets/moreoverworld.png"); //creates the spritesheet as a pixmap with a custom image
+    spritesheet = new QPixmap(":/spritesheets/avataredited.png"); //creates the spritesheet as a pixmap with a custom image
 
     //QPixmap* ss, int w, int h, int nx, int ny, int x_off, int y_off, double scale = 1, int tpf=1
-    mc = new avatar(name1, spritesheet, 32, 48, 4, 4, 112, 5, 2, 4); //creates an avatar that the player will control
+    mc = new avatar(name1, spritesheet, 32, 48, 4, 4, 112, 48*4+2, 2, 4); //creates an avatar that the player will control
     mc->setPos(100,100); //sets position of this avatar
     mc->setSpeed(20); //sets speed of the avatar
 
@@ -33,14 +33,20 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     exit = new QPushButton("Exit"); //creates new button with the label "exit
     exit->setFont(f);
     exit->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
-                          "border-width: 2px; border-color: solid yellow;}");
+                          "border-width: 2px; min-width: 7em; padding: 6px; border-color: solid yellow;}");
     connect(exit, SIGNAL(clicked()), this, SLOT(returntomain())); //makes it so clicking this button will return to the main window
 
     QLabel* p1_name = new QLabel(name1); //creates new label for the player's name
     p1_name->setFont(f); //sets the font of this text to the font we chose earlier
+    p1_name->setStyleSheet("QLabel { font: 33pt;}");
 
 
     r = new Recipe::Recipe();
+
+    QLabel *scorelabel = new QLabel("Score:");
+    scorelabel->setFont(f);
+    scorelabel->setStyleSheet("QLabel { font: 30pt;");
+
     pscore = new QLabel(QString::number(mc->getscore()));
     pscore->setFont(f);
 
@@ -72,20 +78,20 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     view = new GameView(mc); //creates new gameview object
     layout = new QGridLayout(); //creates new gridlayout
 
-    //sstack = new SideStack();
 
     /**
       adds the widgets we created earlier to the gridlayout
       **/
 
-    layout->addWidget(r,0,0,2,2, Qt::AlignTop);
+    layout->addWidget(r,0,0,-1,2, Qt::AlignTop);
    // layout->addWidget(sstack, 1,0,3,2,Qt::AlignBottom);
     layout->addWidget(view,0,2,-1,1);
     layout->addWidget(p1_name,0,3,1,2, Qt::AlignTop|Qt::AlignLeft);
-    layout->addLayout(livesnum, 1,3,1,1, Qt::AlignTop|Qt::AlignLeft);
-    layout->addWidget(pscore, 2,3,1,2, Qt::AlignLeft);
-    layout->addWidget(exit, 3,3,4,2, Qt::AlignCenter);
-    layout->addWidget(music_button, 4,3,1,1, Qt::AlignLeft);
+    layout->addWidget(scorelabel, 1,3,1,2, Qt::AlignBottom|Qt::AlignLeft);
+    layout->addLayout(livesnum, 2,3,1,2, Qt::AlignTop|Qt::AlignLeft);
+    layout->addWidget(pscore, 3,3,1,2, Qt::AlignLeft);
+    layout->addWidget(exit, 4,3,5,2, Qt::AlignLeft);
+    layout->addWidget(music_button, 10,3,1,2, Qt::AlignRight);
 
     this->setLayout(layout); //sets window's layout to the gridlayout
 

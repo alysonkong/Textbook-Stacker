@@ -106,7 +106,7 @@ QPainterPath avatar::shape() const{
     QPolygonF myPolygon;
     int n = bookstack.size();
     if(bookstack.size()== 0){
-        myPolygon << QPointF(18,293.8) << QPointF(82, 293.8) << QPointF(50,303.8) <<QPointF(18,293.8);
+         myPolygon << QPointF(18,306.8) << QPointF(80, 306.8) << QPointF(50,310.8) <<QPointF(18,306.8);
     }
     else{
         myPolygon << QPointF(0,(389.8-96-n*32.2)) << QPointF(100, (389.8-96-n*32.2)) << QPointF(50,(389.8-96-n*32.2+10)) <<QPointF(0,(389.8-96-n*32.2));
@@ -118,18 +118,18 @@ QPainterPath avatar::shape() const{
 void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     QRectF sr(Sprite::getx_off() + Sprite::getw()*Sprite::getcx(),Sprite::gety_off() + Sprite::geth()*Sprite::getcy(),32,48);
     //QRectF sr(ax_off+aw*acx, ay_off+ah*acy, 32, 48);
-    QPolygonF mPolygon;
-    mPolygon << QPointF(18,293.8) << QPointF(82, 293.8) << QPointF(50,303.8) <<QPointF(18,293.8);
+//    QPolygonF mPolygon;
+//     mPolygon << QPointF(18,306.8) << QPointF(80, 306.8) << QPointF(50,310.8) <<QPointF(18,306.8);
 
-   painter->setBrush(Qt::cyan);
-    painter->drawRect(QRectF(0,0,100, 489.8));
+//   painter->setBrush(Qt::cyan);
+//    painter->drawRect(QRectF(0,0,100, 489.8));
 
     painter->drawPixmap(QRectF((0+18),293.8,(2*32),(2*48)),*Sprite::getss(), sr);
 
 
-    QPen myPen(Qt::red, 2, Qt::SolidLine);
-    painter->setPen(myPen);
-    painter->drawPolygon(mPolygon);
+//    QPen myPen(Qt::red, 2, Qt::SolidLine);
+//    painter->setPen(myPen);
+    //painter->drawPolygon(mPolygon);
 
 
 
@@ -137,7 +137,7 @@ void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     QRectF source(0,0,500,161);
     int y = 1;
     for(auto i: bookstack){
-        painter->drawPixmap(QRectF(0,(293.8-32.2*y), 500*0.2, 161*0.2), *i->getbookpic(), QRectF(0,0,500,161));
+        painter->drawPixmap(QRectF(0,(308.8-32.2*y), 500*0.2, 161*0.2), *i->getbookpic(), source);
         ++y;
     }
 

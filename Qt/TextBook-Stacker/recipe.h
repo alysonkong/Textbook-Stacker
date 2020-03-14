@@ -33,7 +33,7 @@ public:
  /**
   *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
  */
-    //QWidget* display_recipe(); //should it be void????
+
 
 
     void update_recipe_display(int code);
@@ -65,6 +65,9 @@ signals:
 
 
 private:
+    void display_recipe(); //should it be void????
+
+
     int bigcplusplus_count = 0;
     int bio_count = 0;
     int chem_count = 0;
@@ -82,7 +85,7 @@ private:
     QGridLayout *layout;
 
     int total_books = 0;
-
+    QFont f;
     //std::list<int> stack; //list keeps track of which books need to be caught
 
 
