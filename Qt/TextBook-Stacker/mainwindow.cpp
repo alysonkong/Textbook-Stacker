@@ -106,10 +106,11 @@ MainWindow::MainWindow(QWidget *parent)
     main->setLayout(mainlayout);
 
     //round_window = new roundwindow(2);
-
-    //swindows->addWidget(round_window);
+    lostwindow = new loserwindow(2);
+   // swindows->addWidget(round_window);
     //wonwindow= new winnerwindow("Alice", 20);
     //swindows->addWidget(wonwindow);
+    swindows->addWidget(lostwindow);
     swindows->addWidget(main);
     swindows->addWidget(lboard);
     swindows->addWidget(hwindow);

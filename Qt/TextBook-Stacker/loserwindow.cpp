@@ -22,6 +22,11 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
     title->setAlignment(Qt::AlignCenter);
     title->setStyleSheet("QLabel { border:none; color : white;}");
 
+    QPixmap losspic(":/spritesheets/lostkid.png");
+    losspic = losspic.scaled(680,453,Qt::IgnoreAspectRatio); //resized the icon graphics
+    QLabel* lost = new QLabel;
+    lost->setPixmap(losspic);
+
     QPushButton *main_menu = new QPushButton("Exit to Main");
     main_menu->setFont(f);
     main_menu->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
@@ -37,8 +42,9 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
 
     layout = new QGridLayout();
     layout->addWidget(title, 0, 0, 1, -1);
-    layout->addWidget(main_menu, 1, 0, 1, -1, Qt::AlignCenter);
-    layout->addWidget(leaderboard, 2, 0, 1, -1, Qt::AlignCenter);
+    layout->addWidget(lost, 1,0,1,-1, Qt::AlignCenter);
+    layout->addWidget(main_menu, 2, 0, 1, -1, Qt::AlignCenter);
+    layout->addWidget(leaderboard, 3, 0, 1, -1, Qt::AlignCenter);
 
 
     layout->setContentsMargins( 100, 50, 100, 50);
