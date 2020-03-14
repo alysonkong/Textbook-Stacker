@@ -105,6 +105,11 @@ MainWindow::MainWindow(QWidget *parent)
     mainlayout->addWidget(music_icon, 1, 0, Qt::AlignRight);
     main->setLayout(mainlayout);
 
+    //round_window = new roundwindow(2);
+
+    //swindows->addWidget(round_window);
+    //wonwindow= new winnerwindow("Alice", 20);
+    //swindows->addWidget(wonwindow);
     swindows->addWidget(main);
     swindows->addWidget(lboard);
     swindows->addWidget(hwindow);
@@ -158,11 +163,24 @@ void MainWindow::getname(QString n){
 }
 
 void MainWindow::winnerdisplay(QString pname, int pscore) {
+    if(round_window){
+        swindows->removeWidget(round_window);
+        delete round_window;
+        round_window=nullptr;
+
+    }
+//    static bool running = false;
+//    if(!running) {
+//        running = true;
+
     wonwindow = new winnerwindow(pname, pscore);
     swindows->addWidget(wonwindow);
     swindows->setCurrentWidget(wonwindow);
     connect(wonwindow, SIGNAL(returntomain()), this, SLOT(maindisplay()));
     connect(wonwindow, SIGNAL(gotoLboard()), this, SLOT(lboarddisplay()));
+
+//    }
+//    running = false;
 }
 
 void MainWindow::rounddisplay(int r){
@@ -235,6 +253,7 @@ void  MainWindow::splayerdisplay(){
  * @brief MainWindow::mplayerdisplay set stackedwidget to multiplayer
  */
 void  MainWindow::mplayerdisplay(){
+
     swindows->setCurrentWidget(gwindow);
     //swindows->setCurrentWidget(lboard);
 }

@@ -11,7 +11,8 @@ class winnerwindow : public QWidget
     Q_OBJECT
 public:
     //explicit loserwindow(QWidget *parent = nullptr);
-    winnerwindow(QString, int);
+   winnerwindow(const QString&, int);
+
 signals:
     void returntomain();
     void gotoLboard();
@@ -24,5 +25,6 @@ private:
     int score_value;
 
 };
+
 
 #endif // WINNERWINDOW_H

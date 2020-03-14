@@ -11,7 +11,7 @@ namespace Recipe {
 Recipe::Recipe() {
 
     //randomly generate a number between 6-9 for the total number of books the player needs to catch
-    total_books = QRandomGenerator::global()->bounded(6,10); //6,10
+    total_books = QRandomGenerator::global()->bounded(2,3); //6,10
 
     for (int i = 0; i < total_books; ++i) { //stack consists of 6-9 textbooks
         int book_code = QRandomGenerator::global()->bounded(6);
