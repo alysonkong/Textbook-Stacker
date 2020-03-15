@@ -17,6 +17,8 @@
         <file>loserwindow.mp3</file>
         <file>winning.mp3</file>
         <file>stacking sound effect.mp3</file>
+        <file>menu select sound effect.mp3</file>
+        <file>bomb sound effect.mp3</file>
     </qresource>
     <qresource prefix="/icons">
         <file>music.png</file>

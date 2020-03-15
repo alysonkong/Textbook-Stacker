@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
     song->setPlaylist(playlist);
     song->play();
 
+    clicked_sound = new QMediaPlayer();
+    clicked_sound->setMedia(QUrl("qrc:/music/menu select sound effect.mp3"));
 
 
     QLabel *gametitle = new QLabel("Textbook Stacker");
@@ -221,6 +223,13 @@ void MainWindow::getnames(QString n1, QString n2){
  * @brief MainWindow::musiconoff turns QMediaPlayer on or off
  */
 void MainWindow::musiconoff(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
+
     if(song->state()==2){ //2 indicates paused state
         song->play();
     }
@@ -233,6 +242,12 @@ void MainWindow::musiconoff(){
  * @brief MainWindow::lboarddisplay set stackedwidget to leaderboard
  */
 void  MainWindow::lboarddisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
     //swindows->setCurrentIndex(1);
     swindows->setCurrentWidget(lboard);
 }
@@ -241,6 +256,7 @@ void  MainWindow::lboarddisplay(){
  * @brief MainWindow::splayerdisplay set stackedwidget to singleplayer
  */
 void  MainWindow::splayerdisplay(){
+
     if(round_window){
         swindows->removeWidget(round_window);
         delete round_window;
@@ -254,6 +270,12 @@ void  MainWindow::splayerdisplay(){
  * @brief MainWindow::mplayerdisplay set stackedwidget to multiplayer
  */
 void  MainWindow::mplayerdisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
 
     swindows->setCurrentWidget(gwindow);
     //swindows->setCurrentWidget(lboard);
@@ -263,6 +285,12 @@ void  MainWindow::mplayerdisplay(){
  * @brief MainWindow::maindisplay set stackedwidget to homepage
  */
 void MainWindow::maindisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
     if(single_window){
         swindows->removeWidget(single_window);
         delete single_window;
@@ -275,6 +303,12 @@ void MainWindow::maindisplay(){
  * @brief MainWindow::hwindowdisplay set stackedwidget to helpwindow
  */
 void MainWindow::hwindowdisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
     swindows->setCurrentIndex(2);
 }
 
@@ -282,6 +316,12 @@ void MainWindow::hwindowdisplay(){
  * @brief MainWindow::namewindowdisplay set stackedwidget to user input namewindow display
  */
 void MainWindow::namewindowdisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
     swindows->setCurrentWidget(namewindow);
 }
 
@@ -289,6 +329,12 @@ void MainWindow::namewindowdisplay(){
  * @brief MainWindow::twonamesdisplay set stackedwidget to two user inputs isplay
  */
 void MainWindow::twonamesdisplay(){
+    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+        clicked_sound->setPosition(0);
+    }
+    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+        clicked_sound->play();
+    }
     swindows->setCurrentWidget(twonameswindow);
 }
 

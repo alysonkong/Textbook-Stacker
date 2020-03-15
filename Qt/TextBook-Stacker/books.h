@@ -50,7 +50,7 @@ private:
     int bookwidth;
     int bookheight;
     Recipe::Recipe* rec;
-    QMediaPlayer* stacking_sound;
+//    QMediaPlayer* stacking_sound;
 
     //BookStack* stacktainer = bookstack;
 };

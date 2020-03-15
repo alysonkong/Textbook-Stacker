@@ -88,6 +88,7 @@ private:
     roundwindow* round_window;
     int rounds;
     winnerwindow* wonwindow;
+    QMediaPlayer* clicked_sound;
 
 };
 #endif // MAINWINDOW_H

@@ -13,6 +13,7 @@
 
 //#include <QGraphicsScene>
 //#include <QPainter>
+#include <QMediaPlayer>
 
 namespace Recipe {
 
@@ -86,7 +87,8 @@ private:
 
     int total_books = 0;
     QFont f;
-    //std::list<int> stack; //list keeps track of which books need to be caught
+    QMediaPlayer* stacking_sound;
+    QMediaPlayer* error_sound;
 
 
 };

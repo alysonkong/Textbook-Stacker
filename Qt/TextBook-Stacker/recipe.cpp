@@ -77,8 +77,10 @@ Recipe::Recipe() {
     setLayout(layout);
 
     //show();
-
-
+    stacking_sound = new QMediaPlayer();
+    stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
+    error_sound = new QMediaPlayer();
+    error_sound->setMedia(QUrl("qrc:/music/bomb sound effect.mp3"));
 
 }
 
@@ -179,6 +181,12 @@ int Recipe::get_philo_count() {
 void Recipe::book_caught(int code) {
     if (code == 0) {
         if (bigcplusplus_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --bigcplusplus_count;
             --total_books;
             updatescore(0);
@@ -192,6 +200,12 @@ void Recipe::book_caught(int code) {
 
     if (code == 1) {
         if (bio_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --bio_count;
             --total_books;
             updatescore(1);
@@ -205,6 +219,12 @@ void Recipe::book_caught(int code) {
 
     if (code == 2) {
         if (chem_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --chem_count;
             --total_books;
             updatescore(2);
@@ -218,6 +238,12 @@ void Recipe::book_caught(int code) {
 
     if (code == 3) {
         if (soc_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --soc_count;
             --total_books;
             updatescore(3);
@@ -231,6 +257,12 @@ void Recipe::book_caught(int code) {
 
     if (code == 4) {
         if (eng_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --eng_count;
             --total_books;
             updatescore(4);
@@ -244,6 +276,12 @@ void Recipe::book_caught(int code) {
 
     if (code == 5) {
         if (philo_count != 0) {
+            if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                stacking_sound->setPosition(0);
+            }
+            else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                stacking_sound->play();
+            }
             --philo_count;
             --total_books;
             updatescore(5);
@@ -255,6 +293,12 @@ void Recipe::book_caught(int code) {
         }
     }
     if(code >5){
+        if (error_sound->state() == QMediaPlayer::PlayingState) {
+            error_sound->setPosition(0);
+        }
+        else if (error_sound->state() == QMediaPlayer::StoppedState) {
+            error_sound->play();
+        }
         emit wrong_book();
     }
 
