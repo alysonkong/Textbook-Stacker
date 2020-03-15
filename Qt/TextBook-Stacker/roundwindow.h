@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QMediaPlayer>
 
 class roundwindow : public QWidget
 {
@@ -20,6 +21,7 @@ private:
     int round;
     QLabel* roundtext;
     QGridLayout* layout;
+    QMediaPlayer* newround_sound;
 
 };
 

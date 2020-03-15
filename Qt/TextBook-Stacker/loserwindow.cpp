@@ -54,6 +54,15 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
     setWindowTitle("Loser Window"); //changes window title
 
     show();
+
+    loser_sound = new QMediaPlayer();
+    loser_sound->setMedia(QUrl("qrc:/music/loserwindow.mp3"));
+    if (loser_sound->state() == QMediaPlayer::PlayingState) {
+        loser_sound->setPosition(0);
+    }
+    else if (loser_sound->state() == QMediaPlayer::StoppedState) {
+        loser_sound->play();
+    }
 }
 
 void loserwindow::returntomain(){

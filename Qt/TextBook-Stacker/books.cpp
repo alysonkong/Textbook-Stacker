@@ -26,6 +26,9 @@ books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(16
         book = new QPixmap(":/spritesheets/letter_F.png");
     }
 
+    stacking_sound = new QMediaPlayer();
+    stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
+
 }
 
 /**
@@ -152,6 +155,14 @@ void books::advance(int phase) {
                 }
 
                 if(!scene()->collidingItems(this).isEmpty()){
+
+                    if (stacking_sound->state() == QMediaPlayer::PlayingState) {
+                        stacking_sound->setPosition(0);
+                    }
+                    else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
+                        stacking_sound->play();
+                    }
+
                     emit emittype(this->gettype());
                     //QObject::connect
                     scene()->removeItem(this);

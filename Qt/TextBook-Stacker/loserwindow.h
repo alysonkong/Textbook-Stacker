@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QLabel>
+#include <QMediaPlayer>
 
 
 class loserwindow : public QWidget
@@ -20,6 +21,7 @@ private:
     QGridLayout *layout;
     QString player_name;
     int score_value;
+    QMediaPlayer* loser_sound;
 
 };
 

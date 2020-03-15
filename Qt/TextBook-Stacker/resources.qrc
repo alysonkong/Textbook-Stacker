@@ -15,8 +15,8 @@
     <qresource prefix="/music">
         <file>Blazer Rail.wav</file>
         <file>loserwindow.mp3</file>
-        <file>textbookstack.mp3</file>
         <file>winning.mp3</file>
+        <file>stacking sound effect.mp3</file>
     </qresource>
     <qresource prefix="/icons">
         <file>music.png</file>

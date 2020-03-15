@@ -56,6 +56,15 @@ winnerwindow::winnerwindow(const QString& name, int pscore) : player_name(name),
     setWindowTitle("Winner Window"); //changes window title
 
     show();
+
+    winning_sound = new QMediaPlayer();
+    winning_sound->setMedia(QUrl("qrc:/music/winning.mp3"));
+    if (winning_sound->state() == QMediaPlayer::PlayingState) {
+        winning_sound->setPosition(0);
+    }
+    else if (winning_sound->state() == QMediaPlayer::StoppedState) {
+        winning_sound->play();
+    }
 }
 
 void winnerwindow::pressedmain(){
