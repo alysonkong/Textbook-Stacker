@@ -64,7 +64,7 @@ void avatar::advance(int phase) {
         mcMoveBoundary= QRectF(-25,0, 454, 750);
     }
     else{
-        mcMoveBoundary = QRectF(-8,0, 413, 750);
+        mcMoveBoundary = QRectF(-5,0, 416, 750);
     }
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));

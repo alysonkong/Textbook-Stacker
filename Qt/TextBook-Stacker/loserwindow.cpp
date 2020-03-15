@@ -32,7 +32,7 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
     main_menu->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
                              "border-width: 2px; border-color: white;}");
 
-    //connect(main_menu, SIGNAL(clicked()), this, SLOT(returntomain()));
+    //connect(main_menu, SIGNAL(clicked()), his, SLOT(returntomain()));
     connect(main_menu, SIGNAL(clicked()), this, SIGNAL(pressedmain()));
 
     QPushButton *leaderboard = new QPushButton("Leaderboard");

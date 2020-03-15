@@ -166,16 +166,16 @@ void MainWindow::getname(QString n){
 }
 
 void MainWindow::winnerdisplay(QString pname, int pscore) {
-    if(round_window){
-        swindows->removeWidget(round_window);
-        delete round_window;
-        round_window=nullptr;
+//    if(round_window){
+//        swindows->removeWidget(round_window);
+//        delete round_window;
+//        round_window=nullptr;
 
-    }
+//    }
 //    static bool running = false;
 //    if(!running) {
 //        running = true;
-
+    song->pause();
     wonwindow = new winnerwindow(pname, pscore);
     swindows->addWidget(wonwindow);
     swindows->setCurrentWidget(wonwindow);
@@ -187,6 +187,7 @@ void MainWindow::winnerdisplay(QString pname, int pscore) {
 }
 
 void MainWindow::rounddisplay(int r){
+    song->pause();
     round_window = new roundwindow(r);
     swindows->addWidget(round_window);
     swindows->setCurrentWidget(round_window);

@@ -106,7 +106,7 @@ singlewindow::singlewindow(QString const & name1) : lives(3)
     //connect(r, SIGNAL(round_complete(int)), this, SIGNAL(roundcomplete(int)));
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife()));
     //connect(r, SIGNAL(round_complete()), view, SLOT(increase_speed(int)));
-    //connect(view, SIGNAL(new_round()), this, SLOT(newrecipe()));
+
     connect(this, SIGNAL(change_timer(int)), view, SLOT(increase_speed(int)));
 
 
@@ -176,14 +176,13 @@ void singlewindow::updatescorelabel(){
 
 void singlewindow::roundupdate(){
     ++round_number;
-//    if(round_number < 1){
-//         emit roundcomplete(round_number);
-//    }
-//    else{
-        //emit gamewon(mc->getname(), mc->getscore());
+    if(round_number < 2){
+         emit roundcomplete(round_number);
+    }
+    else{
         emit gamewon(mc->getname(), mc->getscore());
-    //}
-   //view->increase_speed(round_number);
+    }
+
 }
 
 void singlewindow::newround(){

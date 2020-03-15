@@ -56,11 +56,12 @@ roundwindow::roundwindow(int n): round(n){
 
     newround_sound = new QMediaPlayer();
     newround_sound->setMedia(QUrl("qrc:/music/winning.mp3"));
-    if (newround_sound->state() == QMediaPlayer::PlayingState) {
-        newround_sound->setPosition(0);
-    }
-    else if (newround_sound->state() == QMediaPlayer::StoppedState) {
-        newround_sound->play();
-    }
+    newround_sound->play();
+//    if (newround_sound->state() == QMediaPlayer::PlayingState) {
+//        newround_sound->setPosition(0);
+//    }
+//    else if (newround_sound->state() == QMediaPlayer::StoppedState) {
+//        newround_sound->play();
+//    }
 
 }
