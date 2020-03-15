@@ -79,8 +79,10 @@ Recipe::Recipe() {
     //show();
     stacking_sound = new QMediaPlayer();
     stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
+    stacking_sound->setVolume(20);
     error_sound = new QMediaPlayer();
     error_sound->setMedia(QUrl("qrc:/music/bomb sound effect.mp3"));
+    error_sound->setVolume(50);
 
 }
 

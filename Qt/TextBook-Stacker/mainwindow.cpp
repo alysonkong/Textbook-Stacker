@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     clicked_sound = new QMediaPlayer();
     clicked_sound->setMedia(QUrl("qrc:/music/menu select sound effect.mp3"));
+    clicked_sound->setVolume(50);
 
 
     QLabel *gametitle = new QLabel("Textbook Stacker");
