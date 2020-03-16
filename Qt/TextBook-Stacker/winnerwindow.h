@@ -9,16 +9,18 @@
 class winnerwindow : public QWidget
 {
     Q_OBJECT
+
 public:
-    //explicit loserwindow(QWidget *parent = nullptr);
    winnerwindow(const QString&, int);
 
 signals:
     void returntomain();
     void gotoLboard(QString, int);
+
 public slots:
     void pressedmain();
     void pressedLboard();
+
 private:
     QGridLayout *layout;
     QString player_name;

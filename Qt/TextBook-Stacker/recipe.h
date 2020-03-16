@@ -11,37 +11,18 @@
 
 namespace Recipe {
 
-/* FUNCTION:
- * the recipe class randomly generates a "recipe" of textbooks that the player needs to catch, a new recipe every round of the game
- * it displays the the amount of textbooks the player still needs to catch, updating every time the player catches a correct book
- * once the player catches all of the books in the recipe, display success/new round message
+/**
+ * @brief The Recipe class randomly generates and displays a recipe of textbooks that the player needs to catch
  */
 class Recipe : public QWidget {
     Q_OBJECT
 
 public:
-    /**
-    *@brief the recipe constructor randomly generates a list of how many textbooks the user needs to catch
-    */
     Recipe();
-
-    /**
-    *@brief the function updates the recipe display, showing how many of each type of textbook the user needs to catch
-    * @param code the book code of the book that was correctly caught
-    */
     void update_recipe_display(int code);
-
-    /**
-     * @brief newrecipe generates and displays a new recipe, replacing the old one
-     * @param layout is the layout of the recipe display prior to the recipe getting updated
-     */
     void newrecipe(QLayout* layout);
 
 public slots:
-    /**
-     * @brief book_caught receives a signal from gameview sending the type of book caught by the avatar
-     * @param code is the type of book caught
-     */
     void book_caught(int code);
 
 signals:
@@ -62,9 +43,6 @@ signals:
     void updatescore(int);
 
 private:
-    /**
-     * @brief display_recipe displays the recipe, showing the user how many of each type of book they need to catch
-     */
     void display_recipe();
 
     int bigcplusplus_count = 0;

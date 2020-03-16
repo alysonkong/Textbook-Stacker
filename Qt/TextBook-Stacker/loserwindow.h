@@ -6,19 +6,24 @@
 #include <QLabel>
 #include <QMediaPlayer>
 
-
+/**
+ * @brief The loserwindow class generates and displays a window that appears when the user has lost the game
+ */
 class loserwindow : public QWidget
 {
     Q_OBJECT
+
 public:
-    //explicit loserwindow(QWidget *parent = nullptr);
     loserwindow(QString, int);
+
 signals:
      void pressedmain();
      void gotolboard(QString, int);
+
 public slots:
      void returntomain();
      void pressedLboard();
+
 private:
     QGridLayout *layout;
     QString player_name;
