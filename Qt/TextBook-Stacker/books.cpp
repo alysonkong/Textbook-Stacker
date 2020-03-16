@@ -1,7 +1,12 @@
 #include "books.h"
 #include <QPainter>
 
-books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(161)
+
+/**
+ * @brief books::books creates a book graphicsobject based on the index of the book
+ * @param book_type
+ */
+books::books(int book_type) : booktype(book_type)
 {
     if(book_type ==0){
         book = new QPixmap(":/spritesheets/redbook.png");
@@ -25,9 +30,6 @@ books::books(int book_type) : booktype(book_type), bookwidth(500), bookheight(16
     else if(book_type >5 | book_type <=9){
         book = new QPixmap(":/spritesheets/letter_F.png");
     }
-
-//    stacking_sound = new QMediaPlayer();
-//    stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
 
 }
 
@@ -53,7 +55,6 @@ void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
  * @brief books::boundingRect bounds the size of the rect in which the book is drawn in, scaling the size by 0.2
  * @return a QRectF with custom parameters
  */
-//take in qrectf of
 QRectF books::boundingRect() const{
     if(booktype<=5){
         return QRectF(0,0,bookwidth*0.2,bookheight*0.2);
@@ -68,140 +69,44 @@ QRectF books::boundingRect() const{
  * @param phase
  */
 void books::advance(int phase) {
-    QRectF mcMoveBoundary(0,0, 500, 650);
+    QRectF mcMoveBoundary(0,0, 500, 700);
     if(phase) {
         QPointF down(0,7);
         down*=speed;
         QPointF nextPos = mapToScene(down);
-       // QRectF itemSceneBoundingRect = this->mapRectToScene(this->boundingRect());
-        //this->prepareGeometryChange();
-        //if(!scene()->intersects(itemSceneBoundingRect)){
-       // if(!mcMoveBoundary.contains(nextPos)){
-            //this->deleteLater();
 
-            //delete this;
-         //   scene()->removeItem(this);
-            //delete(this);
-            //delete book;
-            //book = nullptr;
-       // }
-//        if(!scene()->collidingItems(this).isEmpty()){
-//            emit emittype(booktype);
+        if(mcMoveBoundary.contains(nextPos)) { //if book is contained within the window bounds, set position
+             setPos(nextPos);
+        }
 
-//            this->deleteLater();
-//            scene()->removeItem(this);
-//            delete book;
-//            book = nullptr;
-            //delete this;
-           //
-
-       //}
-
-
-               // else { //if(!mcMoveBoundary.contains(nextPos))
-                 // setPos(nextPos);
-                    //delete book;
-                   // book = nullptr;
-
-             //   }
-
-//        if(!mcMoveBoundary.contains(nextPos)){ //|| !scene()->collidingItems(this).isEmpty()
-//           // this->prepareGeometryChange();
-//            this->deleteLater();
-//           // scene()->removeItem(this); //having only this uncommented leads to crash
-//            //delete book;
-//           // book = nullptr;
-
-//            //delete this;
-//            //scene()->update();
-//        }
-
-//        if(mcMoveBoundary.contains(nextPos)){ //&& scene()->collidingItems(this).isEmpty()
-//            if(!scene()->collidingItems(this).isEmpty()){
-//                emit emittype(this->gettype());
-
-//                this->deleteLater();
-//                //scene()->removeItem(this);
-//               // delete this;
-//            }
-//            else{
-//                setPos(nextPos);
-//            }
-//        }
-
-
-//        if(mcMoveBoundary.contains(nextPos) && scene()->collidingItems(this).isEmpty()) {
-//            setPos(nextPos);
-//        }
-//        else if(!scene()->collidingItems(this).isEmpty()){
-//            emit emittype(this->gettype());
-//            this->deleteLater();
-//            //scene()->removeItem(this);
-//           // delete book;
-//           // book = nullptr;
-//           // delete this;
-//           //scene()->update();
-//        }
-//        else{
-
-//            scene()->removeItem(this);
-
-//            delete this;
-
-//        }
-
-        if(mcMoveBoundary.contains(nextPos)) {
-                    setPos(nextPos);
-                }
-
-                if(!scene()->collidingItems(this).isEmpty()){
-
-//                    if (stacking_sound->state() == QMediaPlayer::PlayingState) {
-//                        stacking_sound->setPosition(0);
-//                    }
-//                    else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
-//                        stacking_sound->play();
-//                    }
-
-                    emit emittype(this->gettype());
-                    //QObject::connect
-                    scene()->removeItem(this);
-//                    delete book;
-//                    book = nullptr;
-                     delete this;
-                   //
-
-                }
-                else if(!mcMoveBoundary.contains(nextPos)){
-                    scene()->removeItem(this); //should i delete the qgraphicsobject or just the pixmap???
-//                    delete book;
-//                    book = nullptr;
-                     delete this;
-                }
+       if(!scene()->collidingItems(this).isEmpty()){ //if there is a collision detected with the book, emit the book index and remove from scene
+             emit emittype(booktype);
+             scene()->removeItem(this);
+              delete this;
+        }
+        else if(!mcMoveBoundary.contains(nextPos)){ //if the book isn't contained within the window bounds, remove the book from scene
+              scene()->removeItem(this);
+               delete this;
+        }
 
     }
 
 }
 
+
 /**
- * @brief books::gettype accessor function
- * @return book type index
+ * @brief books::getbookpic returns the book qpixmap which will be used in avatar.cpp to draw the bookstack
+ * @return
  */
-int books::gettype(){
-    return booktype;
-}
-
-
 QPixmap* books::getbookpic() const{
     return book;
 }
 
+/**
+ * @brief books::~books custom destructor used to delete the qpixmap of a book
+ */
 books::~books(){
     this->prepareGeometryChange();
     delete book;
     book = nullptr;
 }
-
-//bool books::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const{
-//    emit type_pts(booktype, points);
-//}

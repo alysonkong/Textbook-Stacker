@@ -17,12 +17,28 @@ class leaderboard : public QWidget{
      Q_OBJECT
 public:
     leaderboard();
-    class leaders{ //technically can hold
+    /**
+     * @brief The leaders class is a neested class within the leaderboard that holds the score and name of every player
+     */
+    class leaders{
     public:
+        /**
+         * @brief leaders constructor for leaders that take in a name and score
+         * @param n name of player
+         * @param s score of player
+         */
         leaders(const QString& n, int s): name(n), score(s){}
+        /**
+         * @brief namescore converts name and score into a string
+         * @return return the name and score
+         */
         QString namescore(){return name+"    " +QString::number(score);}
+        /**
+         * @brief getscore
+         * @return the score of the player for comparison with the rest of the list
+         */
         int getscore(){ return score;}
-       // QString getname(){return name;}
+
     private:
         QString name;
         int score;
@@ -43,7 +59,7 @@ private:
     QLabel* names;
     QLabel* lboard;
     QPushButton* returnmain;
-    QVBoxLayout* layout;
+    QGridLayout* layout;
     int index;
     QFont f;
 

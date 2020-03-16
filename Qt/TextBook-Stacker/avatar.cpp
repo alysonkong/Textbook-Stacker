@@ -42,17 +42,6 @@ void avatar::turn(Direction d) // turn to a given direction
     }
 }
 
-//QRectF avatar::boundingRect() const{
-
-//}
-
-int avatar::getlife(){
-    return life;
-}
-
-void avatar::deletelife(){
-    --life;
-}
 
 /**
  * @brief avatar::advance the avatar will be set at a specific point in QGraphicsView
@@ -60,15 +49,15 @@ void avatar::deletelife(){
  */
 void avatar::advance(int phase) {
     QRectF mcMoveBoundary;
-    if(bookstack.size() ==0){
+    if(bookstack.size() ==0){ //if there are no books stacked on avatar, this is the bounding rect
         mcMoveBoundary= QRectF(-25,0, 454, 750);
     }
-    else{
+    else{ //if there are books stacked on avatar, this is the bounding rect
         mcMoveBoundary = QRectF(-5,0, 416, 750);
     }
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));
-        if(mcMoveBoundary.contains(nextPos)) {
+        if(mcMoveBoundary.contains(nextPos)) { //if the avatar is within bounds set the position of avatar
             setPos(nextPos);
         }
 
@@ -76,67 +65,69 @@ void avatar::advance(int phase) {
     Sprite::advance(phase);
 }
 
+/**
+ * @brief avatar::getscore
+ * @return return score of avatar
+ */
 size_t avatar::getscore(){
     return score;
 }
 
+/**
+ * @brief avatar::getname
+ * @return name of player
+ */
 QString avatar::getname(){
     return name;
 }
 
+/**
+ * @brief avatar::updatepscore increases the player's score by 1 for each correct textbook
+ */
 void avatar::updatepscore(){
     ++score;
 }
 
+/**
+ * @brief avatar::boundingRect the boundingrect of avatar and 10 potential books on top
+ * @return a qrect that will serve as the container rectangle
+ */
 QRectF avatar::boundingRect() const{
-    //int xdimension = 100;
-//    if(bookstack.size() == 0){
-//        xdimension = Sprite::scale()*Sprite::getw();
-//    }
-    //else{
-    //}
-    //int ydimension = Sprite::scale()*Sprite::geth()+(bookstack.size()*(161*0.2));
-
     return QRectF(0,0,100, 489.8);
-   // return QRectF(0,200,100, 189.8);
+
 }
 
+/**
+ * @brief avatar::shape used in collision detection for the avatar based on whether avatar is by itself or has textbooks
+ * @return a path that depends on the # of textbooks there are
+ */
 QPainterPath avatar::shape() const{
     QPainterPath path;
     QPolygonF myPolygon;
     int n = bookstack.size();
-    if(bookstack.size()== 0){
+    if(bookstack.size()== 0){ //avatar's collision shape by itself
          myPolygon << QPointF(18,306.8) << QPointF(80, 306.8) << QPointF(50,310.8) <<QPointF(18,306.8);
     }
-    else{
+    else{ //avatar's collision shape w/ n books on top
         myPolygon << QPointF(0,(389.8-96-n*32.2)) << QPointF(100, (389.8-96-n*32.2)) << QPointF(50,(389.8-96-n*32.2+10)) <<QPointF(0,(389.8-96-n*32.2));
     }
     path.addPolygon(myPolygon);
     return path;
 }
 
+/**
+ * @brief avatar::paint overrides the paint function to draw out avatars and books
+ * @param painter paints the spritesheet and the book graphics
+ * @param option not used
+ * @param widget not used
+ */
 void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     QRectF sr(Sprite::getx_off() + Sprite::getw()*Sprite::getcx(),Sprite::gety_off() + Sprite::geth()*Sprite::getcy(),32,48);
-    //QRectF sr(ax_off+aw*acx, ay_off+ah*acy, 32, 48);
-//    QPolygonF mPolygon;
-//     mPolygon << QPointF(18,306.8) << QPointF(80, 306.8) << QPointF(50,310.8) <<QPointF(18,306.8);
+    painter->drawPixmap(QRectF((0+18),293.8,(2*32),(2*48)),*Sprite::getss(), sr); //draws the avatar
+    QRectF source(0,0,500,161); //source's dimension is the book graphics dimension
 
-//   painter->setBrush(Qt::cyan);
-//    painter->drawRect(QRectF(0,0,100, 489.8));
-
-    painter->drawPixmap(QRectF((0+18),293.8,(2*32),(2*48)),*Sprite::getss(), sr);
-
-
-//    QPen myPen(Qt::red, 2, Qt::SolidLine);
-//    painter->setPen(myPen);
-    //painter->drawPolygon(mPolygon);
-
-
-
-
-    QRectF source(0,0,500,161);
-    int y = 1;
-    for(auto i: bookstack){
+    int y = 1; //the starting pos for book drawing
+    for(auto i: bookstack){ //draw out however many books there are
         painter->drawPixmap(QRectF(0,(308.8-32.2*y), 500*0.2, 161*0.2), *i->getbookpic(), source);
         ++y;
     }
@@ -144,33 +135,22 @@ void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 }
 
+/**
+ * @brief avatar::addbooks gets the index of a book and create a new book that will be pushed into the bookstack
+ * @param index
+ */
 void avatar::addbooks(int index){
     books* temp = new books(index);
     bookstack.push_back(temp);
 }
 
-
+/**
+ * @brief avatar::deletestack gets rid of the book stack when avatar finishes a recipe or loses
+ */
 void avatar::deletestack(){
-    bookstack.clear();
-    this->update();
-//    for(auto i: bookstack){
-//        delete i;
-//        i = nullptr;
-//    }
-}
-//QVariant avatar::itemChange(GraphicsItemChange change, const QVariant &value){
-//    if (change == ItemPositionChange && scene()) {
-//            // value is the new position.
-//            QPointF newPos= value.toPointF();
-//            QRectF rect = scene()->sceneRect();
-//            if (!rect.contains(newPos)) {
-//                // Keep the item inside the scene rect.
-//                newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
-//                newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
-//                return newPos;
-//            }
-//        }
-//        return QGraphicsItem::itemChange(change, value);
-//}
+    bookstack.clear(); //clears the vector
+    this->update(); //forcefully updates the graphics
 
-//create wrapper class for avatar & bookstack
+}
+
+

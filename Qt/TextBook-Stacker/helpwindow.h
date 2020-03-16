@@ -24,16 +24,10 @@ public:
 
 //signals for helpwindow
 signals:
-    /**
-     * @brief pressed_main sends signal that helpwindow wants to go back to main with an int parameter
-     */
     void pressed_main(int);
 
 //slots for helpwindow
 public slots:
-    /**
-     * @brief return_to_main the slot that sends user back to main with no params
-     */
     void return_to_main();
 
 //private fields for helpwindow
@@ -46,11 +40,8 @@ private:
     QPushButton* book;
     QPushButton* fletter;
     QPushButton* recipe;
-    QVBoxLayout* main_layout;
-    QHBoxLayout* first_layout;
-    QHBoxLayout* second_layout;
-    QHBoxLayout* third_layout;
-    QHBoxLayout* fourth_layout;
+    QGridLayout* layout;
+
 };
 
 }

@@ -22,29 +22,26 @@ helpwindow::helpwindow()
     this->setAutoFillBackground(true); //auto fills background
     this->setPalette(palette); //sets helpwindow's palette to our palette that we created
 
-    //creates the layouts we need to format our helpwindow
-    main_layout = new QVBoxLayout;
-    first_layout = new QHBoxLayout;
-    second_layout = new QHBoxLayout;
-    third_layout = new QHBoxLayout;
-    fourth_layout = new QHBoxLayout;
+    //creates the gridlayout we need to format our helpwindow
+    layout = new QGridLayout;
 
     //creates title label with our font
     title = new QLabel("Instructions...");
     title->setFont(f);
+    title->setStyleSheet("QLabel { color: white;}");
 
     //creates label for the instructions with our font
-    instructions = new QLabel("Catch the textbooks that fall from the sky by\nmoving your avatar left or right with the left and\nright "
-                              "arrow keys or the 'a' and 'd' letter keys! "
-                              "You\nwill have to complete the recipe shown in the upper\nleft-hand corner before moving onto the next round.\nIf you "
-                              "catch a textbook that is not required by the\ncurrent recipe or a falling 'F' letter, you will lose\na heart. "
-                              "Lose all three hearts and you lose the\ngame! Good Luck!");
+    instructions = new QLabel("❉ Catch the textbooks that are fall from the \nsky by moving your avatar left or right with \nthe left and right "
+                              "arrow keys or the 'a' and \n'd' letter keys!\n"
+                              "❉ You will have to complete the recipe shown \nin the upper left-hand corner before moving \nonto the next round. If you "
+                              "catch a textbook \nthat is not listed by the current recipe or a \nfalling 'F' letter, you will lose a heart ❤️\n"
+                              "❉ Lose all three hearts and you lose the game! \nGood Luck!");
     instructions->setFont(f);
     instructions->setStyleSheet("QLabel { font: 24pt;}"); //sets font size to 24pt
 
     //creates pixmap for the avatar instructions image
     QPixmap pic1(":/icons/avatarinstruct.png");
-    pic1 = pic1.scaled(275,275,Qt::IgnoreAspectRatio); //resized the icon graphics
+    pic1 = pic1.scaled(213*1.2,138*1.2,Qt::IgnoreAspectRatio); //resized the icon graphics
 
     //creates button to display the avatar instructions icon
     avatar_instruct = new QPushButton();
@@ -55,7 +52,7 @@ helpwindow::helpwindow()
 
     //creates pixmap for the checkmark book image
     QPixmap book1(":/icons/checkmark_book.png");
-    book1 = book1.scaled(150, 250,Qt::IgnoreAspectRatio); //resized the icon graphics
+    book1 = book1.scaled(539*0.5, 365*0.5,Qt::IgnoreAspectRatio); //resized the icon graphics
 
     //creates new button to display the checkmark book icon
     book = new QPushButton();
@@ -66,7 +63,7 @@ helpwindow::helpwindow()
 
     //creates pixmap for the xmark f image
     QPixmap f_letter(":/icons/xmark_f.png");
-    f_letter = f_letter.scaled(200,200,Qt::IgnoreAspectRatio); //resized the icon graphics
+    f_letter = f_letter.scaled(509*0.4,365*0.4,Qt::IgnoreAspectRatio); //resized the icon graphics
 
     //creates new button to display the xmark f icon
     fletter = new QPushButton();
@@ -77,7 +74,7 @@ helpwindow::helpwindow()
 
     //creates pixmap for the recipe image
     QPixmap rec(":/icons/recipe2.png");
-    rec = rec.scaled(250,250,Qt::IgnoreAspectRatio); //resized the icon graphics
+    rec = rec.scaled(728*0.5,574*0.5,Qt::IgnoreAspectRatio); //resized the icon graphics
 
     //creates new button to display the recipe icon
     recipe = new QPushButton();
@@ -86,34 +83,27 @@ helpwindow::helpwindow()
     recipe->setIconSize(rec.rect().size()); //sets icon's size to the size of the pixmap
     recipe->setStyleSheet("QPushButton { border:none;}"); //removes border from the button
 
-    //adds the above puttons to their respective layouts to give the desired interface
-    first_layout->addWidget(title, 0, Qt::AlignCenter);
-    third_layout->addWidget(avatar_instruct,0,Qt::AlignCenter);
-    third_layout->addWidget(book,0,Qt::AlignCenter);
-    third_layout->addWidget(fletter,0,Qt::AlignCenter);
-    second_layout->addWidget(recipe,0,Qt::AlignCenter);
-    second_layout->addWidget(instructions, 0, Qt::AlignCenter);
+    //adds the above buttons to the gridlayout to give the desired interface
+    layout->addWidget(title, 0, 0, 1, -1, Qt::AlignCenter);
+    layout->addWidget(recipe,1,0, 2, 1,Qt::AlignCenter);
+    layout->addWidget(instructions,1,1, 2, 2, Qt::AlignCenter);
+    layout->addWidget(avatar_instruct,3, 0, 2, 1, Qt::AlignCenter);
+    layout->addWidget(book,3, 1, 2, 1, Qt::AlignCenter);
+    layout->addWidget(fletter,3, 2, 2, 1,Qt::AlignCenter);
 
     //creates new button to allow the user to return to main menu
     returntomain = new QPushButton("Return to main");
     returntomain->setFont(f); //sets font of the button to our font
     returntomain->setStyleSheet("QPushButton{font-size: 24px; color : white; background-color: black; border-style: outset;"
-                              "border-width: 2px; border-color: solid yellow;}"); //customizes button's stylesheet
+                              "border-width: 2px; padding: 6px; border-color: solid yellow;}"); //customizes button's stylesheet
 
-    //adds this button to the corresponding layout
-    fourth_layout->addWidget(returntomain,0, Qt::AlignRight);
 
-    //adds the layouts to the main layout
-    main_layout->addLayout(first_layout,Qt::AlignCenter);
-    main_layout->addLayout(second_layout, Qt::AlignCenter);
-    main_layout->addLayout(third_layout, Qt::AlignCenter);
-    main_layout->addLayout(fourth_layout, Qt::AlignCenter);
+    layout->addWidget(returntomain,6, 0, 1, -1, Qt::AlignRight);
 
-    //sets helpwindow's layout to the main_layout
-    setLayout(main_layout);
+    setLayout(layout);
 
     /**
-     * @brief connect the returntomani button with the signal clicked to the helpwindow's slot return_to_main to allow the user to return
+     * @brief connect the returntomani button with the signal clicked to the helpwindow's signal return_to_main to allow the user to return
      * to the main menu
      */
     connect(returntomain, SIGNAL(clicked()), this, SLOT(return_to_main()));
