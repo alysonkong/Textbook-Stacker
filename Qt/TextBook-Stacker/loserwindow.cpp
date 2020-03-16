@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
+loserwindow::loserwindow(QString pn, int pscore) : player_name(pn), score_value(pscore)
 {
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
     QString family = QFontDatabase::applicationFontFamilies(id).at(0); //get the correct font name
@@ -39,6 +39,7 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
     leaderboard->setFont(f);
     leaderboard->setStyleSheet("QPushButton { font-size: 24px; color : black; background-color: white; border-style: outset;"
                              "border-width: 2px; border-color: white;}");
+    connect(leaderboard, SIGNAL(clicked()), this, SLOT(pressedLboard()));
 
     layout = new QGridLayout();
     layout->addWidget(title, 0, 0, 1, -1);
@@ -68,5 +69,9 @@ loserwindow::loserwindow(int pscore) : player_name(), score_value(pscore)
 void loserwindow::returntomain(){
     emit pressedmain(); //emit pressedmain signal
 
+}
+
+void loserwindow::pressedLboard(){
+    emit gotolboard(player_name,score_value);
 }
 

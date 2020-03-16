@@ -15,7 +15,7 @@ public:
 
 signals:
     void returntomain();
-    void gotoLboard();
+    void gotoLboard(QString, int);
 public slots:
     void pressedmain();
     void pressedLboard();
