@@ -7,6 +7,9 @@
 
 namespace Recipe {
 
+/**
+*@brief the recipe constructor randomly generates a list of how many textbooks the user needs to catch
+*/
 Recipe::Recipe() {
 
     //randomly generate a number between 6-9 for the total number of books the player needs to catch
@@ -70,6 +73,43 @@ Recipe::Recipe() {
 
 
 
+/**
+*@brief the function updates the recipe display, showing how many of each type of textbook the user needs to catch
+* @param code the book code of the book that was correctly caught
+*/
+void Recipe::update_recipe_display(int code) {
+
+    if (code == 0) { //if user caught big c++
+        bigc_count_display->setText(QString::number(bigcplusplus_count)); //change amount left in recipe display
+    }
+
+    if (code == 1) { //if user caught biology
+        bio_count_display->setText(QString::number(bio_count)); //change display
+    }
+
+    if (code == 2) { //if user caught chemistry
+        chem_count_display->setText(QString::number(chem_count)); //change display
+    }
+
+    if (code == 3) { //if user caught sociology
+        soc_count_display->setText(QString::number(soc_count)); //change display
+    }
+
+    if (code == 4) { //if user caught english
+        eng_count_display->setText(QString::number(eng_count)); //change display
+    }
+
+    if (code == 5) { //if user caught philosophy
+        philo_count_display->setText(QString::number(philo_count)); //change display
+    }
+}
+
+
+
+/**
+ * @brief newrecipe generates and displays a new recipe, replacing the old one
+ * @param layout is the layout of the recipe display prior to the recipe getting updated
+ */
 void Recipe::newrecipe(QLayout* slayout){
 
         QLayoutItem* item;
@@ -124,6 +164,10 @@ void Recipe::newrecipe(QLayout* slayout){
 
 
 
+/**
+ * @brief book_caught receives a signal from gameview sending the type of book caught by the avatar
+ * @param code is the type of book caught
+ */
 void Recipe::book_caught(int code) {
 
     //checks which book code it is and sends out corresponding signals
@@ -267,35 +311,10 @@ void Recipe::book_caught(int code) {
 
 
 
-void Recipe::update_recipe_display(int code) {
 
-    if (code == 0) { //if user caught big c++
-        bigc_count_display->setText(QString::number(bigcplusplus_count)); //change amount left in recipe display
-    }
-
-    if (code == 1) { //if user caught biology
-        bio_count_display->setText(QString::number(bio_count)); //change display
-    }
-
-    if (code == 2) { //if user caught chemistry
-        chem_count_display->setText(QString::number(chem_count)); //change display
-    }
-
-    if (code == 3) { //if user caught sociology
-        soc_count_display->setText(QString::number(soc_count)); //change display
-    }
-
-    if (code == 4) { //if user caught english
-        eng_count_display->setText(QString::number(eng_count)); //change display
-    }
-
-    if (code == 5) { //if user caught philosophy
-        philo_count_display->setText(QString::number(philo_count)); //change display
-    }
-}
-
-
-
+/**
+ * @brief display_recipe displays the recipe, showing the user how many of each type of book they need to catch
+ */
 void Recipe::display_recipe() {
 
     if (bigcplusplus_count != 0) { //if there is at least one big c++ book in recipe
