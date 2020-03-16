@@ -12,7 +12,6 @@
 #include "books.h"
 #include "gameview.h"
 #include "recipe.h"
-#include "sidestack.h"
 
 
 /**
@@ -25,12 +24,12 @@ class singlewindow : public QWidget
 
 public:
 
-    singlewindow(QString const & name1);
+    singlewindow(QString const & name1); //constructor for singlewindow class
     ~singlewindow(); //destructor for singlewindow class
-    //int get_round_num();
+
 
 signals:
-   void pressedmain(); // @brief pressedmain signal that a
+   void pressedmain();
    void dropbook(books*);
    void pname_score(QString, int);
    void finalscore(QString, int);
@@ -40,7 +39,7 @@ signals:
    void change_music();
 
 public slots:
-    void returntomain(); //directs this window back to the main window
+    void returntomain();
     void updatescorelabel();
     void newrecipe();
     void deductlife();
@@ -49,27 +48,23 @@ public slots:
     void playpause_music();
 
 private:
-   // QGraphicsScene scene; //scene where the game is taking place
     QPixmap* spritesheet; //holds the avatar sprite
-    QPixmap back;
+    QPixmap back; //the background
     QTimer* timer; //timer that controls the construction of the sprites and how they fall
     QPushButton* exit; //exit button that takes the player back to the main window
     avatar* mc; //avatar for the player to control
-    QLabel* pscore;
-    size_t lives;
-    QHBoxLayout* livesnum;
-    QLabel* heart1;
-    QLabel* heart2;
-    QLabel* heart3;
-    QPushButton* music_button;
-    GameView* view;
-    SideStack* sstack;
-    Recipe::Recipe* r;
-    QWidget* recipe_display;
-    QGridLayout *layout;
-    int round_number = 0;
-
-    //BookStack* bookstack;
+    QLabel* pscore; //
+    size_t lives; //number of player's lives left
+    QHBoxLayout* livesnum; //stores the life hearts
+    QLabel* heart1; //first life
+    QLabel* heart2; //second life
+    QLabel* heart3; //third life
+    QPushButton* music_button; //turns music on/off
+    GameView* view; //the gameview
+    Recipe::Recipe* r; //recipe object
+    QWidget* recipe_display; //displays recipe
+    QGridLayout *layout; //widget layout
+    int round_number = 0; //which round the player has completed
 
 };
 
