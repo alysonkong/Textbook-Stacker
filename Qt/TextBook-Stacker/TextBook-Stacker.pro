@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    BookStack.cpp \
     Lboardwindow.cpp \
     avatar.cpp \
     books.cpp \
@@ -27,18 +26,14 @@ SOURCES += \
     loserwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    multiwindow.cpp \
     nameinputwindow.cpp \
     recipe.cpp \
     roundwindow.cpp \
-    sidestack.cpp \
     singlewindow.cpp \
     sprite.cpp \
-    twonamesinput.cpp \
     winnerwindow.cpp
 
 HEADERS += \
-    BookStack.h \
     Lboardwindow.h \
     avatar.h \
     books.h \
@@ -46,14 +41,11 @@ HEADERS += \
     helpwindow.h \
     loserwindow.h \
     mainwindow.h \
-    multiwindow.h \
     nameinputwindow.h \
     recipe.h \
     roundwindow.h \
-    sidestack.h \
     singlewindow.h \
     sprite.h \
-    twonamesinput.h \
     winnerwindow.h
 
 FORMS += \

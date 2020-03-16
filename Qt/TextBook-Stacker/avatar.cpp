@@ -53,7 +53,7 @@ void avatar::advance(int phase) {
         mcMoveBoundary= QRectF(-25,0, 454, 750);
     }
     else{ //if there are books stacked on avatar, this is the bounding rect
-        mcMoveBoundary = QRectF(-5,0, 416, 750);
+        mcMoveBoundary = QRectF(0,0, 400, 750);
     }
     if(phase) { //phase =1 moves the avatar
         QPointF nextPos = mapToScene(QPointF(vx,0));

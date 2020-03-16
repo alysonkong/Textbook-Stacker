@@ -25,11 +25,9 @@ Pic 10C, UCLA
 #include<QStackedWidget>
 #include <QMediaPlayer>
 #include<QMediaPlaylist>
-#include "multiwindow.h"
 #include "singlewindow.h"
 #include "helpwindow.h"
 #include "nameinputwindow.h"
-#include "twonamesinput.h"
 #include "loserwindow.h"
 #include "roundwindow.h"
 #include "winnerwindow.h"
@@ -54,22 +52,17 @@ public slots:
     void maindisplay(); //display homepage
     void splayerdisplay(); //display singleplayer window
     void musiconoff(); //turn music on or off
-    void mplayerdisplay(); //display multiplayer window
     void hwindowdisplay(); //display help window
     void namewindowdisplay(); //display name input window for singleplayer
-    void twonamesdisplay(); //display name inputs for multiplayer
     void getname(QString n);  //creates the singleplayer window by getting the names from name input window
-    void getnames(QString n1, QString n2); //creates the multiplayer window by getting the names from name inputs window
     void loserdisplay(QString,int);
     void rounddisplay(int);
     void winnerdisplay(QString, int);
-    void lboardupdate(const QString&, int);
 
 private:
     QWidget *widgets;
     QWidget *widget2;
     QPushButton *singleplayer;
-    QPushButton *multiplayer;
     QPushButton *leaderboard;
     QPushButton *helpbutton;
     QGridLayout *buttonslayout;
@@ -80,11 +73,9 @@ private:
     Leaderboardwindow::leaderboard*  lboard;
     QStackedWidget* swindows;
     QMediaPlayer* song;
-    gamewindow *gwindow; //multiwindow
     singlewindow *single_window;
     HelpWindow::helpwindow* hwindow;
     nameinputwindow* namewindow;
-    twonamesinput* twonameswindow;
     loserwindow* lostwindow;
     roundwindow* round_window;
     int rounds;

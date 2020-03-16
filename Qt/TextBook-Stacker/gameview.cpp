@@ -18,7 +18,7 @@ GameView::GameView(avatar* mc) : QGraphicsView(), mc(mc)
 
     scene.setSceneRect(0,0,500,750); //sets the dimensions of the scene Rect
     fitInView(scene.sceneRect(), Qt::KeepAspectRatio); //put game scene within the bounding rectangle
-    mc->setPos(193, 360.2); //sets position of the avatar in the gameview
+    mc->setPos(200, 360.2); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
 
     QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects timer to scene; scene advances according to the timer
@@ -95,7 +95,7 @@ void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
  */
 void GameView::bookdrop(){
     b= new books(QRandomGenerator::global()->bounded(0,9)); //generates random books with codes from 0-8 (some are Fs)
-    int x = QRandomGenerator::global()->bounded(0,5); //randomly generates position of where items will fall
+    int x = QRandomGenerator::global()->bounded(0,6); //randomly generates position of where items will fall
     b->setX(x*100); //set position
     scene.addItem(b); //scene takes ownership of the item
     scene.update(); //update scene

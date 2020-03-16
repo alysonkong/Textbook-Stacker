@@ -51,26 +51,21 @@ MainWindow::MainWindow(QWidget *parent)
     gametitle->setStyleSheet("QLabel { border:none;}");
 
 
-    singleplayer = new QPushButton(" Single Player ");
+    singleplayer = new QPushButton(" Play ");
     singleplayer->setFont(f);
     singleplayer->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
-                          "border-width: 2px; border-color: solid yellow;}");
-
-    multiplayer = new QPushButton(" Multiplayer ");
-    multiplayer->setFont(f);
-    multiplayer->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
-                          "border-width: 2px; border-color: solid yellow;}");
+                          "border-width: 2px; padding: 6px; border-color: solid yellow;}");
 
     leaderboard = new QPushButton(" Leaderboard ");
     leaderboard->setFont(f);
     leaderboard->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
-                          "border-width: 2px; border-color: solid yellow;}");
+                          "border-width: 2px; padding: 6px;border-color: solid yellow;}");
 
 
     helpbutton = new QPushButton(" Help ");
     helpbutton->setFont(f);
     helpbutton->setStyleSheet("QPushButton { font-size: 24px; color : white; background-color: black; border-style: outset;"
-                          "border-width: 2px; border-color: solid yellow;}");
+                          "border-width: 2px; padding: 6px; border-color: solid yellow;}");
 
     QPixmap musicpic(":/icons/music.png");
     musicpic = musicpic.scaled(100,100,Qt::IgnoreAspectRatio); //resized the icon graphics
@@ -88,14 +83,12 @@ MainWindow::MainWindow(QWidget *parent)
     lboard = new Leaderboardwindow::leaderboard();
     hwindow = new HelpWindow::helpwindow();
     namewindow = new nameinputwindow();
-    twonameswindow = new twonamesinput();
     single_window = nullptr;
 
     widgets = new QWidget(); //widgets contains the game title and buttons excluding music icon
     buttonslayout = new QGridLayout();
     buttonslayout->addWidget(gametitle, 0, 0, 1, -1);
     buttonslayout->addWidget(singleplayer, 1, 0, 1, -1, Qt::AlignCenter);
-    //buttonslayout->addWidget(multiplayer, 2, 0, 1, -1, Qt::AlignCenter);
     buttonslayout->addWidget(leaderboard, 3, 0, 1,-1, Qt::AlignCenter);
     buttonslayout->addWidget(helpbutton, 4, 0, 1, -1, Qt::AlignCenter);
 
@@ -108,26 +101,18 @@ MainWindow::MainWindow(QWidget *parent)
     mainlayout->addWidget(music_icon, 1, 0, Qt::AlignRight);
     main->setLayout(mainlayout);
 
-    //round_window = new roundwindow(2);
-    //lostwindow = new loserwindow(2);
-   // swindows->addWidget(round_window);
-    //wonwindow= new winnerwindow("Alice", 20);
-    //swindows->addWidget(wonwindow);
-    //swindows->addWidget(lostwindow);
     swindows->addWidget(main);
     swindows->addWidget(lboard);
     swindows->addWidget(hwindow);
     swindows->addWidget(namewindow);
-    swindows->addWidget(twonameswindow);
 
     connect(leaderboard,SIGNAL(clicked()) , this, SLOT(lboarddisplay())); //clicking leaderboard button set current stackedwidget to lboard
     connect(singleplayer, SIGNAL(clicked()) , this, SLOT(namewindowdisplay())); //clicking singleplayer button set current stackedwidget to lboard
-   // connect(multiplayer, SIGNAL(clicked()), this, SLOT(twonamesdisplay())); //clicking multiplayer button set current stackedwidget to lboard
     connect(lboard, SIGNAL(pressedmain(int)), this, SLOT(maindisplay())); //connecting lboard back to main
     connect(hwindow, SIGNAL(pressed_main(int)), this, SLOT(maindisplay())); //connecting helpwindow back to main
     connect(helpbutton, SIGNAL(clicked()), this, SLOT(hwindowdisplay())); //clicking helpbutton button set current stackedwidget to helpbutton
     connect(namewindow, SIGNAL(playername(QString)), this, SLOT(getname(QString))); //set up singleplayer window by getting nameinput window's edits
-    connect(twonameswindow, SIGNAL(playernames(QString, QString)), this, SLOT(getnames(QString, QString))); //set up multiplayer window by getting twonameiput's edits
+
 
 
 
@@ -144,94 +129,72 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::getname(QString n){
 
     static bool running = false;
-    if(!running) {
+    if(!running) { //if there is no other single window running
        running = true;
-       if(single_window) {
+       if(single_window) { //if there is a single window running remove it
            swindows->removeWidget(single_window);
            delete single_window;
            single_window=nullptr;
        }
-    single_window = new singlewindow(n); //sets up singlewindow using the user input names
-    swindows->addWidget(single_window);
-    swindows->setCurrentWidget(single_window);
-    connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-    connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
-   // connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
-    connect(single_window, SIGNAL(finalscore(QString, int)), this, SLOT(loserdisplay(QString, int)));
-    connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int)));
-    connect(single_window, SIGNAL(change_music()), this, SLOT(musiconoff()));
-    connect(single_window, SIGNAL(gamewon(QString, int)), this, SLOT(winnerdisplay(QString, int)));
+        single_window = new singlewindow(n); //sets up singlewindow using the user input names
+        swindows->addWidget(single_window);
+        swindows->setCurrentWidget(single_window);
+        connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay())); //this is the exit button
+        connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay())); //connect the user inputted name to singleplayer
+        connect(single_window, SIGNAL(finalscore(QString, int)), this, SLOT(loserdisplay(QString, int))); //create a loser window
+        connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int))); //go to the next round
+        connect(single_window, SIGNAL(change_music()), this, SLOT(musiconoff())); //allow for user to turn music on or off
+        connect(single_window, SIGNAL(gamewon(QString, int)), this, SLOT(winnerdisplay(QString, int))); //go to winner window
     }
     running = false;
 
 }
 
+/**
+ * @brief MainWindow::winnerdisplay displays the winnerwindow, which also needs to update the leaderboard
+ * @param pname player name
+ * @param pscore player score
+ */
 void MainWindow::winnerdisplay(QString pname, int pscore) {
-//    if(round_window)  {
-//        swindows->removeWidget(round_window);
-//        delete round_window;
-//        round_window=nullptr;
-
-//    }
-//    static bool running = false;
-//    if(!running) {
-//        running = true;
-  //  song->pause();
     wonwindow = new winnerwindow(pname, pscore);
     swindows->addWidget(wonwindow);
     swindows->setCurrentWidget(wonwindow);
+    lboard->updatedisplay(pname,pscore);
     connect(wonwindow, SIGNAL(returntomain()), this, SLOT(maindisplay()));
-    connect(wonwindow, SIGNAL(gotoLboard(QString, int)), this, SLOT(lboardupdate(QString, int)));
+    connect(wonwindow, SIGNAL(gotoLboard(QString, int)), this, SLOT(lboarddisplay()));
 
-//    }
-//    running = false;
 }
 
-void MainWindow::lboardupdate(const QString& n, int s){
-     lboard->updatedisplay(n,s);
-     if (clicked_sound->state() == QMediaPlayer::PlayingState) {
-         clicked_sound->setPosition(0);
-     }
-     else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
-         clicked_sound->play();
-     }
-     //swindows->setCurrentIndex(1);
-     swindows->setCurrentWidget(lboard);
-}
 
+
+/**
+ * @brief MainWindow::rounddisplay displays the round passed
+ * @param r
+ */
 void MainWindow::rounddisplay(int r){
-   // song->pause();
     round_window = new roundwindow(r);
     swindows->addWidget(round_window);
     swindows->setCurrentWidget(round_window);
-    connect(round_window, SIGNAL(returntomain()), this, SLOT(maindisplay()));
-    connect(round_window, SIGNAL(nextround()), single_window, SLOT(newround()));
-    connect(round_window, SIGNAL(nextround()), this, SLOT(splayerdisplay()));
+    connect(round_window, SIGNAL(returntomain()), this, SLOT(maindisplay())); //return to main
+    connect(round_window, SIGNAL(nextround()), single_window, SLOT(newround())); //go to next round
+    connect(round_window, SIGNAL(nextround()), this, SLOT(splayerdisplay())); //revert to singleplayer display if next round clicked
 
 
 }
 
+/**
+ * @brief MainWindow::loserdisplay displays the loser window and updates leaderboard
+ * @param pname player name
+ * @param pscore player score
+ */
 void MainWindow::loserdisplay(QString pname, int pscore){
     lostwindow = new loserwindow(pname, pscore);
     swindows->addWidget(lostwindow);
     swindows->setCurrentWidget(lostwindow);
+     lboard->updatedisplay(pname,pscore);
     connect(lostwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-    connect(lostwindow, SIGNAL(gotolboard(QString, int)), this, SLOT(lboardupdate(QString, int)));
+    connect(lostwindow, SIGNAL(gotolboard(QString, int)), this, SLOT(lboarddisplay()));
 }
-
-
-/**
- * @brief MainWindow::getnames takes the QString user inputs from twonameswindow to create multiplayer window
- * @param n1 first player name
- * @param n2 second player name
- */
-void MainWindow::getnames(QString n1, QString n2){
-    gwindow = new gamewindow(n1, n2); //sets up gamewindow using the user input names
-    swindows->addWidget(gwindow);
-    connect(gwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
-    connect(twonameswindow, SIGNAL(gamewindowindex()), this, SLOT(mplayerdisplay()));
-}
-
 
 
 /**
@@ -282,20 +245,6 @@ void  MainWindow::splayerdisplay(){
     swindows->setCurrentWidget(single_window);
 }
 
-/**
- * @brief MainWindow::mplayerdisplay set stackedwidget to multiplayer
- */
-void  MainWindow::mplayerdisplay(){
-    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
-        clicked_sound->setPosition(0);
-    }
-    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
-        clicked_sound->play();
-    }
-
-    swindows->setCurrentWidget(gwindow);
-    //swindows->setCurrentWidget(lboard);
-}
 
 /**
  * @brief MainWindow::maindisplay set stackedwidget to homepage
@@ -341,18 +290,7 @@ void MainWindow::namewindowdisplay(){
     swindows->setCurrentWidget(namewindow);
 }
 
-/**
- * @brief MainWindow::twonamesdisplay set stackedwidget to two user inputs isplay
- */
-void MainWindow::twonamesdisplay(){
-    if (clicked_sound->state() == QMediaPlayer::PlayingState) {
-        clicked_sound->setPosition(0);
-    }
-    else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
-        clicked_sound->play();
-    }
-    swindows->setCurrentWidget(twonameswindow);
-}
+
 
 
 
