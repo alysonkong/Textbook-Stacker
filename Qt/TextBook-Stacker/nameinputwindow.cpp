@@ -7,28 +7,28 @@
 
 /**
  * @brief nameinputwindow::nameinputwindow constructor
- * @param parent
  */
-nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
-{
+nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent) {
 
-    QPixmap back(":/bkgnd/textbookbkgndclear.png");
+    QPixmap back(":/bkgnd/textbookbkgndclear.png"); //create pixmap for background image
     back = back.scaled(this->size(), Qt::IgnoreAspectRatio); //set background image to size of window, ignore aspect ratio of orig. pic
     QPalette palette;
-    palette.setBrush(QPalette::Background, back);
+    palette.setBrush(QPalette::Background, back); //sets the palette used as the background image
     this->setAutoFillBackground(true);
-    this->setPalette(palette);
+    this->setPalette(palette); //sets the background as background image
 
+    //add special font
+    int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    QFont f(family, 40);
 
-     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
-     QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-     QFont f(family, 40);
-
+    //create line edit for user to input name
     nameEdit = new QLineEdit;
-    nameEdit->setPlaceholderText("Name...");
-    nameEdit->setFocus();
-    nameEdit->setMaxLength(10);
-    nameEdit->setFont(f);
+    nameEdit->setPlaceholderText("Name..."); //sets the placeholder to say Name... before user inputs anything
+    nameEdit->setFocus(); //sets the focus of the line edit
+    nameEdit->setMaxLength(10); //name cannot be longer than 10 characters
+    nameEdit->setFont(f); //sets font
+    //modify line edit display
     nameEdit->setStyleSheet("QLineEdit{ "
                            "background-color:black;"
                            "border: 2px solid gray;"
@@ -38,23 +38,21 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
                            "font-size: 20px;}"
                            "QLineEdit:focus { "
                            "background-color:white;}");
-    nameEdit->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
+    nameEdit->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred); //set how large the line edit box will be
     nameEdit->setFixedWidth(400);
     nameEdit->setFixedHeight(100);
 
 
-    QLabel * insert = new QLabel("Insert name:");
+    QLabel * insert = new QLabel("Insert name:"); //tells user to insert name
     insert->setFont(f);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(insert, 5, Qt::AlignCenter);
-   // layout->addWidget(frame);
-    layout->addWidget(nameEdit, 7, Qt::AlignTop|Qt::AlignHCenter);
+    layout->addWidget(insert, 5, Qt::AlignCenter); //add label to window layout
+    layout->addWidget(nameEdit, 7, Qt::AlignTop|Qt::AlignHCenter); //add line edit box to window layout
     setLayout(layout);
 
+    //lets itself know when the user has finished inputting their name to update namechanged()
     connect(nameEdit, SIGNAL(editingFinished()),this, SLOT(namechanged()));
-
-    //connect(nameEdit, SIGNAL(editingFinished()), this, SLOT(gotosingle_window()));
 }
 
 /**
@@ -62,7 +60,6 @@ nameinputwindow::nameinputwindow(QWidget *parent) : QWidget(parent)
  */
 void nameinputwindow::namechanged(){
    emit playername(nameEdit->text());
-   //emit single_windowindex();
 }
 
 
