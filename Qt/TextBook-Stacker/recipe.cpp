@@ -5,62 +5,63 @@
 #include <QSizePolicy>
 
 
-
 namespace Recipe {
 
 Recipe::Recipe() {
 
     //randomly generate a number between 6-9 for the total number of books the player needs to catch
-    total_books = QRandomGenerator::global()->bounded(2,3); //6,10
+    total_books = QRandomGenerator::global()->bounded(2,3); //(6,10)
 
-    for (int i = 0; i < total_books; ++i) { //stack consists of 6-9 textbooks
-        int book_code = QRandomGenerator::global()->bounded(6);
+    for (int i = 0; i < total_books; ++i) {
+        int book_code = QRandomGenerator::global()->bounded(6); //randomly assign code to differentiate 6 different types of books
 
-        if (book_code == 0) {
-            ++bigcplusplus_count;
+        if (book_code == 0) { //if number generated corresponds to the book code for big c++: 0
+            ++bigcplusplus_count; //update textbook count
         }
 
-        if (book_code == 1) {
+        if (book_code == 1) { //biology book code: 1
             ++bio_count;
         }
 
-        if (book_code == 2) {
+        if (book_code == 2) { //chemistry book code: 2
             ++chem_count;
         }
 
-        if (book_code == 3) {
+        if (book_code == 3) { //sociology book code: 3
             ++soc_count;
         }
 
-        if (book_code == 4) {
+        if (book_code == 4) { //english book code: 4
             ++eng_count;
         }
 
-        if (book_code == 5) {
+        if (book_code == 5) { //philosophy book code: 5
             ++philo_count;
         }
-
     }
 
+    //add bubble font
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
     f = QFont(ffamily, 40);
 
-    QLabel *book_names_title  = new QLabel("Textbooks:");
+    QLabel *book_names_title  = new QLabel("Textbooks:"); //add title to recipe display
     book_names_title->setFont(f);
     book_names_title->setStyleSheet("QLabel { font: 35pt;}");
 
     layout = new QGridLayout;
-    layout->addWidget(book_names_title, 0, 0, 1, 1);
+    layout->addWidget(book_names_title, 0, 0, 1, 1); //add title to layout
 
-    display_recipe();
+    display_recipe(); //display the recipe
 
-    setLayout(layout);
+    setLayout(layout); //make layout the recipe layout
 
+    //add sound effect for books stacking on top of each other
     stacking_sound = new QMediaPlayer();
     stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
     stacking_sound->setVolume(20);
 
+    //add sound effect for avatar catching an F letter
     error_sound = new QMediaPlayer();
     error_sound->setMedia(QUrl("qrc:/music/bomb sound effect.mp3"));
     error_sound->setVolume(50);
@@ -70,17 +71,19 @@ Recipe::Recipe() {
 
 
 void Recipe::newrecipe(QLayout* slayout){
+
         QLayoutItem* item;
         while ( ( item = slayout->takeAt( 0 ) ) != NULL )
         {
             delete item->widget();
             delete item;
         }
-        //delete layout;
-        //QGridLayout* nlayout = new QGridLayout;
+
+        //rest of function is code to generate a new recipe:
+
         total_books = QRandomGenerator::global()->bounded(2,3); //6,10
 
-        for (int i = 0; i < total_books; ++i) { //stack consists of 6-9 textbooks
+        for (int i = 0; i < total_books; ++i) {
             int book_code = QRandomGenerator::global()->bounded(6);
 
             if (book_code == 0) {
@@ -106,14 +109,12 @@ void Recipe::newrecipe(QLayout* slayout){
             if (book_code == 5) {
                 ++philo_count;
             }
-
         }
 
         QLabel *book_names_title  = new QLabel("Textbooks:");
         book_names_title->setFont(f);
         book_names_title->setStyleSheet("QLabel { font: 20pt;}");
 
-        //layout = new QGridLayout;
         layout->addWidget(book_names_title, 0, 0, 1, 1);
 
         display_recipe();
@@ -124,26 +125,32 @@ void Recipe::newrecipe(QLayout* slayout){
 
 
 void Recipe::book_caught(int code) {
-    if (code == 0) {
-        if (bigcplusplus_count != 0) {
+
+    //checks which book code it is and sends out corresponding signals
+
+    if (code == 0) { //if book caught is big c++
+        if (bigcplusplus_count != 0) { //if there are still big c++ books in the recipe
+
+            //play stacking sound effect
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
             }
             else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
                 stacking_sound->play();
             }
-            --bigcplusplus_count;
-            --total_books;
-            updatescore(0);
-            update_recipe_display(0);
+
+            --bigcplusplus_count; //update big c++ count
+            --total_books; //update total books count
+            updatescore(0); //updates score indicating big c++ was caught
+            update_recipe_display(0); //updates the recipe display so it shows user has caught big c++
         }
 
-        else {
+        else { //there are no big c++ books needed to be caught
             emit wrong_book();
         }
     }
 
-    if (code == 1) {
+    if (code == 1) { //repeat process for if user caught biology book
         if (bio_count != 0) {
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
@@ -151,6 +158,7 @@ void Recipe::book_caught(int code) {
             else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
                 stacking_sound->play();
             }
+
             --bio_count;
             --total_books;
             updatescore(1);
@@ -162,7 +170,7 @@ void Recipe::book_caught(int code) {
         }
     }
 
-    if (code == 2) {
+    if (code == 2) { //repeat process for if user caught a chemistry book
         if (chem_count != 0) {
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
@@ -170,6 +178,7 @@ void Recipe::book_caught(int code) {
             else if (stacking_sound->state() == QMediaPlayer::StoppedState) {
                 stacking_sound->play();
             }
+
             --chem_count;
             --total_books;
             updatescore(2);
@@ -181,7 +190,7 @@ void Recipe::book_caught(int code) {
         }
     }
 
-    if (code == 3) {
+    if (code == 3) { //repeat process for if user caught a sociology book
         if (soc_count != 0) {
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
@@ -200,7 +209,7 @@ void Recipe::book_caught(int code) {
         }
     }
 
-    if (code == 4) {
+    if (code == 4) { //repeat process for if user caught an english book
         if (eng_count != 0) {
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
@@ -219,7 +228,7 @@ void Recipe::book_caught(int code) {
         }
     }
 
-    if (code == 5) {
+    if (code == 5) { //repeat process for if user caught a philosophy book
         if (philo_count != 0) {
             if (stacking_sound->state() == QMediaPlayer::PlayingState) {
                 stacking_sound->setPosition(0);
@@ -237,188 +246,158 @@ void Recipe::book_caught(int code) {
             emit wrong_book();
         }
     }
-    if(code >5){
+
+    if(code >5){ //if book code > 5, indicates user caught an F
+        //play error sound
         if (error_sound->state() == QMediaPlayer::PlayingState) {
             error_sound->setPosition(0);
         }
         else if (error_sound->state() == QMediaPlayer::StoppedState) {
             error_sound->play();
         }
-        emit wrong_book();
+
+        emit wrong_book(); //send out signal that user caught the wrong thing
     }
 
-    if (total_books == 0) {
-        this->newrecipe(layout);
-        emit round_complete(1);
+    if (total_books == 0) { //if no more books left to catch
+        this->newrecipe(layout); //replace old recipe and generate and display new recipe
+        emit round_complete(1); //send out signal that the round is complete
     }
-
-    //call display_recipe, needs to change display in single window too
-
 }
+
 
 
 void Recipe::update_recipe_display(int code) {
-    if (code == 0) {
 
-        bigc_count_display->setText(QString::number(bigcplusplus_count));
+    if (code == 0) { //if user caught big c++
+        bigc_count_display->setText(QString::number(bigcplusplus_count)); //change amount left in recipe display
     }
 
-    if (code == 1) {
-        bio_count_display->setText(QString::number(bio_count));
+    if (code == 1) { //if user caught biology
+        bio_count_display->setText(QString::number(bio_count)); //change display
     }
 
-    if (code == 2) {
-        chem_count_display->setText(QString::number(chem_count));
+    if (code == 2) { //if user caught chemistry
+        chem_count_display->setText(QString::number(chem_count)); //change display
     }
 
-    if (code == 3) {
-        soc_count_display->setText(QString::number(soc_count));
+    if (code == 3) { //if user caught sociology
+        soc_count_display->setText(QString::number(soc_count)); //change display
     }
 
-    if (code == 4) {
-        eng_count_display->setText(QString::number(eng_count));
+    if (code == 4) { //if user caught english
+        eng_count_display->setText(QString::number(eng_count)); //change display
     }
 
-    if (code == 5) {
-        philo_count_display->setText(QString::number(philo_count));
+    if (code == 5) { //if user caught philosophy
+        philo_count_display->setText(QString::number(philo_count)); //change display
     }
 }
 
 
-void Recipe::display_recipe() {
-    if (bigcplusplus_count != 0) {
-//        QLabel *bigc_book = new QLabel("Big C++: ");
-//        bigc_book->setFont(f);
-//        bigc_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(bigc_book, 1, 0, 1, 1);
 
-        bigc_count_display = new QLabel;
+void Recipe::display_recipe() {
+
+    if (bigcplusplus_count != 0) { //if there is at least one big c++ book in recipe
+        bigc_count_display = new QLabel; //make label for book count
         bigc_count_display->setText(QString::number(bigcplusplus_count));
-        bigc_count_display->setFont(f);
+
+        bigc_count_display->setFont(f); //set font
         bigc_count_display->setStyleSheet("QLabel { font: 25pt;}");
         layout->addWidget(bigc_count_display, 1, 1, 1, 1);
 
-        QLabel* book_label = new QLabel;
+        QLabel* book_label = new QLabel; //create label for book pixmap being displayed
         QPixmap pixmap(":/spritesheets/redbigc++.png");
         pixmap = pixmap.scaled(500*0.3,161*0.3);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,1,0,1,1, Qt::AlignLeft);
-
-
+        layout->addWidget(book_label,1,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
-    if (bio_count != 0) {
-//        QLabel* bio_book = new QLabel("Biology: ");
-//        bio_book->setFont(f);
-//        bio_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(bio_book, 2, 0, 1, 1);
-
-        bio_count_display = new QLabel;
+    if (bio_count != 0) { //if there is at least one biology book in recipe
+        bio_count_display = new QLabel; //make label for book count
         bio_count_display->setText(QString::number(bio_count));
-        bio_count_display->setFont(f);
+
+        bio_count_display->setFont(f); //set font
         bio_count_display->setStyleSheet("QLabel { font: 25pt;}");
         layout->addWidget(bio_count_display, 2, 1, 1,1);
 
 
-        QLabel* book_label = new QLabel;
+        QLabel* book_label = new QLabel; //create label for book pixmap being displayed
         QPixmap pixmap(":/spritesheets/orangebio.png");
         pixmap = pixmap.scaled(500*0.3,161*0.3);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,2,0,1,1, Qt::AlignLeft);
-
+        layout->addWidget(book_label,2,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
-    if (chem_count != 0) {
-//        QLabel* chem_book = new QLabel("Chemistry: ");
-//        chem_book->setFont(f);
-//        chem_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(chem_book, 3, 0, 1,1);
-
-        chem_count_display = new QLabel;
+    if (chem_count != 0) { //if there is at least one chemistry book in recipe
+        chem_count_display = new QLabel; //make label for book count
         chem_count_display->setText(QString::number(chem_count));
-        chem_count_display->setFont(f);
+
+        chem_count_display->setFont(f); //set font
         chem_count_display->setStyleSheet("QLabel { font: 25pt;}");
         layout->addWidget(chem_count_display, 3, 1, 1,1);
 
-        QLabel* book_label = new QLabel;
+        QLabel* book_label = new QLabel; //create label for book pixmap being displayed
         QPixmap pixmap(":/spritesheets/yellowchem.png");
         pixmap = pixmap.scaled(500*0.3,161*0.3);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,3,0,1,1, Qt::AlignLeft);
+        layout->addWidget(book_label,3,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
-    if (soc_count != 0) {
-//        QLabel *soc_book = new QLabel("Sociology: ");
-//        soc_book->setFont(f);
-//        soc_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(soc_book, 4, 0, 1,1);
-
-        soc_count_display = new QLabel;
+    if (soc_count != 0) { //if there is at least one sociology book in recipe
+        soc_count_display = new QLabel; //make label for book count
         soc_count_display->setText(QString::number(soc_count));
-        soc_count_display->setFont(f);
+
+        soc_count_display->setFont(f); //set font
         soc_count_display->setStyleSheet("QLabel { font: 25pt;}");
         layout->addWidget(soc_count_display, 4, 1, 1,1);
 
-        QLabel* book_label = new QLabel;
+        QLabel* book_label = new QLabel; //create label for book pixmap being displayed
         QPixmap pixmap(":/spritesheets/greensoc.png");
         pixmap = pixmap.scaled(500*0.3,161*0.3);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,4,0,1,1, Qt::AlignLeft);
+        layout->addWidget(book_label,4,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
-    if (eng_count != 0) {
-//        QLabel *eng_book = new QLabel("English: ");
-//        eng_book->setFont(f);
-//        eng_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(eng_book, 5, 0, 1,1);
-
-        eng_count_display = new QLabel;
+    if (eng_count != 0) { //if there is at least one english book in recipe
+        eng_count_display = new QLabel; //make label for book count
         eng_count_display->setText(QString::number(eng_count));
-        eng_count_display->setFont(f);
+
+        eng_count_display->setFont(f); //set font
         eng_count_display->setStyleSheet("QLabel { font: 25pt;}");
         layout->addWidget(eng_count_display, 5, 1, 1,1);
 
-        QLabel* book_label = new QLabel;
+        QLabel* book_label = new QLabel; //create label for book pixmap being displayed
         QPixmap pixmap(":/spritesheets/blueeng.png");
         pixmap = pixmap.scaled(500*0.3,161*0.3);
         book_label->setPixmap(pixmap);
-        //book_label.setMask(pixmap.mask());
 
-        layout->addWidget(book_label,5,0,1,1, Qt::AlignLeft);
+        layout->addWidget(book_label,5,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
-    if (philo_count != 0) {
-//        QLabel *philo_book = new QLabel("Philosophy: ");
-//        philo_book->setFont(f);
-//        philo_book->setStyleSheet("QLabel { font: 18pt;}");
-//        layout->addWidget(philo_book, 6, 0, 1,1);
-
-        philo_count_display = new QLabel;
+    if (philo_count != 0) { //if there is at least one philosophy book in recipe
+        philo_count_display = new QLabel; //make label for book count
         philo_count_display->setText(QString::number(philo_count));
-        philo_count_display->setFont(f);
+
+        philo_count_display->setFont(f); //set font
         philo_count_display->setStyleSheet("QLabel { font: 25pt;}");
        layout->addWidget(philo_count_display, 6, 1,1,1);
 
-       QLabel* book_label = new QLabel;
+       QLabel* book_label = new QLabel; //create label for book pixmap being displayed
        QPixmap pixmap(":/spritesheets/purplephil.png");
        pixmap = pixmap.scaled(500*0.3,161*0.3);
        book_label->setPixmap(pixmap);
-       //book_label.setMask(pixmap.mask());
 
-       layout->addWidget(book_label,6,0,1,1, Qt::AlignLeft);
+       layout->addWidget(book_label,6,0,1,1, Qt::AlignLeft); //add book to recipe display
     }
 
 
