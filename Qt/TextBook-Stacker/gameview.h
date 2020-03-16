@@ -16,28 +16,24 @@ class GameView : public QGraphicsView
 private:
     avatar* mc; //avatar that the players can control
     QGraphicsScene scene; //the scene where our game is taking place
-    books* b;
+    books* b; //books that are dropping
     QTimer timer; //timer for constructing and moving the sprites
-    QTimer timer2;
-    QPixmap* back;
+    QTimer timer2; //timer for books dropping
+    QPixmap* back; //background image
 
 public:
     ~GameView();
     GameView(avatar* mc);
     void drawBackground(QPainter *painter, const QRectF &rect) override;
-    //void advance()
 
 public slots:
     void bookdrop();
-   // void getbooktype(int);
     void getbook(int);
-
     void stopbookdrop();
     void increase_speed(int);
+
 signals:
     void booktypetowindow(int);
-   // void sendbook(books*);
-
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

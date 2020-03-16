@@ -8,7 +8,7 @@
 namespace Recipe {
 
 /**
-*@brief the recipe constructor randomly generates a list of how many textbooks the user needs to catch
+*@brief Recipe::Recipe randomly generates a list of how many textbooks the user needs to catch
 */
 Recipe::Recipe() {
 
@@ -74,7 +74,7 @@ Recipe::Recipe() {
 
 
 /**
-*@brief the function updates the recipe display, showing how many of each type of textbook the user needs to catch
+*@brief Recipe::update_recipe_display updates the recipe display, showing how many of each type of textbook the user needs to catch
 * @param code the book code of the book that was correctly caught
 */
 void Recipe::update_recipe_display(int code) {
@@ -107,7 +107,7 @@ void Recipe::update_recipe_display(int code) {
 
 
 /**
- * @brief newrecipe generates and displays a new recipe, replacing the old one
+ * @brief Recipe::newrecipe generates and displays a new recipe, replacing the old one
  * @param layout is the layout of the recipe display prior to the recipe getting updated
  */
 void Recipe::newrecipe(QLayout* slayout){
@@ -165,7 +165,7 @@ void Recipe::newrecipe(QLayout* slayout){
 
 
 /**
- * @brief book_caught receives a signal from gameview sending the type of book caught by the avatar
+ * @brief Recipe::book_caught receives a signal from gameview sending the type of book caught by the avatar
  * @param code is the type of book caught
  */
 void Recipe::book_caught(int code) {
@@ -313,7 +313,7 @@ void Recipe::book_caught(int code) {
 
 
 /**
- * @brief display_recipe displays the recipe, showing the user how many of each type of book they need to catch
+ * @brief Recipe::display_recipe displays the recipe, showing the user how many of each type of book they need to catch
  */
 void Recipe::display_recipe() {
 

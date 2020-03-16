@@ -10,34 +10,26 @@
  * @param mc avatar for the player
  * @param yb books that fall from the sky
  */
-GameView::GameView(avatar* mc)
-    : QGraphicsView()
-    , mc(mc)
+GameView::GameView(avatar* mc) : QGraphicsView(), mc(mc)
 {
-    setFixedSize(500, 750);
-    this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-    this->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-    //view->setSceneRect(0, 0, width, height);
+    setFixedSize(500, 750); //set fixed size for game display in singlewindow
+    this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff ); //no horizontal scroll
+    this->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff ); //no vertical scroll
 
     scene.setSceneRect(0,0,500,750); //sets the dimensions of the scene Rect
-    fitInView(scene.sceneRect(), Qt::KeepAspectRatio);
+    fitInView(scene.sceneRect(), Qt::KeepAspectRatio); //put game scene within the bounding rectangle
     mc->setPos(193, 360.2); //sets position of the avatar in the gameview
     scene.addItem(mc); //adds avatar to scene
-   // b->setPos(100,0);
 
-    QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects the timer to our scene so our scene can advance according to the timer
-    //timer.setInterval();
-    //connect(&timer, SIGNAL(timeout()), this, SLOT(bookdrop()));
+    QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance); //connects timer to scene; scene advances according to the timer
     timer.start(1000/30); //starts the timer
-    //while loop
 
+    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop())); //connects timer2 so books drop according to timer speed
+    timer2.start(1500); //starts timer2
 
-    connect(&timer2, SIGNAL(timeout()), this, SLOT(bookdrop()));
-    timer2.start(1500);
-
-    setScene(&scene);
-
+    setScene(&scene); //sets the scene as the gameview scene
 }
+
 
 /**
  * @brief GameView::keyPressEvent implementation for the keyPressEvent function (in the event that the a key is pressed)
@@ -48,18 +40,18 @@ void GameView::keyPressEvent(QKeyEvent *event) {
         case Qt::Key_Left: //if key is the left key
             mc->go(Left); //make the avatar go left
            break;
-    case Qt::Key_A:
-        mc->go(Left);
-        break;
+        case Qt::Key_A: //if key is A key
+            mc->go(Left); //make avatar go left
+            break;
         case Qt::Key_Right: //if the key is the right key
             mc->go(Right); //make the avatar go right
             break;
-    case Qt::Key_D:
-        mc->go(Right);
-        break;
-
+        case Qt::Key_D: //if key is D key
+            mc->go(Right); //make avatar go right
+            break;
     }
 }
+
 
 /**
  * @brief GameView::keyReleaseEvent implementation for the keyReleaseEvent function (in the event that a key is released)
@@ -70,21 +62,22 @@ void GameView::keyReleaseEvent(QKeyEvent *event) {
     case Qt::Key_Left: //if key is left
         mc->stop(Left); //stop avatar movement from going left
         break;
-    case Qt::Key_A:
-        mc->stop(Left);
+    case Qt::Key_A: //if key is A
+        mc->stop(Left); //stop avatar movement from going left
         break;
     case Qt::Key_Right: //if key is right
         mc->stop(Right); //stop avatar movement from going right
         break;
-    case Qt::Key_D:
-        mc->stop(Right);
+    case Qt::Key_D: //if key is D
+        mc->stop(Right); //stop avatar movement from going right
         break;
     }
-
 }
 
+
+
 /**
- * @brief GameView::drawBackground implementation for the drawBackground function (draws the background fo the gameview)
+ * @brief GameView::drawBackground draws the background for the gameview
  * @param painter the painter that will paint the background
  * @param rect the rect in which the gameview will be painted within
  */
@@ -97,46 +90,56 @@ void GameView::drawBackground(QPainter *painter, const QRectF &rect) {
 }
 
 
+/**
+ * @brief GameView::bookdrop randomly generates items to fall, and randomly generates how far left/right they will fall from
+ */
 void GameView::bookdrop(){
-    b= new books(QRandomGenerator::global()->bounded(0,9));
-    int x = QRandomGenerator::global()->bounded(0,5);
-    b->setX(x*100);
+    b= new books(QRandomGenerator::global()->bounded(0,9)); //generates random books with codes from 0-8 (some are Fs)
+    int x = QRandomGenerator::global()->bounded(0,5); //randomly generates position of where items will fall
+    b->setX(x*100); //set position
     scene.addItem(b); //scene takes ownership of the item
-    //boo->setParent(scene)
-    scene.update();
+    scene.update(); //update scene
 
-    //connect(b, SIGNAL(emittype(int)), this, SIGNAL(booktypetowindow(int)));
-
-    connect(b, SIGNAL(emittype(int)), this, SLOT(getbook(int)));
-
+    connect(b, SIGNAL(emittype(int)), this, SLOT(getbook(int))); //connects signal from books so gameview knows which item was caught
 }
 
 
+
+/**
+ * @brief GameView::getbook passes the information of which item was caught and sends signal to recipe
+ * @param n the book code of the item that was caught
+ */
 void GameView::getbook(int n){
     emit booktypetowindow(n);
 }
 
-void GameView::increase_speed(int round_num) {
-   // timer2.stop();
-//    if(round_num == 2){
-//    timer2.start(1000); //1000/round_num
-//    }
-//    else{
-        timer2.start(1500/(1.3*round_num));
-   // }
 
+/**
+ * @brief GameView::increase_speed increases the speed of the falling items
+ * @param round_num the number of the round
+ */
+void GameView::increase_speed(int round_num) {
+        timer2.start(1500/(1.3*round_num)); //speed increases as round levels increase
 }
 
+
+/**
+ * @brief GameView::stopbookdrop stops the items from falling
+ */
 void GameView::stopbookdrop(){
-    if(b){
-        scene.removeItem(b);
-        delete b;
+    if(b){ //if there are books in the scene
+        scene.removeItem(b); //remove them
+        delete b; //delete them
         b = nullptr;
     }
-    timer2.stop();
+
+    timer2.stop(); //stop timer so items stop falling
 
 }
 
+/**
+ * @brief GameView::~GameView destructs the background so there are no memory leaks
+ */
 GameView::~GameView(){
     delete back;
 }
