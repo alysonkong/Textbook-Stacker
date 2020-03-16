@@ -7,12 +7,7 @@
 #include <QPixmap>
 #include <QGridLayout>
 #include <QGraphicsItem>
-//#include <list>
 #include <string>
-//#include <QStackedWidget>
-
-//#include <QGraphicsScene>
-//#include <QPainter>
 #include <QMediaPlayer>
 
 namespace Recipe {
@@ -32,24 +27,9 @@ public:
     Recipe();
 
  /**
-  *@brief the function displays the recipe and updates it, showing how many of each type of textbook the user needs to catch
+  *@brief the function updates the recipe display, showing how many of each type of textbook the user needs to catch
  */
-
-
-
     void update_recipe_display(int code);
-    //void clear_recipe();
-    int get_bigc_count();
-    int get_bio_count();
-    int get_chem_count();
-    int get_soc_count();
-    int get_eng_count();
-    int get_philo_count();
-
-
-
-
-//these slots and signals should be ready whenever the corresponding slots and signals are ready
 
 public slots:
     void book_caught(int code);
@@ -61,9 +41,6 @@ signals:
     void round_complete(int);
     void wrong_book();
     void updatescore(int); //the int here is gonna be the book code, not points added
-
-
-
 
 private:
     void display_recipe(); //should it be void????
@@ -89,8 +66,6 @@ private:
     QFont f;
     QMediaPlayer* stacking_sound;
     QMediaPlayer* error_sound;
-
-
 };
 
 }

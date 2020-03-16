@@ -18,49 +18,33 @@ Recipe::Recipe() {
 
         if (book_code == 0) {
             ++bigcplusplus_count;
-            //stack.push_back(0);
         }
 
         if (book_code == 1) {
             ++bio_count;
-            //stack.push_back(1);
         }
 
         if (book_code == 2) {
             ++chem_count;
-            //stack.push_back(2);
         }
-
-
 
         if (book_code == 3) {
             ++soc_count;
-            //stack.push_back(3);
-
         }
 
         if (book_code == 4) {
             ++eng_count;
-            //stack.push_back(4);
-
         }
 
         if (book_code == 5) {
             ++philo_count;
-            //stack.push_back(5);
-
         }
-
-
-
 
     }
 
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf");
     QString ffamily = QFontDatabase::applicationFontFamilies(id).at(0);
-     f = QFont(ffamily, 40);
-
-    //QWidget* recipee = new QWidget;
+    f = QFont(ffamily, 40);
 
     QLabel *book_names_title  = new QLabel("Textbooks:");
     book_names_title->setFont(f);
@@ -71,15 +55,12 @@ Recipe::Recipe() {
 
     display_recipe();
 
-
-
-
     setLayout(layout);
 
-    //show();
     stacking_sound = new QMediaPlayer();
     stacking_sound->setMedia(QUrl("qrc:/music/stacking sound effect.mp3"));
     stacking_sound->setVolume(20);
+
     error_sound = new QMediaPlayer();
     error_sound->setMedia(QUrl("qrc:/music/bomb sound effect.mp3"));
     error_sound->setVolume(50);
@@ -104,37 +85,26 @@ void Recipe::newrecipe(QLayout* slayout){
 
             if (book_code == 0) {
                 ++bigcplusplus_count;
-                //stack.push_back(0);
             }
 
             if (book_code == 1) {
                 ++bio_count;
-                //stack.push_back(1);
             }
 
             if (book_code == 2) {
                 ++chem_count;
-                //stack.push_back(2);
             }
-
-
 
             if (book_code == 3) {
                 ++soc_count;
-                //stack.push_back(3);
-
             }
 
             if (book_code == 4) {
                 ++eng_count;
-                //stack.push_back(4);
-
             }
 
             if (book_code == 5) {
                 ++philo_count;
-                //stack.push_back(5);
-
             }
 
         }
@@ -149,33 +119,6 @@ void Recipe::newrecipe(QLayout* slayout){
         display_recipe();
 
         setLayout(layout);
-
-
-}
-
-
-int Recipe::get_bigc_count() {
-    return bigcplusplus_count;
-}
-
-int Recipe::get_bio_count() {
-    return bio_count;
-}
-
-int Recipe::get_chem_count() {
-    return chem_count;
-}
-
-int Recipe::get_soc_count() {
-    return soc_count;
-}
-
-int Recipe::get_eng_count() {
-    return eng_count;
-}
-
-int Recipe::get_philo_count() {
-    return philo_count;
 }
 
 
@@ -482,59 +425,3 @@ void Recipe::display_recipe() {
 }
 }
 
-//still working on the display
-
-//        void books::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
-//            QRectF source(0,0,500,161); //image is 500x161
-//            painter->drawPixmap(boundingRect(),*biobook, source); //boundingrect is the target in which to draw the book into
-//            //painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : scene()->removeItem(this));
-
-//        }
-
-//void Recipe::paint(QPainter *painter, QPixmap* pixmap, const QStyleOptionGraphicsItem *, QWidget *) {
-//    QRectF source(0,0,500,161); //image is 500x161
-//    painter->drawPixmap(QRectF(0,0,500*0.2,161*0.2),*pixmap, source); //boundingrect is the target in which to draw the book into
-//}
-
-//        QRectF books::boundingRect() const{
-//            return QRectF(0,0,500*0.2,161*0.2);
-//        }
-
-//        QPainter *painter;
-//        QRectF source(0,0,500,161);
-//        painter->drawPixmap(QRectF(0,0,500*0.2, 161*0.2));
-
-
-//        void particles::make(){
-//              for(auto i = 0; i <row; ++i){ //go through the rows
-//                  for(auto n= 0; n<column; ++n){ //go through the columns
-//                      oneparticle *one = new oneparticle; //creates a new particle
-//                      layout->addWidget(one, i+1, n, Qt::AlignCenter);
-//                  }
-//              }
-
-//        void oneparticle::paintEvent(QPaintEvent *e){
-//            QPainter painter(this);
-//            painter.setBrush(QBrush(QColorConstants::Svg::pink));
-//            painter.setPen(Qt::white);
-//            QRectF rectangle(1, 1, 15, 15);
-//            painter.drawEllipse(rectangle);
-
-//        }
-
-
-//        books* book(0);
-//        layout->addItem(book,1,2,1,1);
-
-
-//        QLabel* book_label = new QLabel();
-//        book_label->setScaledContents(true);
-
-//        QPixmap pixmap(":/spritesheets/redbook.png");
-//        book_label->setPixmap(pixmap);
-
-//        pixmap = pixmap.scaled(71,23, Qt::KeepAspectRatio);
-//        book_label->setPixmap(pixmap);
-//        //book_label.setMask(pixmap.mask());
-
-//layout->addWidget(book_label,1,2,1,1, Qt::AlignLeft)
