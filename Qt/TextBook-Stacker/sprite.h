@@ -21,15 +21,10 @@ private:
     double _scale; // scale of the sprite
     int ticks_per_frame = 1;
     int ticks = 1;
-
     bool _animating=false;
-//signals:
-//    void emitcx(int);
+
 public:
-     // spritesheet
-   // int getcx();
-    // overrides
-    //QRectF boundingRect() const override;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
     void advance(int phase) override;
 

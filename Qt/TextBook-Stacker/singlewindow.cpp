@@ -4,7 +4,6 @@
 #include <QGridLayout>
 #include <QPixmap>
 #include <QFontDatabase>
-#include "BookStack.h"
 
 /**
  * @brief singlewindow::singlewindow constructor implementation for singlewindow
@@ -101,11 +100,8 @@ singlewindow::singlewindow(QString const & name1) : lives(3) //gives player 3 li
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(updatepscore())); //recipe updates avatar's score if book is correct
     connect(r, SIGNAL(updatescore(int)), this, SLOT(updatescorelabel())); //recipe updates the score label if book is correct
     connect(r, SIGNAL(updatescore(int)), mc, SLOT(addbooks(int))); //adds books to avatar's book stack
-
     connect(r, SIGNAL(round_complete(int)), mc, SLOT(deletestack())); //starts new stack once round is over
-    connect(r, SIGNAL(round_complete(int)), view, SLOT(stopbookdrop())); //stops game from running after round ends
     connect(r, SIGNAL(round_complete(int)), this, SLOT(roundupdate())); //updates round number
-
     connect(r, SIGNAL(wrong_book()), this, SLOT(deductlife())); //deducts life when wrong book is caught
     connect(this, SIGNAL(change_timer(int)), view, SLOT(increase_speed(int))); //increases speed of falling books when timer is changed
 
@@ -137,7 +133,7 @@ void singlewindow::deductlife(){
             livesnum->removeWidget(heart1);
             delete heart1;
             heart1 = nullptr;
-
+            view->stopbookdrop();
             emit finalscore(mc->getname(),mc->getscore()); //score and player name are emitted to be caught by loserwindow
             emit pname_score(mc->getname(), mc->getscore());
 
@@ -174,6 +170,7 @@ singlewindow::~singlewindow()
  * @brief singlewindow::returntomain slot that emits a signal signaling we want to go back to the main window
  */
 void singlewindow::returntomain(){
+    view->stopbookdrop();
     emit pressedmain(); //emit pressedmain signal
 
 }
@@ -191,10 +188,12 @@ void singlewindow::updatescorelabel(){
  */
 void singlewindow::roundupdate(){
     ++round_number;
-    if(round_number < 1){
+    if(round_number < 5){ //4 rounds total
+        view->stopbookdrop();
          emit roundcomplete(round_number);
     }
     else{
+        view->stopbookdrop();
         emit gamewon(mc->getname(), mc->getscore());
     }
 

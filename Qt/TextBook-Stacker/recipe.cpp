@@ -13,7 +13,7 @@ namespace Recipe {
 Recipe::Recipe() {
 
     //randomly generate a number between 6-9 for the total number of books the player needs to catch
-    total_books = QRandomGenerator::global()->bounded(2,3); //(6,10)
+    total_books = QRandomGenerator::global()->bounded(6,8);
 
     for (int i = 0; i < total_books; ++i) {
         int book_code = QRandomGenerator::global()->bounded(6); //randomly assign code to differentiate 6 different types of books
@@ -121,7 +121,7 @@ void Recipe::newrecipe(QLayout* slayout){
 
         //rest of function is code to generate a new recipe:
 
-        total_books = QRandomGenerator::global()->bounded(2,3); //6,10
+        total_books = QRandomGenerator::global()->bounded(6,8);
 
         for (int i = 0; i < total_books; ++i) {
             int book_code = QRandomGenerator::global()->bounded(6);

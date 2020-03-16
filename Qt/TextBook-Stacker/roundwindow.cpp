@@ -2,12 +2,10 @@
 #include <QFontDatabase>
 #include <QPushButton>
 
-//roundwindow::roundwindow(QWidget *parent) : QWidget(parent)
-//{
-
-//}
-
-
+/**
+ * @brief roundwindow::roundwindow constructor
+ * @param n
+ */
 roundwindow::roundwindow(int n): round(n){
     int id = QFontDatabase::addApplicationFont(":/fonts/Bubble font.ttf"); //add in imported font from resources
     QString family = QFontDatabase::applicationFontFamilies(id).at(0); //get the correct font name
@@ -57,11 +55,5 @@ roundwindow::roundwindow(int n): round(n){
     newround_sound = new QMediaPlayer();
     newround_sound->setMedia(QUrl("qrc:/music/winning.mp3"));
     newround_sound->play();
-//    if (newround_sound->state() == QMediaPlayer::PlayingState) {
-//        newround_sound->setPosition(0);
-//    }
-//    else if (newround_sound->state() == QMediaPlayer::StoppedState) {
-//        newround_sound->play();
-//    }
 
 }

@@ -124,8 +124,8 @@ QPainterPath avatar::shape() const{
 void avatar::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     QRectF sr(Sprite::getx_off() + Sprite::getw()*Sprite::getcx(),Sprite::gety_off() + Sprite::geth()*Sprite::getcy(),32,48);
     painter->drawPixmap(QRectF((0+18),293.8,(2*32),(2*48)),*Sprite::getss(), sr); //draws the avatar
-    QRectF source(0,0,500,161); //source's dimension is the book graphics dimension
 
+    QRectF source(0,0,500,161); //source's dimension is the book graphics dimension
     int y = 1; //the starting pos for book drawing
     for(auto i: bookstack){ //draw out however many books there are
         painter->drawPixmap(QRectF(0,(308.8-32.2*y), 500*0.2, 161*0.2), *i->getbookpic(), source);

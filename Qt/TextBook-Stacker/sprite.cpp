@@ -1,14 +1,6 @@
 #include "sprite.h"
 #include <QPainter>
 
-//*
-// * @brief Sprite::boundingRect creates an area for sprite to be drawn into
-// * @return
-
-//QRectF Sprite::boundingRect() const {
-//    return QRectF(0,0,_scale*w,_scale*h);
-//}
-//tells qt what parts im painting
 
 /**
  * @brief Sprite::paint paints the sprite object into the designated area
@@ -30,15 +22,10 @@ void Sprite::advance(int phase) {
         if(!ticks) {
             ++cx;
             cx %= nx;
-           // emitcx(this->getcx());
-          //  update(boundingRect());
+
         }
     }
 }
-
-//int Sprite::getcx() {
-//    return cx;
-//}
 
 
 
