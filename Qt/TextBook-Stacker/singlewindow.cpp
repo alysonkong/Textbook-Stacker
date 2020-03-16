@@ -134,7 +134,7 @@ void singlewindow::deductlife(){
             livesnum->removeWidget(heart1);
             delete heart1;
             heart1 = nullptr;
-            emit finalscore(mc->getscore());
+            emit finalscore(mc->getname(),mc->getscore());
             emit pname_score(mc->getname(), mc->getscore());
 
         }
@@ -176,7 +176,7 @@ void singlewindow::updatescorelabel(){
 
 void singlewindow::roundupdate(){
     ++round_number;
-    if(round_number < 2){
+    if(round_number < 1){
          emit roundcomplete(round_number);
     }
     else{

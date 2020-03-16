@@ -12,11 +12,13 @@ class loserwindow : public QWidget
     Q_OBJECT
 public:
     //explicit loserwindow(QWidget *parent = nullptr);
-    loserwindow(int);
+    loserwindow(QString, int);
 signals:
      void pressedmain();
+     void gotolboard(QString, int);
 public slots:
      void returntomain();
+     void pressedLboard();
 private:
     QGridLayout *layout;
     QString player_name;

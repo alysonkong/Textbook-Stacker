@@ -33,7 +33,7 @@ signals:
    void pressedmain(); // @brief pressedmain signal that a
    void dropbook(books*);
    void pname_score(QString, int);
-   void finalscore(int);
+   void finalscore(QString, int);
    void change_timer(int);
    void roundcomplete(int);
    void gamewon(QString, int);

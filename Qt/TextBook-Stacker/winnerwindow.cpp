@@ -73,7 +73,7 @@ void winnerwindow::pressedmain(){
 }
 
 void winnerwindow::pressedLboard() {
-    emit gotoLboard();
+    emit gotoLboard(player_name, score_value);
 }
 
 

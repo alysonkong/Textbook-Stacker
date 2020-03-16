@@ -156,8 +156,8 @@ void MainWindow::getname(QString n){
     swindows->setCurrentWidget(single_window);
     connect(single_window, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
     connect(namewindow, SIGNAL(single_windowindex()), this, SLOT(splayerdisplay()));
-    connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
-    connect(single_window, SIGNAL(finalscore(int)), this, SLOT(loserdisplay(int)));
+   // connect(single_window, SIGNAL(pname_score(QString, int)), lboard, SLOT(getplayerscore(QString, int)));
+    connect(single_window, SIGNAL(finalscore(QString, int)), this, SLOT(loserdisplay(QString, int)));
     connect(single_window, SIGNAL(roundcomplete(int)), this, SLOT(rounddisplay(int)));
     connect(single_window, SIGNAL(change_music()), this, SLOT(musiconoff()));
     connect(single_window, SIGNAL(gamewon(QString, int)), this, SLOT(winnerdisplay(QString, int)));
@@ -167,7 +167,7 @@ void MainWindow::getname(QString n){
 }
 
 void MainWindow::winnerdisplay(QString pname, int pscore) {
-//    if(round_window){
+//    if(round_window)  {
 //        swindows->removeWidget(round_window);
 //        delete round_window;
 //        round_window=nullptr;
@@ -176,19 +176,31 @@ void MainWindow::winnerdisplay(QString pname, int pscore) {
 //    static bool running = false;
 //    if(!running) {
 //        running = true;
-    song->pause();
+  //  song->pause();
     wonwindow = new winnerwindow(pname, pscore);
     swindows->addWidget(wonwindow);
     swindows->setCurrentWidget(wonwindow);
     connect(wonwindow, SIGNAL(returntomain()), this, SLOT(maindisplay()));
-    connect(wonwindow, SIGNAL(gotoLboard()), this, SLOT(lboarddisplay()));
+    connect(wonwindow, SIGNAL(gotoLboard(QString, int)), this, SLOT(lboardupdate(QString, int)));
 
 //    }
 //    running = false;
 }
 
+void MainWindow::lboardupdate(const QString& n, int s){
+     lboard->updatedisplay(n,s);
+     if (clicked_sound->state() == QMediaPlayer::PlayingState) {
+         clicked_sound->setPosition(0);
+     }
+     else if (clicked_sound->state() == QMediaPlayer::StoppedState) {
+         clicked_sound->play();
+     }
+     //swindows->setCurrentIndex(1);
+     swindows->setCurrentWidget(lboard);
+}
+
 void MainWindow::rounddisplay(int r){
-    song->pause();
+   // song->pause();
     round_window = new roundwindow(r);
     swindows->addWidget(round_window);
     swindows->setCurrentWidget(round_window);
@@ -199,11 +211,12 @@ void MainWindow::rounddisplay(int r){
 
 }
 
-void MainWindow::loserdisplay(int pscore){
-    lostwindow = new loserwindow(pscore);
+void MainWindow::loserdisplay(QString pname, int pscore){
+    lostwindow = new loserwindow(pname, pscore);
     swindows->addWidget(lostwindow);
     swindows->setCurrentWidget(lostwindow);
     connect(lostwindow, SIGNAL(pressedmain()), this, SLOT(maindisplay()));
+    connect(lostwindow, SIGNAL(gotolboard(QString, int)), this, SLOT(lboardupdate(QString, int)));
 }
 
 
@@ -244,6 +257,7 @@ void MainWindow::musiconoff(){
  * @brief MainWindow::lboarddisplay set stackedwidget to leaderboard
  */
 void  MainWindow::lboarddisplay(){
+   // lboard->updatedisplay();
     if (clicked_sound->state() == QMediaPlayer::PlayingState) {
         clicked_sound->setPosition(0);
     }
